@@ -26,30 +26,117 @@ public class jFrame_Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel_Left_Login = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel_Right_Login = new javax.swing.JPanel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jTextField_Nome_Utente = new javax.swing.JTextField();
+        jLabel_Nome_Utente = new javax.swing.JLabel();
+        jLabel_Password = new javax.swing.JLabel();
+        jButton_Login = new javax.swing.JButton();
+        jLabel1_Nuovo_Utente = new javax.swing.JLabel();
+        jButton_Nuovo_Utente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setMaximumSize(new java.awt.Dimension(1000, 600));
+        setMinimumSize(new java.awt.Dimension(1000, 600));
         setPreferredSize(new java.awt.Dimension(1000, 600));
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel_Left_Login.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel_Left_Login.setMaximumSize(new java.awt.Dimension(500, 600));
+        jPanel_Left_Login.setMinimumSize(new java.awt.Dimension(500, 600));
+        jPanel_Left_Login.setName(""); // NOI18N
+        jPanel_Left_Login.setPreferredSize(new java.awt.Dimension(500, 600));
+        jPanel_Left_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 180, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/pngegg.png"))); // NOI18N
+        jPanel_Left_Login.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel_Left_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
+
+        jPanel_Right_Login.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_Right_Login.setMaximumSize(new java.awt.Dimension(500, 600));
+        jPanel_Right_Login.setMinimumSize(new java.awt.Dimension(500, 600));
+        jPanel_Right_Login.setPreferredSize(new java.awt.Dimension(500, 600));
+        jPanel_Right_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPasswordField.setBackground(new java.awt.Color(51, 51, 51));
+        jPasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordFieldActionPerformed(evt);
+            }
+        });
+        jPanel_Right_Login.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 210, -1));
+
+        jTextField_Nome_Utente.setBackground(new java.awt.Color(51, 51, 51));
+        jTextField_Nome_Utente.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField_Nome_Utente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_Nome_UtenteActionPerformed(evt);
+            }
+        });
+        jPanel_Right_Login.add(jTextField_Nome_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 210, -1));
+
+        jLabel_Nome_Utente.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_Nome_Utente.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel_Nome_Utente.setText("Nome Utente");
+        jPanel_Right_Login.add(jLabel_Nome_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 150, -1));
+
+        jLabel_Password.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_Password.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel_Password.setText("password");
+        jPanel_Right_Login.add(jLabel_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, -1));
+
+        jButton_Login.setBackground(new java.awt.Color(51, 51, 51));
+        jButton_Login.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButton_Login.setText("Login");
+        jButton_Login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LoginActionPerformed(evt);
+            }
+        });
+        jPanel_Right_Login.add(jButton_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
+
+        jLabel1_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel1_Nuovo_Utente.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1_Nuovo_Utente.setText("nuovo utente?");
+        jPanel_Right_Login.add(jLabel1_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
+
+        jButton_Nuovo_Utente.setBackground(new java.awt.Color(51, 51, 51));
+        jButton_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButton_Nuovo_Utente.setText("Registrati");
+        jButton_Nuovo_Utente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Nuovo_UtenteActionPerformed(evt);
+            }
+        });
+        jPanel_Right_Login.add(jButton_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
+
+        getContentPane().add(jPanel_Right_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField_Nome_UtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_Nome_UtenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_Nome_UtenteActionPerformed
+
+    private void jButton_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_LoginActionPerformed
+
+    private void jButton_Nuovo_UtenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Nuovo_UtenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Nuovo_UtenteActionPerformed
+
+    private void jPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -87,7 +174,15 @@ public class jFrame_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Login;
+    private javax.swing.JButton jButton_Nuovo_Utente;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1_Nuovo_Utente;
+    private javax.swing.JLabel jLabel_Nome_Utente;
+    private javax.swing.JLabel jLabel_Password;
+    private javax.swing.JPanel jPanel_Left_Login;
+    private javax.swing.JPanel jPanel_Right_Login;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextField_Nome_Utente;
     // End of variables declaration//GEN-END:variables
 }
