@@ -27,7 +27,7 @@ public class jFrame_Login extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel_Left_Login = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel_Icon_Left = new javax.swing.JLabel();
         jPanel_Right_Login = new javax.swing.JPanel();
         jPasswordField = new javax.swing.JPasswordField();
         jTextField_Nome_Utente = new javax.swing.JTextField();
@@ -41,7 +41,6 @@ public class jFrame_Login extends javax.swing.JFrame {
         setTitle("Login");
         setMaximumSize(new java.awt.Dimension(1000, 600));
         setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -52,8 +51,8 @@ public class jFrame_Login extends javax.swing.JFrame {
         jPanel_Left_Login.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel_Left_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/pngegg.png"))); // NOI18N
-        jPanel_Left_Login.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        jLabel_Icon_Left.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/pngegg.png"))); // NOI18N
+        jPanel_Left_Login.add(jLabel_Icon_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
 
         getContentPane().add(jPanel_Left_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
@@ -176,8 +175,8 @@ public class jFrame_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Login;
     private javax.swing.JButton jButton_Nuovo_Utente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1_Nuovo_Utente;
+    private javax.swing.JLabel jLabel_Icon_Left;
     private javax.swing.JLabel jLabel_Nome_Utente;
     private javax.swing.JLabel jLabel_Password;
     private javax.swing.JPanel jPanel_Left_Login;
