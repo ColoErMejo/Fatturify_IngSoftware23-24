@@ -67,13 +67,13 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jPanel_Cantiere_Left.setBackground(new java.awt.Color(0, 153, 255));
         jPanel_Cantiere_Left.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton_Home_Cant.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Home_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-home-50.png"))); // NOI18N
+        jButton_Home_Cant.setBackground(new java.awt.Color(0, 153, 255));
+        jButton_Home_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Home.png"))); // NOI18N
         jPanel_Cantiere_Left.add(jButton_Home_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jButton_Back_Cant.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Back_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-back-50.png"))); // NOI18N
-        jPanel_Cantiere_Left.add(jButton_Back_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
+        jButton_Back_Cant.setBackground(new java.awt.Color(0, 153, 255));
+        jButton_Back_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Back.png"))); // NOI18N
+        jPanel_Cantiere_Left.add(jButton_Back_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         jTable_Bot_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jTable_Bot_Cant.setBorder(null);

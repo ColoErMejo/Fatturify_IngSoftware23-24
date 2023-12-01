@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
+import GUI.jFrame_principale;
 
 public class Controller_Login implements ActionListener {
 	
@@ -40,8 +41,8 @@ public class Controller_Login implements ActionListener {
         // TODO add your handling code here:
     	//jFrame.getjLabel_Password().setText("bravo");
     	jFrame.setVisible(false);
-    	jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere();
-    	jframe_cantiere.setVisible(true);
+    	jFrame_principale jframe_principale = new jFrame_principale();
+    	jframe_principale.setVisible(true);
     }//GEN-LAST:event_jButton_LoginActionPerformed
 
     private void jButton_Nuovo_UtenteActionPerformed() {//GEN-FIRST:event_jButton_Nuovo_UtenteActionPerformed

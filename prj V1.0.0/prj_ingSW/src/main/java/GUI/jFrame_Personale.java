@@ -33,6 +33,8 @@ public class jFrame_Personale extends javax.swing.JFrame {
         jPanel_Pers_Left = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Pers_Left = new javax.swing.JTable();
+        jButton_Back_Pers = new javax.swing.JButton();
+        jButton_Home_Pers = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -85,7 +87,15 @@ public class jFrame_Personale extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable_Pers_Left);
 
-        jPanel_Pers_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanel_Pers_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+
+        jButton_Back_Pers.setBackground(new java.awt.Color(0, 153, 255));
+        jButton_Back_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Back.png"))); // NOI18N
+        jPanel_Pers_Left.add(jButton_Back_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
+
+        jButton_Home_Pers.setBackground(new java.awt.Color(0, 153, 255));
+        jButton_Home_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Home.png"))); // NOI18N
+        jPanel_Pers_Left.add(jButton_Home_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         getContentPane().add(jPanel_Pers_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
 
@@ -132,6 +142,8 @@ public class jFrame_Personale extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton_Back_Pers;
+    private javax.swing.JButton jButton_Home_Pers;
     private javax.swing.JPanel jPanel_Pers_Left;
     private javax.swing.JPanel jPanel_Pers_Right;
     private javax.swing.JScrollPane jScrollPane1;

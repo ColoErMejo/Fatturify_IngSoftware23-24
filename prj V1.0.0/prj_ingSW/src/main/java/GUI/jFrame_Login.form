@@ -62,12 +62,12 @@
         <Component class="javax.swing.JLabel" name="jLabel_Icon_Left">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/res/Con_Sfondo-removebg-preview.png"/>
+              <Image iconType="3" name="/res/logo.png"/>
             </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="0" y="40" width="-1" height="-1"/>
+              <AbsoluteConstraints x="100" y="160" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

@@ -64,8 +64,8 @@ public class jFrame_Login extends javax.swing.JFrame {
         jPanel_Left_Login.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel_Left_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Icon_Left.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Con_Sfondo-removebg-preview.png"))); // NOI18N
-        jPanel_Left_Login.add(jLabel_Icon_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+        jLabel_Icon_Left.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/logo.png"))); // NOI18N
+        jPanel_Left_Login.add(jLabel_Icon_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
         getContentPane().add(jPanel_Left_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
@@ -78,7 +78,7 @@ public class jFrame_Login extends javax.swing.JFrame {
         jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
         jPasswordField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jPasswordField.setForeground(new java.awt.Color(51, 51, 51));
-        
+       
         jPanel_Right_Login.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 210, -1));
 
         jTextField_Nome_Utente.setBackground(new java.awt.Color(255, 255, 255));
