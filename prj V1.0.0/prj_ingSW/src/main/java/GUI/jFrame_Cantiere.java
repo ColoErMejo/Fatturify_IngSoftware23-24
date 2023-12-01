@@ -4,12 +4,23 @@
  */
 package GUI;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.crypto.Data;
+
 /**
  *
  * @author Merlo
  */
 public class jFrame_Cantiere extends javax.swing.JFrame {
 
+	// da togliere, serviva a me per fare i test
+	private  Object[][] data = {
+            {"John", "Doe", 25},
+            {"Jane", "Smith", 30},
+            {"Bob", "Johnson", 28}
+    };
+	
     /**
      * Creates new form jFrame_Cantiere
      */
@@ -62,36 +73,28 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_Back_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-back-50.png"))); // NOI18N
         jPanel_Cantiere_Left.add(jButton_Back_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
-        jTable_Bot_Cant.setAutoCreateColumnsFromModel(false);
         jTable_Bot_Cant.setBackground(new java.awt.Color(255, 255, 255));
-        jTable_Bot_Cant.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        jTable_Bot_Cant.setBorder(null);
         jTable_Bot_Cant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "dipendente", "ore", "costo manodopera"
             }
         ));
         jScrollPane1.setViewportView(jTable_Bot_Cant);
 
         jPanel_Cantiere_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 230));
 
-        jTable_Top_Cant.setAutoCreateColumnsFromModel(false);
         jTable_Top_Cant.setBackground(new java.awt.Color(255, 255, 255));
-        jTable_Top_Cant.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        jTable_Top_Cant.setBorder(null);
         jTable_Top_Cant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "id", "quantità", "costo totale"
             }
         ));
         jScrollPane2.setViewportView(jTable_Top_Cant);
@@ -178,7 +181,19 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
+        populateTable(jTable_Top_Cant, data);
+        populateTable(jTable_Bot_Cant, data);
     }// </editor-fold>//GEN-END:initComponents
+    
+    //populateTable(jTable_Top_Cant, data);
+    //populateTable(jTable_Bot_Cant, data);
+    public void populateTable(JTable table,Object[][] data)
+    {
+        DefaultTableModel tblmodel =  (DefaultTableModel)table.getModel();
+        for (Object[] row : data) {     
+            	tblmodel.addRow(row);
+        }
+    }
 
     private void jButton_Aggiungi_CantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Aggiungi_CantActionPerformed
         // TODO add your handling code here:
@@ -215,10 +230,12 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new jFrame_Cantiere().setVisible(true);
+                
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Aggiungi_Cant;
     private javax.swing.JButton jButton_Back_Cant;
@@ -239,9 +256,6 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     private javax.swing.JTable jTable_Top_Cant;
     private javax.swing.JTextField jTextField_Descrizione_Cant;
     private javax.swing.JTextField jTextField_Nore_Cant;
-    private javax.swing.JTextField jTextField_Qta;
-    private javax.swing.JTextField jTextField_Qta1;
-    private javax.swing.JTextField jTextField_Qta2;
     private javax.swing.JTextField jTextField_Quantita_Cant;
     // End of variables declaration//GEN-END:variables
 }
