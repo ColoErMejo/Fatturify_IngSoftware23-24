@@ -61,8 +61,8 @@ public class jFrame_Login extends javax.swing.JFrame {
         jPanel_Left_Login.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel_Left_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Icon_Left.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/pngegg.png"))); // NOI18N
-        jPanel_Left_Login.add(jLabel_Icon_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, -1, -1));
+        jLabel_Icon_Left.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Con_Sfondo-removebg-preview.png"))); // NOI18N
+        jPanel_Left_Login.add(jLabel_Icon_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         getContentPane().add(jPanel_Left_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 600));
 
@@ -92,10 +92,11 @@ public class jFrame_Login extends javax.swing.JFrame {
         jLabel_Password.setText("password");
         jPanel_Right_Login.add(jLabel_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, -1));
 
-        jButton_Login.setBackground(new java.awt.Color(251, 251, 251));
+        jButton_Login.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Login.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButton_Login.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Login.setText("Login");
-        
+       
         jPanel_Right_Login.add(jButton_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
         jLabel1_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -103,17 +104,17 @@ public class jFrame_Login extends javax.swing.JFrame {
         jLabel1_Nuovo_Utente.setText("nuovo utente?");
         jPanel_Right_Login.add(jLabel1_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
-        jButton_Nuovo_Utente.setBackground(new java.awt.Color(251, 251, 251));
+        jButton_Nuovo_Utente.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jButton_Nuovo_Utente.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Nuovo_Utente.setText("Registrati");
+       
         jPanel_Right_Login.add(jButton_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
         getContentPane().add(jPanel_Right_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
-        
-        
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -26,45 +26,46 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel_Cantiere = new javax.swing.JPanel();
-        jButton_Home = new javax.swing.JButton();
-        jButton_Back = new javax.swing.JButton();
+        jPanel_Cantiere_Left = new javax.swing.JPanel();
+        jButton_Home_Cant = new javax.swing.JButton();
+        jButton_Back_Cant = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_Materiali = new javax.swing.JTable();
+        jTable_Bot_Cant = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_Personale = new javax.swing.JTable();
-        jComboBox_Categoria = new javax.swing.JComboBox<>();
-        jComboBox_Prodotto = new javax.swing.JComboBox<>();
-        jTextField_Qta = new javax.swing.JTextField();
-        jLabel_Qta = new javax.swing.JLabel();
-        jComboBox_Personale = new javax.swing.JComboBox<>();
-        jTextField_Nore = new javax.swing.JTextField();
-        jLabel_Nore = new javax.swing.JLabel();
-        jLabel_Desc_Lav = new javax.swing.JLabel();
-        jTextField_Desc_Lav = new javax.swing.JTextField();
-        jButton_Aggiungi = new javax.swing.JButton();
-        jButton_Nuovo_Prod = new javax.swing.JButton();
-        jButton_ToFattura = new javax.swing.JButton();
+        jTable_Top_Cant = new javax.swing.JTable();
+        jPanel_Cantiere_Right = new javax.swing.JPanel();
+        jComboBox_Pers_Cant = new javax.swing.JComboBox<>();
+        jComboBox_Categoria_Cant = new javax.swing.JComboBox<>();
+        jComboBox_Prodotto_Cant = new javax.swing.JComboBox<>();
+        jButton_ToFAttura_Cant = new javax.swing.JButton();
+        jButton_Aggiungi_Cant = new javax.swing.JButton();
+        jButton_NuovoProd_Cant = new javax.swing.JButton();
+        jTextField_Descrizione_Cant = new javax.swing.JTextField();
+        jTextField_Quantita_Cant = new javax.swing.JTextField();
+        jTextField_Nore_Cant = new javax.swing.JTextField();
+        jLabel_Descrizione_Cant = new javax.swing.JLabel();
+        jLabel_Nore_Cant = new javax.swing.JLabel();
+        jLabel_Quantita_Cant = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("App");
-        setMaximumSize(new java.awt.Dimension(1000, 600));
-        setMinimumSize(new java.awt.Dimension(1000, 600));
-        setPreferredSize(new java.awt.Dimension(1000, 600));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel_Cantiere.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_Cantiere.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel_Cantiere_Left.setBackground(new java.awt.Color(0, 153, 255));
+        jPanel_Cantiere_Left.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton_Home.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-home-50.png"))); // NOI18N
-        jPanel_Cantiere.add(jButton_Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jButton_Home_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Home_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-home-50.png"))); // NOI18N
+        jPanel_Cantiere_Left.add(jButton_Home_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jButton_Back.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-back-50.png"))); // NOI18N
-        jPanel_Cantiere.add(jButton_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        jButton_Back_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Back_Cant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/icons8-back-50.png"))); // NOI18N
+        jPanel_Cantiere_Left.add(jButton_Back_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 10, -1, -1));
 
-        jTable_Materiali.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Bot_Cant.setAutoCreateColumnsFromModel(false);
+        jTable_Bot_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_Bot_Cant.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        jTable_Bot_Cant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -75,11 +76,14 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable_Materiali);
+        jScrollPane1.setViewportView(jTable_Bot_Cant);
 
-        jPanel_Cantiere.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, 210));
+        jPanel_Cantiere_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, 230));
 
-        jTable_Personale.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Top_Cant.setAutoCreateColumnsFromModel(false);
+        jTable_Top_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_Top_Cant.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        jTable_Top_Cant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -90,114 +94,95 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable_Personale);
+        jScrollPane2.setViewportView(jTable_Top_Cant);
 
-        jPanel_Cantiere.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, 210));
+        jPanel_Cantiere_Left.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 220));
 
-        jComboBox_Categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel_Cantiere.add(jComboBox_Categoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 80, -1, -1));
+        getContentPane().add(jPanel_Cantiere_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
-        jComboBox_Prodotto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel_Cantiere.add(jComboBox_Prodotto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 80, -1, -1));
+        jPanel_Cantiere_Right.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_Cantiere_Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField_Qta.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField_Qta.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_Qta.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_Pers_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox_Pers_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jComboBox_Pers_Cant.setMaximumRowCount(200);
+        jComboBox_Pers_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel_Cantiere_Right.add(jComboBox_Pers_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 30));
+
+        jComboBox_Categoria_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox_Categoria_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jComboBox_Categoria_Cant.setMaximumRowCount(200);
+        jComboBox_Categoria_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel_Cantiere_Right.add(jComboBox_Categoria_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 30));
+
+        jComboBox_Prodotto_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jComboBox_Prodotto_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jComboBox_Prodotto_Cant.setMaximumRowCount(200);
+        jComboBox_Prodotto_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel_Cantiere_Right.add(jComboBox_Prodotto_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 80, 30));
+
+        jButton_ToFAttura_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_ToFAttura_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_ToFAttura_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_ToFAttura_Cant.setText("fattura");
+        jPanel_Cantiere_Right.add(jButton_ToFAttura_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, 180, -1));
+
+        jButton_Aggiungi_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Aggiungi_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_Aggiungi_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_Aggiungi_Cant.setText("aggiungi");
+        jButton_Aggiungi_Cant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_QtaActionPerformed(evt);
+                jButton_Aggiungi_CantActionPerformed(evt);
             }
         });
-        jPanel_Cantiere.add(jTextField_Qta, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 80, 90, -1));
+        jPanel_Cantiere_Right.add(jButton_Aggiungi_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 180, -1));
 
-        jLabel_Qta.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Qta.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel_Qta.setText("quantità");
-        jPanel_Cantiere.add(jLabel_Qta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, -1, -1));
+        jButton_NuovoProd_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_NuovoProd_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_NuovoProd_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_NuovoProd_Cant.setText("aggiungi nuovo prodotto");
+        jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, -1, -1));
 
-        jComboBox_Personale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel_Cantiere.add(jComboBox_Personale, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, -1, -1));
+        jTextField_Descrizione_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_Descrizione_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jTextField_Descrizione_Cant.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel_Cantiere_Right.add(jTextField_Descrizione_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 380, 110));
 
-        jTextField_Nore.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField_Nore.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_Nore.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_NoreActionPerformed(evt);
-            }
-        });
-        jPanel_Cantiere.add(jTextField_Nore, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 160, 90, -1));
+        jTextField_Quantita_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_Quantita_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jTextField_Quantita_Cant.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel_Cantiere_Right.add(jTextField_Quantita_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 120, -1));
 
-        jLabel_Nore.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Nore.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel_Nore.setText("numero ore");
-        jPanel_Cantiere.add(jLabel_Nore, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 140, -1, -1));
+        jTextField_Nore_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_Nore_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jTextField_Nore_Cant.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel_Cantiere_Right.add(jTextField_Nore_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 170, 120, -1));
 
-        jLabel_Desc_Lav.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Desc_Lav.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel_Desc_Lav.setText("descrizione lavoro");
-        jPanel_Cantiere.add(jLabel_Desc_Lav, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 220, -1, -1));
+        jLabel_Descrizione_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Descrizione_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Descrizione_Cant.setText("descrizione");
+        jPanel_Cantiere_Right.add(jLabel_Descrizione_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
-        jTextField_Desc_Lav.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField_Desc_Lav.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField_Desc_Lav.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_Desc_LavActionPerformed(evt);
-            }
-        });
-        jPanel_Cantiere.add(jTextField_Desc_Lav, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 240, 360, 80));
+        jLabel_Nore_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Nore_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Nore_Cant.setText("numero ore");
+        jPanel_Cantiere_Right.add(jLabel_Nore_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, 20));
 
-        jButton_Aggiungi.setText("Aggiungi");
-        jButton_Aggiungi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_AggiungiActionPerformed(evt);
-            }
-        });
-        jPanel_Cantiere.add(jButton_Aggiungi, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 100, -1));
+        jLabel_Quantita_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Quantita_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Quantita_Cant.setText("quantità");
+        jPanel_Cantiere_Right.add(jLabel_Quantita_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
-        jButton_Nuovo_Prod.setText("Nuovo Prodotto");
-        jPanel_Cantiere.add(jButton_Nuovo_Prod, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 490, -1, -1));
-
-        jButton_ToFattura.setText("Fattura");
-        jButton_ToFattura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ToFatturaActionPerformed(evt);
-            }
-        });
-        jPanel_Cantiere.add(jButton_ToFattura, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 490, 110, -1));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_Cantiere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_Cantiere, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().add(jPanel_Cantiere_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField_QtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_QtaActionPerformed
+    private void jButton_Aggiungi_CantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Aggiungi_CantActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_QtaActionPerformed
-
-    private void jTextField_NoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_NoreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_NoreActionPerformed
-
-    private void jTextField_Desc_LavActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_Desc_LavActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_Desc_LavActionPerformed
-
-    private void jButton_AggiungiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AggiungiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_AggiungiActionPerformed
-
-    private void jButton_ToFatturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ToFatturaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ToFatturaActionPerformed
+    }//GEN-LAST:event_jButton_Aggiungi_CantActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,24 +220,28 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_Aggiungi;
-    private javax.swing.JButton jButton_Back;
-    private javax.swing.JButton jButton_Home;
-    private javax.swing.JButton jButton_Nuovo_Prod;
-    private javax.swing.JButton jButton_ToFattura;
-    private javax.swing.JComboBox<String> jComboBox_Categoria;
-    private javax.swing.JComboBox<String> jComboBox_Personale;
-    private javax.swing.JComboBox<String> jComboBox_Prodotto;
-    private javax.swing.JLabel jLabel_Desc_Lav;
-    private javax.swing.JLabel jLabel_Nore;
-    private javax.swing.JLabel jLabel_Qta;
-    private javax.swing.JPanel jPanel_Cantiere;
+    private javax.swing.JButton jButton_Aggiungi_Cant;
+    private javax.swing.JButton jButton_Back_Cant;
+    private javax.swing.JButton jButton_Home_Cant;
+    private javax.swing.JButton jButton_NuovoProd_Cant;
+    private javax.swing.JButton jButton_ToFAttura_Cant;
+    private javax.swing.JComboBox<String> jComboBox_Categoria_Cant;
+    private javax.swing.JComboBox<String> jComboBox_Pers_Cant;
+    private javax.swing.JComboBox<String> jComboBox_Prodotto_Cant;
+    private javax.swing.JLabel jLabel_Descrizione_Cant;
+    private javax.swing.JLabel jLabel_Nore_Cant;
+    private javax.swing.JLabel jLabel_Quantita_Cant;
+    private javax.swing.JPanel jPanel_Cantiere_Left;
+    private javax.swing.JPanel jPanel_Cantiere_Right;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable_Materiali;
-    private javax.swing.JTable jTable_Personale;
-    private javax.swing.JTextField jTextField_Desc_Lav;
-    private javax.swing.JTextField jTextField_Nore;
+    private javax.swing.JTable jTable_Bot_Cant;
+    private javax.swing.JTable jTable_Top_Cant;
+    private javax.swing.JTextField jTextField_Descrizione_Cant;
+    private javax.swing.JTextField jTextField_Nore_Cant;
     private javax.swing.JTextField jTextField_Qta;
+    private javax.swing.JTextField jTextField_Qta1;
+    private javax.swing.JTextField jTextField_Qta2;
+    private javax.swing.JTextField jTextField_Quantita_Cant;
     // End of variables declaration//GEN-END:variables
 }
