@@ -46,6 +46,9 @@ public class jFrame_Login extends javax.swing.JFrame {
         jButton_Login = new javax.swing.JButton();
         jLabel1_Nuovo_Utente = new javax.swing.JLabel();
         jButton_Nuovo_Utente = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -72,14 +75,16 @@ public class jFrame_Login extends javax.swing.JFrame {
         jPanel_Right_Login.setPreferredSize(new java.awt.Dimension(500, 600));
         jPanel_Right_Login.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPasswordField.setBackground(new java.awt.Color(51, 51, 51));
-        jPasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordField.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jPasswordField.setForeground(new java.awt.Color(51, 51, 51));
         
         jPanel_Right_Login.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 210, -1));
 
-        jTextField_Nome_Utente.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField_Nome_Utente.setForeground(new java.awt.Color(255, 255, 255));
-        
+        jTextField_Nome_Utente.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField_Nome_Utente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jTextField_Nome_Utente.setForeground(new java.awt.Color(0, 0, 0));
+       
         jPanel_Right_Login.add(jTextField_Nome_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 210, -1));
 
         jLabel_Nome_Utente.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -111,6 +116,15 @@ public class jFrame_Login extends javax.swing.JFrame {
        
         jPanel_Right_Login.add(jButton_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu1.png"))); // NOI18N
+        jPanel_Right_Login.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu2.png"))); // NOI18N
+        jPanel_Right_Login.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu3.png"))); // NOI18N
+        jPanel_Right_Login.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, -1, -1));
+
         getContentPane().add(jPanel_Right_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, -1, -1));
 
         pack();
@@ -120,7 +134,10 @@ public class jFrame_Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Login;
     private javax.swing.JButton jButton_Nuovo_Utente;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel1_Nuovo_Utente;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel_Icon_Left;
     private javax.swing.JLabel jLabel_Nome_Utente;
     private javax.swing.JLabel jLabel_Password;

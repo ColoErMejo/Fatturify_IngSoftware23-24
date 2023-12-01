@@ -27,7 +27,12 @@ public class jFrame_Personale extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel_Pers_Right = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel_Pers_Left = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable_Pers_Left = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -35,10 +40,53 @@ public class jFrame_Personale extends javax.swing.JFrame {
 
         jPanel_Pers_Right.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_Pers_Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
+        jButton1.setText("elimina personale");
+        jPanel_Pers_Right.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(51, 51, 51));
+        jButton2.setText("aggiungi personale");
+        jPanel_Pers_Right.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(51, 51, 51));
+        jButton3.setText("modifica personale");
+        jPanel_Pers_Right.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
+
         getContentPane().add(jPanel_Pers_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 600));
 
         jPanel_Pers_Left.setBackground(new java.awt.Color(0, 153, 255));
         jPanel_Pers_Left.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jTable_Pers_Left.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_Pers_Left.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Cognome", "Mansione", "Paga Oraria"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable_Pers_Left);
+
+        jPanel_Pers_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
         getContentPane().add(jPanel_Pers_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
 
         pack();
@@ -81,7 +129,12 @@ public class jFrame_Personale extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel_Pers_Left;
     private javax.swing.JPanel jPanel_Pers_Right;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable_Pers_Left;
     // End of variables declaration//GEN-END:variables
 }

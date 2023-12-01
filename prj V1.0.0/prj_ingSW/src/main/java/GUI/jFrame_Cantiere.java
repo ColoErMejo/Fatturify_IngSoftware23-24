@@ -57,6 +57,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jLabel_Descrizione_Cant = new javax.swing.JLabel();
         jLabel_Nore_Cant = new javax.swing.JLabel();
         jLabel_Quantita_Cant = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -139,7 +141,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
                 jButton_Aggiungi_CantActionPerformed(evt);
             }
         });
-        jPanel_Cantiere_Right.add(jButton_Aggiungi_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 180, -1));
+        jPanel_Cantiere_Right.add(jButton_Aggiungi_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 180, -1));
 
         jButton_NuovoProd_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_NuovoProd_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -177,12 +179,16 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jLabel_Quantita_Cant.setText("quantità");
         jPanel_Cantiere_Right.add(jLabel_Quantita_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
+        jPanel_Cantiere_Right.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
+        jPanel_Cantiere_Right.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, -1, -1));
+
         getContentPane().add(jPanel_Cantiere_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         pack();
         setLocationRelativeTo(null);
-        populateTable(jTable_Top_Cant, data);
-        populateTable(jTable_Bot_Cant, data);
     }// </editor-fold>//GEN-END:initComponents
     
     //populateTable(jTable_Top_Cant, data);
@@ -245,6 +251,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox_Categoria_Cant;
     private javax.swing.JComboBox<String> jComboBox_Pers_Cant;
     private javax.swing.JComboBox<String> jComboBox_Prodotto_Cant;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel_Descrizione_Cant;
     private javax.swing.JLabel jLabel_Nore_Cant;
     private javax.swing.JLabel jLabel_Quantita_Cant;
