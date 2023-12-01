@@ -50,24 +50,28 @@ public class jFrame_principale extends javax.swing.JFrame {
         jButton_IMieiCantieri.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_IMieiCantieri.setForeground(new java.awt.Color(51, 51, 51));
         jButton_IMieiCantieri.setText("i miei cantieri");
+       
         jPanel1.add(jButton_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 190, 50));
 
         jButton_Bilancio.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Bilancio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Bilancio.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Bilancio.setText("bilancio");
+       
         jPanel1.add(jButton_Bilancio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 190, 50));
 
         jButton_IlMioPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_IlMioPersonale.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_IlMioPersonale.setForeground(new java.awt.Color(51, 51, 51));
         jButton_IlMioPersonale.setText("il mio personale");
+       
         jPanel1.add(jButton_IlMioPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 190, 50));
 
         jButton_Inventario.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Inventario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Inventario.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Inventario.setText("inventario");
+       
         jPanel1.add(jButton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 190, 50));
 
         jComboBox_IMieiCantieri.setBackground(new java.awt.Color(255, 255, 255));
@@ -75,12 +79,14 @@ public class jFrame_principale extends javax.swing.JFrame {
         jComboBox_IMieiCantieri.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_IMieiCantieri.setMaximumRowCount(200);
         jComboBox_IMieiCantieri.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        
         jPanel1.add(jComboBox_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 170, -1));
 
         jButton_Fatture.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Fatture.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Fatture.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Fatture.setText("fatture");
+        
         jPanel1.add(jButton_Fatture, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 190, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
@@ -89,12 +95,15 @@ public class jFrame_principale extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton_VediUser.setText("user, manca png");
+       
         jPanel2.add(jButton_VediUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
         jButton_Impostazioni.setText("impostazioni, manca png");
+       
         jPanel2.add(jButton_Impostazioni, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
 
         jButton_AggiungiCantiere.setText("aggiungi cantiere menca png");
+       
         jPanel2.add(jButton_AggiungiCantiere, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
@@ -108,40 +117,79 @@ public class jFrame_principale extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFrame_principale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFrame_principale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFrame_principale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFrame_principale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new jFrame_principale().setVisible(true);
-            }
-        });
-    }
+
+    public javax.swing.JButton getjButton_AggiungiCantiere() {
+		return jButton_AggiungiCantiere;
+	}
+
+	public void setjButton_AggiungiCantiere(javax.swing.JButton jButton_AggiungiCantiere) {
+		this.jButton_AggiungiCantiere = jButton_AggiungiCantiere;
+	}
+
+	public javax.swing.JButton getjButton_Bilancio() {
+		return jButton_Bilancio;
+	}
+
+	public void setjButton_Bilancio(javax.swing.JButton jButton_Bilancio) {
+		this.jButton_Bilancio = jButton_Bilancio;
+	}
+
+	public javax.swing.JButton getjButton_Fatture() {
+		return jButton_Fatture;
+	}
+
+	public void setjButton_Fatture(javax.swing.JButton jButton_Fatture) {
+		this.jButton_Fatture = jButton_Fatture;
+	}
+
+	public javax.swing.JButton getjButton_IMieiCantieri() {
+		return jButton_IMieiCantieri;
+	}
+
+	public void setjButton_IMieiCantieri(javax.swing.JButton jButton_IMieiCantieri) {
+		this.jButton_IMieiCantieri = jButton_IMieiCantieri;
+	}
+
+	public javax.swing.JButton getjButton_IlMioPersonale() {
+		return jButton_IlMioPersonale;
+	}
+
+	public void setjButton_IlMioPersonale(javax.swing.JButton jButton_IlMioPersonale) {
+		this.jButton_IlMioPersonale = jButton_IlMioPersonale;
+	}
+
+	public javax.swing.JButton getjButton_Impostazioni() {
+		return jButton_Impostazioni;
+	}
+
+	public void setjButton_Impostazioni(javax.swing.JButton jButton_Impostazioni) {
+		this.jButton_Impostazioni = jButton_Impostazioni;
+	}
+
+	public javax.swing.JButton getjButton_Inventario() {
+		return jButton_Inventario;
+	}
+
+	public void setjButton_Inventario(javax.swing.JButton jButton_Inventario) {
+		this.jButton_Inventario = jButton_Inventario;
+	}
+
+	public javax.swing.JButton getjButton_VediUser() {
+		return jButton_VediUser;
+	}
+
+	public void setjButton_VediUser(javax.swing.JButton jButton_VediUser) {
+		this.jButton_VediUser = jButton_VediUser;
+	}
+
+	public javax.swing.JComboBox<String> getjComboBox_IMieiCantieri() {
+		return jComboBox_IMieiCantieri;
+	}
+
+	public void setjComboBox_IMieiCantieri(javax.swing.JComboBox<String> jComboBox_IMieiCantieri) {
+		this.jComboBox_IMieiCantieri = jComboBox_IMieiCantieri;
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AggiungiCantiere;

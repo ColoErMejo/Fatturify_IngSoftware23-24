@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author Merlo
@@ -67,6 +69,11 @@ public class jDialog_NuovoUtente extends javax.swing.JDialog {
         jButton_AggiungiUtente_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_AggiungiUtente_POP.setForeground(new java.awt.Color(51, 51, 51));
         jButton_AggiungiUtente_POP.setText("Salva");
+        jButton_AggiungiUtente_POP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AggiungiUtente_POPActionPerformed(evt);
+            }
+        });
         jPanel_Right_NuovoUtente.add(jButton_AggiungiUtente_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, -1));
 
         jTextField_Password_POP1.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,48 +106,48 @@ public class jDialog_NuovoUtente extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jDialog_NuovoUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jDialog_NuovoUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jDialog_NuovoUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jDialog_NuovoUtente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jButton_AggiungiUtente_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AggiungiUtente_POPActionPerformed
+        // TODO add your handling code here:
+    	dispose();
+    }//GEN-LAST:event_jButton_AggiungiUtente_POPActionPerformed
+    
+    
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jDialog_NuovoUtente dialog = new jDialog_NuovoUtente(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
+    public javax.swing.JButton getjButton_AggiungiUtente_POP() {
+		return jButton_AggiungiUtente_POP;
+	}
+
+	public void setjButton_AggiungiUtente_POP(javax.swing.JButton jButton_AggiungiUtente_POP) {
+		this.jButton_AggiungiUtente_POP = jButton_AggiungiUtente_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_NomeAzienda_POP() {
+		return jTextField_NomeAzienda_POP;
+	}
+
+	public void setjTextField_NomeAzienda_POP(javax.swing.JTextField jTextField_NomeAzienda_POP) {
+		this.jTextField_NomeAzienda_POP = jTextField_NomeAzienda_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_NomeUtente_POP() {
+		return jTextField_NomeUtente_POP;
+	}
+
+	public void setjTextField_NomeUtente_POP(javax.swing.JTextField jTextField_NomeUtente_POP) {
+		this.jTextField_NomeUtente_POP = jTextField_NomeUtente_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_Password_POP1() {
+		return jTextField_Password_POP1;
+	}
+
+	public void setjTextField_Password_POP1(javax.swing.JTextField jTextField_Password_POP1) {
+		this.jTextField_Password_POP1 = jTextField_Password_POP1;
+	}
+
+	
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AggiungiUtente_POP;
     private javax.swing.JLabel jLabel1;
@@ -154,4 +161,5 @@ public class jDialog_NuovoUtente extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField_NomeUtente_POP;
     private javax.swing.JTextField jTextField_Password_POP1;
     // End of variables declaration//GEN-END:variables
+	
 }
