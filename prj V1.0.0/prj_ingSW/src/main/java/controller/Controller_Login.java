@@ -1,7 +1,10 @@
 package controller;
 
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -12,15 +15,17 @@ import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
 import GUI.jFrame_principale;
+import database.DB;
 
 public class Controller_Login implements ActionListener {
 	
 	private jFrame_Login jframe_login;
+	DB db = new DB();
 	
-	
-	public Controller_Login (jFrame_Login jFrame)
+	public Controller_Login (jFrame_Login jFrame, DB db)
 	{
 		this.jframe_login=jFrame;
+		this.db=db;
 		
 		jFrame.getjButton_Login().addActionListener(this);
 		jFrame.getjButton_Nuovo_Utente().addActionListener(this);
@@ -32,12 +37,21 @@ public class Controller_Login implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource()== jframe_login.getjButton_Login()) jButton_LoginActionPerformed();
+		if(e.getSource()== jframe_login.getjButton_Login())
+			try {
+				jButton_LoginActionPerformed();
+			} catch (HeadlessException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		else if (e.getSource()== jframe_login.getjButton_Nuovo_Utente()) jButton_Nuovo_UtenteActionPerformed();
 	}
 
 	//bottone per login
-    private void jButton_LoginActionPerformed() {
+    private void jButton_LoginActionPerformed() throws HeadlessException, SQLException {
     	if(checkUtente(jframe_login.getjTextField_Nome_Utente().getText(), jframe_login.getjPasswordField().getText()))
     	{
     		jFrame_principale jframe_principale = new jFrame_principale();
@@ -93,13 +107,22 @@ public class Controller_Login implements ActionListener {
     //salvare utente in db ---- DA COMPLETARE ----
     private void addUtente(String nomeAzienda, String nomeUtente, String password)
     {
-    	//SALVARE IN DB
+    	db.insertNuovoUtente(nomeAzienda, nomeUtente, password);
     }
     
     //check utente per login ---- DA COMPLETARE ----
-    private boolean checkUtente(String NomeUtente, String Password)
+    private boolean checkUtente(String NomeUtente, String Password) throws SQLException
     {
-    	//System.out.println(NomeUtente + Password);
-    	return true;
+    	List<String[]> UtentePass = db.SelectUtentePassword();
+    	boolean correct=false;
+    	 for (String[] valore : UtentePass) {
+             
+                 if(valore[0].equals(NomeUtente) && valore[1].equals(Password))
+                	 correct=true;
+
+              
+         }
+    	System.out.println(correct);
+    	return correct;
     }
 }

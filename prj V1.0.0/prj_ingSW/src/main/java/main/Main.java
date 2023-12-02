@@ -9,19 +9,21 @@ import java.sql.SQLException;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import controller.Controller_Login;
-import database.Create_DB_Utente;
+import database.DB;
 
 public class Main {
 
 		
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		Create_DB_Utente DB_Utente = new Create_DB_Utente();
-		DB_Utente.createUserDB();
+		DB db = new DB();
+		db.createDB();
+		//db.insertNuovoUtente("merloeco", "merlo", "merlo");
+		db.SelectUtentePassword();
 		
 		jFrame_Login jframe_login = new jFrame_Login();
         jframe_login.setVisible(true);
-		Controller_Login controller_login = new Controller_Login(jframe_login);
+		Controller_Login controller_login = new Controller_Login(jframe_login, db);
 	}
 
 }
