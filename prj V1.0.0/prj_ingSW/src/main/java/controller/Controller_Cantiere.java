@@ -5,8 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import GUI.JDialog_AggiungiCategoria;
 import GUI.JDialog_AggiungiProdotto;
 import GUI.jFrame_Cantiere;
+import GUI.jFrame_fattura;
+import GUI.jFrame_principale;
 
 public class Controller_Cantiere implements ActionListener{
 
@@ -24,58 +27,163 @@ public class Controller_Cantiere implements ActionListener{
 		jFrame.getjComboBox_Categoria_Cant().addActionListener(this);
 		jFrame.getjComboBox_Prodotto_Cant().addActionListener(this);
 		jFrame.getjComboBox_Pers_Cant().addActionListener(this);
+		jFrame.getjButton_NuovaCat_Cant().addActionListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource()== jframe_cantiere.getjButton_Aggiungi_Cant())jButton_Aggiungi_CantActionPerformed();
 		else if(e.getSource()== jframe_cantiere.getjButton_NuovoProd_Cant())jButton_NuovoProd_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjButton_Back_Cant())jButton_Back_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjComboBox_Categoria_Cant())jComboBox_Categoria_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjComboBox_Prodotto_Cant())jComboBox_Prodotto_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjComboBox_Pers_Cant())jComboBox_Pers_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjButton_Home_Cant())jButton_Home_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjButton_ToFAttura_Cant())jButton_ToFAttura_CantActionPerformed();
+		else if(e.getSource()== jframe_cantiere.getjButton_NuovaCat_Cant())jButton_NuovaCat_CantActionPerformed();
 	}
 	
+	
+	
 	private void jButton_Aggiungi_CantActionPerformed() {
+		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
+		String ProdottoSelezionato = jframe_cantiere.getjComboBox_Prodotto_Cant().getSelectedItem().toString();
+		String PersonaleSelezionato = jframe_cantiere.getjComboBox_Pers_Cant().getSelectedItem().toString();
+		String QuantitaSelezionata = jframe_cantiere.getjTextField_Quantita_Cant().getText().strip();
+		String NoreSelezionate = jframe_cantiere.getjTextField_Nore_Cant().getText().strip();
+		String Descrizione = jframe_cantiere.getjTextField_Descrizione_Cant().getText().strip();
 		
+		
+		if(checkInserimento(QuantitaSelezionata))
+		{
+			if(textIsFloat(QuantitaSelezionata))
+			{
+				float QuantitaSelezionataFloat = textTurnIntoFloat(QuantitaSelezionata);
+				addProdottoToCantiere(jframe_cantiere.getNomeCantiere(), CategoriaSelezionata, ProdottoSelezionato, QuantitaSelezionataFloat);
+				System.out.println(jframe_cantiere.getNomeCantiere() + " - " + CategoriaSelezionata + " - "+ ProdottoSelezionato + " - "+ QuantitaSelezionataFloat + " - ");
+			}
+		}
+		if(checkInserimento(NoreSelezionate))
+		{
+			if(textIsFloat(NoreSelezionate))
+			{
+				float NoreSelezionateFloat = textTurnIntoFloat(NoreSelezionate);
+				addProdottoToCantiere(jframe_cantiere.getNomeCantiere(), PersonaleSelezionato, Descrizione, NoreSelezionateFloat);
+				System.out.println(jframe_cantiere.getNomeCantiere() + " - " + PersonaleSelezionato + " - "+ Descrizione + " - "+ NoreSelezionateFloat + " - ");
+			}
+		}
+	}
+	
+	private float textTurnIntoFloat(String string)
+	{
+		float valueFloat = Float.parseFloat(string);
+		return valueFloat;
+	}
+
+	private boolean textIsFloat(String string) {
+		boolean errorFloat=false;
+		try {
+			float valueFloat = Float.parseFloat(string);
+			//System.out.println(valueFloat);
+			errorFloat=true;
+		}
+		catch(ArithmeticException e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(!errorFloat)
+    		{
+    			JOptionPane.showMessageDialog(jframe_cantiere, "la quantità o il numero delle ore deve essere un numero");
+    		}
+		}
+		return errorFloat;
+	}
+
+	private boolean checkInserimento(String string) {
+		boolean inserimento = true;
+		if(string.isEmpty()) inserimento = false;
+		return inserimento;
+	}
+
+	//FUNZIONE PER SALVARE NEL DB I DATI RELATIVI ALLE ATTIVITà SVOLTE NEL CANTIERE ---- DA FARE----
+	private void addProdottoToCantiere(String NomeCantiere, String Categoria_Personale, String prodotto_desc, float quantita_Nore) {	
+		
+	}
+
+	private void jComboBox_Categoria_CantActionPerformed() {
+		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
+		jframe_cantiere.comboBoxvisible(jframe_cantiere.getjComboBox_Prodotto_Cant());
+    }
+	
+    private void jComboBox_Prodotto_CantActionPerformed() {
+    	String ProdottoSelezionato = jframe_cantiere.getjComboBox_Prodotto_Cant().getSelectedItem().toString();
+    	jframe_cantiere.jLablevisible(jframe_cantiere.getjLabel_Quantita_Cant(),jframe_cantiere.getjTextField_Quantita_Cant());
     }
 
-	private void jComboBox_Categoria_CantActionPerformed() {//GEN-FIRST:event_jComboBox_Categoria_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_Categoria_CantActionPerformed
+    private void jComboBox_Pers_CantActionPerformed() {
+    	String PersonaleSelezionato = jframe_cantiere.getjComboBox_Pers_Cant().getSelectedItem().toString();
+    	jframe_cantiere.jLablevisible(jframe_cantiere.getjLabel_Nore_Cant(),jframe_cantiere.getjTextField_Nore_Cant());
+    	jframe_cantiere.jLablevisible(jframe_cantiere.getjLabel_Descrizione_Cant(),jframe_cantiere.getjTextField_Descrizione_Cant());
+    }
+    
+    //APRE DIALOG E CREA UNA NUOCA CATEGORIA
+    private void jButton_NuovaCat_CantActionPerformed() { 
+    	openDialogForNuovaCategoria();
+    }
 
-    private void jComboBox_Prodotto_CantActionPerformed() {//GEN-FIRST:event_jComboBox_Prodotto_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_Prodotto_CantActionPerformed
-
-    private void jTextField_Quantita_CantActionPerformed() {//GEN-FIRST:event_jTextField_Quantita_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_Quantita_CantActionPerformed
-
-    private void jComboBox_Pers_CantActionPerformed() {//GEN-FIRST:event_jComboBox_Pers_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_Pers_CantActionPerformed
-
-    private void jTextField_Nore_CantActionPerformed() {//GEN-FIRST:event_jTextField_Nore_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_Nore_CantActionPerformed
-
-    private void jTextField_Descrizione_CantActionPerformed() {//GEN-FIRST:event_jTextField_Descrizione_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_Descrizione_CantActionPerformed
-
-    private void jButton_NuovoProd_CantActionPerformed() {//GEN-FIRST:event_jButton_NuovoProd_CantActionPerformed
+	//APRE DIALOG E AGGIUNGE UN PRODOTTO AD UNA CATEGORIA GIA ESISTENTE
+    private void jButton_NuovoProd_CantActionPerformed() {
     	openDialogForNuovoProdotto();
-    }//GEN-LAST:event_jButton_NuovoProd_CantActionPerformed
+    }
 
-    private void jButton_ToFAttura_CantActionPerformed() {//GEN-FIRST:event_jButton_ToFAttura_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ToFAttura_CantActionPerformed
+    //PASSA A FRAME FATTURA
+    private void jButton_ToFAttura_CantActionPerformed() {
+    	jFrame_fattura jframe_fattura = new jFrame_fattura();
+    	Controller_Fattura controller_fattura = new Controller_Fattura(jframe_fattura);
+    	jframe_fattura.setVisible(true);
+    	jframe_cantiere.setVisible(false);
+    }
 
-    private void jButton_Home_CantActionPerformed() {//GEN-FIRST:event_jButton_Home_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Home_CantActionPerformed
+    //TORNA AL FRAME PRINCIPALE
+    private void jButton_Home_CantActionPerformed() {
+    	jFrame_principale jframe_principale = new jFrame_principale();
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale);
+		jframe_principale.setVisible(true);
+		jframe_cantiere.setVisible(false);
+    }
 
-    private void jButton_Back_CantActionPerformed() {//GEN-FIRST:event_jButton_Back_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Back_CantActionPerformed
+    //BOTTONE BACK DI UNA PAGINA
+    private void jButton_Back_CantActionPerformed() {
+    	jFrame_principale jframe_principale = new jFrame_principale();
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale);
+		jframe_principale.setVisible(true);
+		jframe_cantiere.setVisible(false);
+    }
+    
+    //AGGIUNGE NUOVA CATEGORIA
+    private void openDialogForNuovaCategoria() {
+    	JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jframe_cantiere, true);
+    	Jdialog_aggiungicategoria.setVisible(true);
+    	
+    	String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
+    	if(NomeCategoria.isEmpty()) 
+		{
+			JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
+		}
+    	else
+    	{
+    		addCategoria(NomeCategoria);
+    	}
+	}
+    
+    //SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria()) ---- DA FINIRE ----
+    private void addCategoria(String nomeCategoria) {
+		// SALVARE IN DB
+	}
 
+	//AGGIUNGI NUOVO PRODOTTO AD UNA CATEGORIA PIù CONTROLLI DOVUTI PER INPUT UTENTE
     private void openDialogForNuovoProdotto() {
     	JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jframe_cantiere, true);
     	Jdialog_aggiungiprodotto.setVisible(true);
@@ -123,7 +231,7 @@ public class Controller_Cantiere implements ActionListener{
     	}
     }
     
-    ////SALVARE IN DB ---- DA FINIRE ----
+    ////SALVARE IN DB NUOVO PRODOTTO(CHIAMATA DA openDialogForNuovoProdotto()) ---- DA FINIRE ----
     private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria)
     {
     	//SALVARE IN DB

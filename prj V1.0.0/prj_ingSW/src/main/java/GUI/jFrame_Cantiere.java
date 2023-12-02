@@ -4,7 +4,10 @@
  */
 package GUI;
 
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
 
@@ -20,6 +23,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
             {"Jane", "Smith", 30},
             {"Bob", "Johnson", 28}
     };
+	
+	
 
 	private String nomeCantiere;
 	
@@ -120,21 +125,21 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Pers_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Pers_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Pers_Cant.setMaximumRowCount(200);
-        jComboBox_Pers_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Pers_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
        
         jPanel_Cantiere_Right.add(jComboBox_Pers_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 30));
 
         jComboBox_Categoria_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Categoria_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_Cant.setMaximumRowCount(200);
-        jComboBox_Categoria_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         
         jPanel_Cantiere_Right.add(jComboBox_Categoria_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 30));
 
         jComboBox_Prodotto_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Prodotto_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Prodotto_Cant.setMaximumRowCount(200);
-        jComboBox_Prodotto_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Prodotto_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         
         jPanel_Cantiere_Right.add(jComboBox_Prodotto_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 80, 30));
 
@@ -202,26 +207,50 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_NuovaCat_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_NuovaCat_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_NuovaCat_Cant.setText("aggiungi nuova categoria");
-        jButton_NuovaCat_Cant.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_NuovaCat_CantActionPerformed(evt);
-            }
-        });
+        
         jPanel_Cantiere_Right.add(jButton_NuovaCat_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
 
         getContentPane().add(jPanel_Cantiere_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton_NuovaCat_CantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NuovaCat_CantActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_NuovaCat_CantActionPerformed
+        
+        jLabel_Descrizione_Cant.setVisible(false);
+        jTextField_Descrizione_Cant.setVisible(false);
+        jLabel_Quantita_Cant.setVisible(false);
+        jLabel_Nore_Cant.setVisible(false);
+        jTextField_Quantita_Cant.setVisible(false);
+        jTextField_Nore_Cant.setVisible(false);
+        jComboBox_Prodotto_Cant.setVisible(false);        
+        jLabel_NomeCanti.setText(nomeCantiere);
+        populateTable(jTable_Top_Cant, data);
+        populateTable(jTable_Bot_Cant, data);
+        
+        comboBoxvisible(jComboBox_Categoria_Cant);
+        comboBoxvisible(jComboBox_Pers_Cant);
+        
+        
+    }
+    	
+  
+    /*
+    	 jLabel_Descrizione_Cant.setVisible(false);
+        jTextField_Descrizione_Cant.setVisible(false);
+        jLabel_Quantita_Cant.setVisible(false);
+        jLabel_Nore_Cant.setVisible(false);
+        jTextField_Quantita_Cant.setVisible(false);
+        jTextField_Nore_Cant.setVisible(false);
+        jComboBox_Prodotto_Cant.setVisible(false);        
+        jLabel_NomeCanti.setText(nomeCantiere);
+        populateTable(jTable_Top_Cant, data);
+        populateTable(jTable_Bot_Cant, data);
+        
+        comboBoxvisible(jComboBox_Categoria_Cant);
+        comboBoxvisible(jComboBox_Pers_Cant);
+     */
+   
     
-    //jLabel_NomeCant.setText(nomeCantiere);
-    //populateTable(jTable_Top_Cant, data);
-    //populateTable(jTable_Bot_Cant, data);
+    //POPOLA TABELLE ALLA CREAZIONE DEL FRAME
     public void populateTable(JTable table,Object[][] data)
     {
         DefaultTableModel tblmodel =  (DefaultTableModel)table.getModel();
@@ -230,6 +259,88 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         }
     }
     
+    //SETTA COMBOBOX VISIBILE E LA POPOLA CON PRODOTTI, PRENDE PARAMETRO CATEGORIA
+    public void comboBoxvisible(JComboBox<String> jComboBox, String categoria)
+    {
+    	jComboBox.setVisible(true);
+    	String[] items = readCategorieOrProdotti(categoria);
+    	populatejComboBox(jComboBox, items);
+    }
+    //RITORNA ARRAY DI STRINGHE PER POPOLARE COMBOBOX PRODOTTI, PARAMETRO CATEGORIA
+    private String[] readCategorieOrProdotti(String Categoria) {
+    	String categoria[] = {"1","2","3"}; //SOLO PER TESTARE, DA TOGLIERE
+		return categoria;
+	}
+    
+    //SETTA COMBOBOX VISIBILE E LA POPOLA CON CATEGORIE O PERSONALE
+    public void comboBoxvisible(JComboBox<String> jComboBox)
+    {
+    	jComboBox.setVisible(true);
+    	String[] items = readCategorieOrProdotti();
+    	populatejComboBox(jComboBox, items);
+    }
+    
+    //RITORNA ARRAY DI STRINGHE PER POPOLARE COMBOBOX CATEGORIE O PERSONALE
+    private String[] readCategorieOrProdotti() {
+    	String categoria[] = {"1","2","3"}; //SOLO PER TESTARE, DA TOGLIERE
+		return categoria;
+	}
+
+    //PER POPOLARE COMBOBOX
+	public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+	
+	public void jLablevisible(JLabel jlabel, JTextField jTextfield)
+	{
+		jlabel.setVisible(true);
+		jTextfield.setVisible(true);
+	}
+    
+	// GETTER AND SETTER
+	
+	
+	public javax.swing.JLabel getjLabel_Descrizione_Cant() {
+		return jLabel_Descrizione_Cant;
+	}
+
+
+	public void setjLabel_Descrizione_Cant(javax.swing.JLabel jLabel_Descrizione_Cant) {
+		this.jLabel_Descrizione_Cant = jLabel_Descrizione_Cant;
+	}
+
+
+	public javax.swing.JLabel getjLabel_Nore_Cant() {
+		return jLabel_Nore_Cant;
+	}
+
+
+	public void setjLabel_Nore_Cant(javax.swing.JLabel jLabel_Nore_Cant) {
+		this.jLabel_Nore_Cant = jLabel_Nore_Cant;
+	}
+
+
+	public javax.swing.JLabel getjLabel_Quantita_Cant() {
+		return jLabel_Quantita_Cant;
+	}
+
+
+	public void setjLabel_Quantita_Cant(javax.swing.JLabel jLabel_Quantita_Cant) {
+		this.jLabel_Quantita_Cant = jLabel_Quantita_Cant;
+	}
+
+
+	public javax.swing.JButton getjButton_NuovaCat_Cant() {
+		return jButton_NuovaCat_Cant;
+	}
+
+	public void setjButton_NuovaCat_Cant(javax.swing.JButton jButton_NuovaCat_Cant) {
+		this.jButton_NuovaCat_Cant = jButton_NuovaCat_Cant;
+	}
+
 	public String getNomeCantiere() {
 		return nomeCantiere;
 	}

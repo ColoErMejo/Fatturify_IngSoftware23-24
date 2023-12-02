@@ -7,8 +7,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import GUI.JDialog_NuovoCantiere;
 import GUI.JDialog_NuovoUtente;
 import GUI.jFrame_Cantiere;
+import GUI.jFrame_Inventario;
 import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
 import GUI.jFrame_fattura;
@@ -48,35 +50,58 @@ public class Controller_Principale implements ActionListener{
 		else if(e.getSource()== jframe_principale.getjComboBox_IMieiCantieri()) jComboBox_IMieiCantieriActionPerformed();
 	}
 	
+	//RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
     private void jButton_IMieiCantieriActionPerformed() {
     	jframe_principale.comboBoxvisible();
     }
 
+    //PASSA A FRAME PERSONALE
     private void jButton_IlMioPersonaleActionPerformed() {
     	jFrame_Personale jframe_personale = new jFrame_Personale();
     	jframe_personale.setVisible(true);
     	jframe_principale.setVisible(false);	
     }
 
+    //PASSA A FRAME INVENTARIO
     private void jButton_InventarioActionPerformed() {
-        //manca GUI
+    	jFrame_Inventario jframe_inventario = new jFrame_Inventario();
+    	jframe_inventario.setVisible(true);
+    	jframe_principale.setVisible(false);	
     }
 
+    //APRE FRAME FATTURE (PRESA DA BOZZA GUI PROGETTO MA SECONDO ME DA TOGLIERE)
     private void jButton_FattureActionPerformed() {
     	jFrame_fattura jframe_fattura = new jFrame_fattura();
     	jframe_fattura.setVisible(true);
     	jframe_principale.setVisible(false);
     }
 
+    //FRAME BILANCIO NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
     private void jButton_BilancioActionPerformed() {
         //manca GUI
     }
 
+    //APRE POP UP PER INSERIRE NUOCO CANTIERE
     private void jButton_AggiungiCantiereActionPerformed() {
-    	//manca GUI
+    	JDialog_NuovoCantiere Jdialog_nuovocantiere = new JDialog_NuovoCantiere(jframe_principale, true);
+    	Jdialog_nuovocantiere.setVisible(true);
+    	String NomeNuovoCantiere = Jdialog_nuovocantiere.getjTextField_NomeCat_POP().getText().trim();
+    	if(NomeNuovoCantiere.isEmpty()) 
+    		{
+    			JOptionPane.showMessageDialog(Jdialog_nuovocantiere, "i campi non possono essere vuoti");
+    		}	
+    	//System.out.println(NomeNuovoCantiere);
+    	AddNuovoCantiere(NomeNuovoCantiere);
     }
 
-    private void jComboBox_IMieiCantieriActionPerformed() {
+    //SALVARE NUOCO CANTIERE IN DB ---- DA FARE ----
+    private void AddNuovoCantiere(String nomeNuovoCantiere) {
+		//funzione per salvare dentro a db
+		
+	}
+
+    //SELEZIONA CANTIERE DA APRIRE, PASSA NOME CANTIERE AL COSTRUTTORE DELLA CLASSE CANTIERE
+	private void jComboBox_IMieiCantieriActionPerformed() {
     	if(count==0)count++;
     	else
     	{
@@ -89,10 +114,12 @@ public class Controller_Principale implements ActionListener{
     	}
     }
     
+	//IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
     private void jButton_ImpostazioniActionPerformed() {
     	
     }
 
+   //IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
     private void jButton_VediUserActionPerformed() {
     	
     }
