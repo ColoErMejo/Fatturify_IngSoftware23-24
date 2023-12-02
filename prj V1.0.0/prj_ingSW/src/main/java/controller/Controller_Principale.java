@@ -52,7 +52,7 @@ public class Controller_Principale implements ActionListener{
 	
 	//RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
     private void jButton_IMieiCantieriActionPerformed() {
-    	jframe_principale.comboBoxvisible();
+    	jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri());
     }
 
     //PASSA A FRAME PERSONALE
