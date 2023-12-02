@@ -4,19 +4,26 @@
  */
 package GUI;
 
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.xml.crypto.Data;
+
 /**
  *
  * @author Merlo
  */
 public class jFrame_principale extends javax.swing.JFrame {
 
+	
+	
     /**
      * Creates new form jFrame_principale
      */
     public jFrame_principale() {
         initComponents();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,43 +58,42 @@ public class jFrame_principale extends javax.swing.JFrame {
         jButton_IMieiCantieri.setForeground(new java.awt.Color(51, 51, 51));
         jButton_IMieiCantieri.setText("i miei cantieri");
        
-        jPanel1.add(jButton_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 190, 50));
+        jPanel1.add(jButton_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 50));
 
         jButton_Bilancio.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Bilancio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Bilancio.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Bilancio.setText("bilancio");
        
-        jPanel1.add(jButton_Bilancio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 190, 50));
+        jPanel1.add(jButton_Bilancio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 230, 50));
 
         jButton_IlMioPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_IlMioPersonale.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_IlMioPersonale.setForeground(new java.awt.Color(51, 51, 51));
         jButton_IlMioPersonale.setText("il mio personale");
        
-        jPanel1.add(jButton_IlMioPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 190, 50));
+        jPanel1.add(jButton_IlMioPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 240, 50));
 
         jButton_Inventario.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Inventario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Inventario.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Inventario.setText("inventario");
-       
-        jPanel1.add(jButton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 190, 50));
+        
+        jPanel1.add(jButton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 230, 50));
 
         jComboBox_IMieiCantieri.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_IMieiCantieri.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_IMieiCantieri.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_IMieiCantieri.setMaximumRowCount(200);
-        jComboBox_IMieiCantieri.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        
-        jPanel1.add(jComboBox_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 170, -1));
+       
+        jPanel1.add(jComboBox_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 170, -1));
 
         jButton_Fatture.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Fatture.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Fatture.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Fatture.setText("fatture");
-        
-        jPanel1.add(jButton_Fatture, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 190, 50));
+       
+        jPanel1.add(jButton_Fatture, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 230, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
 
@@ -115,11 +121,39 @@ public class jFrame_principale extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
+        
+        jComboBox_IMieiCantieri.setVisible(false);
+        
+       
+        
     }// </editor-fold>//GEN-END:initComponents
+    
+    //DA AGGIUNGERE AD initComponents()
+    //jComboBox_IMieiCantieri.setVisible(false);
+    //populatejComboBox(jComboBox_IMieiCantieri, items);
+    
 
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+    
+    public void comboBoxvisible()
+    {
+    	jComboBox_IMieiCantieri.setVisible(true);
+    	String[] items = readNomiCantieri();
+    	populatejComboBox(jComboBox_IMieiCantieri, items);
+    }
+    
+    //FUNZIONE PER IMPORTARE DA DB NOMI CANTIERI
+    private String[] readNomiCantieri() {
+    	String[] items = {"cant 1", "cant 2", "cant 3"};
+		return items;
+	}
 
-
-    public javax.swing.JButton getjButton_AggiungiCantiere() {
+	public javax.swing.JButton getjButton_AggiungiCantiere() {
 		return jButton_AggiungiCantiere;
 	}
 
