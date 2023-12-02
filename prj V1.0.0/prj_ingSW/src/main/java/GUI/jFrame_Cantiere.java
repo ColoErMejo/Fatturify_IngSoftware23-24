@@ -126,28 +126,28 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Pers_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Pers_Cant.setMaximumRowCount(200);
         jComboBox_Pers_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-       
+        
         jPanel_Cantiere_Right.add(jComboBox_Pers_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 30));
 
         jComboBox_Categoria_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Categoria_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_Cant.setMaximumRowCount(200);
         jComboBox_Categoria_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-        
+       
         jPanel_Cantiere_Right.add(jComboBox_Categoria_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 30));
 
         jComboBox_Prodotto_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Prodotto_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Prodotto_Cant.setMaximumRowCount(200);
         jComboBox_Prodotto_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
-        
+       
         jPanel_Cantiere_Right.add(jComboBox_Prodotto_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 80, 30));
 
         jButton_ToFAttura_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ToFAttura_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_ToFAttura_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_ToFAttura_Cant.setText("fattura");
-       
+        
         jPanel_Cantiere_Right.add(jButton_ToFAttura_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 180, -1));
 
         jButton_Aggiungi_Cant.setBackground(new java.awt.Color(255, 255, 255));
@@ -161,8 +161,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_NuovoProd_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_NuovoProd_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_NuovoProd_Cant.setText("aggiungi nuovo prodotto");
-       
-        jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 190, -1));
+        
+        jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 210, -1));
 
         jTextField_Descrizione_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_Descrizione_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -208,7 +208,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_NuovaCat_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_NuovaCat_Cant.setText("aggiungi nuova categoria");
         
-        jPanel_Cantiere_Right.add(jButton_NuovaCat_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
+        jPanel_Cantiere_Right.add(jButton_NuovaCat_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 210, -1));
 
         getContentPane().add(jPanel_Cantiere_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
@@ -223,6 +223,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jTextField_Nore_Cant.setVisible(false);
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
+        
         populateTable(jTable_Top_Cant, data);
         populateTable(jTable_Bot_Cant, data);
         
@@ -234,7 +235,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     	
   
     /*
-    	 jLabel_Descrizione_Cant.setVisible(false);
+    	jLabel_Descrizione_Cant.setVisible(false);
         jTextField_Descrizione_Cant.setVisible(false);
         jLabel_Quantita_Cant.setVisible(false);
         jLabel_Nore_Cant.setVisible(false);
@@ -242,6 +243,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jTextField_Nore_Cant.setVisible(false);
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
+        
         populateTable(jTable_Top_Cant, data);
         populateTable(jTable_Bot_Cant, data);
         
@@ -258,6 +260,12 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
             	tblmodel.addRow(row);
         }
     }
+    
+    //FUNZIONE PER IMPORTARE DA DB NOMI ARRAY DI NOMI
+    private String[] readDataArray() {
+    	String[] items = {"cant 1", "cant 2", "cant 3"};
+		return items;
+	}
     
     //SETTA COMBOBOX VISIBILE E LA POPOLA CON PRODOTTI, PRENDE PARAMETRO CATEGORIA
     public void comboBoxvisible(JComboBox<String> jComboBox, String categoria)
@@ -294,6 +302,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         }
     }
 	
+	//SETTA JLABLE JFIELDTEXT VISIBLE
 	public void jLablevisible(JLabel jlabel, JTextField jTextfield)
 	{
 		jlabel.setVisible(true);
@@ -301,7 +310,6 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 	}
     
 	// GETTER AND SETTER
-	
 	
 	public javax.swing.JLabel getjLabel_Descrizione_Cant() {
 		return jLabel_Descrizione_Cant;

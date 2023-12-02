@@ -44,8 +44,10 @@ public class Controller_Cantiere implements ActionListener{
 	}
 	
 	
-	
+	//SALVA NEL DB I DATI INSERITI DAL UTENTE
 	private void jButton_Aggiungi_CantActionPerformed() {
+		
+		//IMPORT VALORI SCRITTI DA UTENTE
 		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
 		String ProdottoSelezionato = jframe_cantiere.getjComboBox_Prodotto_Cant().getSelectedItem().toString();
 		String PersonaleSelezionato = jframe_cantiere.getjComboBox_Pers_Cant().getSelectedItem().toString();
@@ -53,7 +55,7 @@ public class Controller_Cantiere implements ActionListener{
 		String NoreSelezionate = jframe_cantiere.getjTextField_Nore_Cant().getText().strip();
 		String Descrizione = jframe_cantiere.getjTextField_Descrizione_Cant().getText().strip();
 		
-		
+		//CONTROLLI ED AGGIUNTA A DB
 		if(checkInserimento(QuantitaSelezionata))
 		{
 			if(textIsFloat(QuantitaSelezionata))
@@ -74,12 +76,14 @@ public class Controller_Cantiere implements ActionListener{
 		}
 	}
 	
+	//FA CAST DA STRING A FLOAT 
 	private float textTurnIntoFloat(String string)
 	{
 		float valueFloat = Float.parseFloat(string);
 		return valueFloat;
 	}
 
+	//CONTROLLA SE UNA STRINGA è COMPOSTA SOLO DA NUMERI CON GESTIONE DEGLI ERRORI
 	private boolean textIsFloat(String string) {
 		boolean errorFloat=false;
 		try {
@@ -101,6 +105,7 @@ public class Controller_Cantiere implements ActionListener{
 		return errorFloat;
 	}
 
+	//CONTROLLA SE UN CAMPO è STATO COMPILATO OVVERO SE UNA STRINGA è VUOTA
 	private boolean checkInserimento(String string) {
 		boolean inserimento = true;
 		if(string.isEmpty()) inserimento = false;
@@ -112,16 +117,19 @@ public class Controller_Cantiere implements ActionListener{
 		
 	}
 
+	//DOPO AVER SCELTO CATEGOIRA SETTA VISIBILE IL COMBOBOX DEI PRODOTTI
 	private void jComboBox_Categoria_CantActionPerformed() {
 		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
 		jframe_cantiere.comboBoxvisible(jframe_cantiere.getjComboBox_Prodotto_Cant());
     }
 	
+	//DOPO AVER SCELTO PRODOTTO SETTA VISIBILE IL JFIEDLTEXT DELLA QUANTITA
     private void jComboBox_Prodotto_CantActionPerformed() {
     	String ProdottoSelezionato = jframe_cantiere.getjComboBox_Prodotto_Cant().getSelectedItem().toString();
     	jframe_cantiere.jLablevisible(jframe_cantiere.getjLabel_Quantita_Cant(),jframe_cantiere.getjTextField_Quantita_Cant());
     }
 
+  //DOPO AVER SCELTO PERSONALE SETTA VISIBILE IL JFIEDLTEXT DELLE ORE
     private void jComboBox_Pers_CantActionPerformed() {
     	String PersonaleSelezionato = jframe_cantiere.getjComboBox_Pers_Cant().getSelectedItem().toString();
     	jframe_cantiere.jLablevisible(jframe_cantiere.getjLabel_Nore_Cant(),jframe_cantiere.getjTextField_Nore_Cant());
@@ -225,7 +233,7 @@ public class Controller_Cantiere implements ActionListener{
     		{
     			if(errorFloat)
         		{
-        			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "la quantità deve essere un numero");
+        			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "il costo deve essere un numero");
         		}
     		}
     	}

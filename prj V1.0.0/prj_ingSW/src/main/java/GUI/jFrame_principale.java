@@ -123,16 +123,16 @@ public class jFrame_principale extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         jComboBox_IMieiCantieri.setVisible(false);
-        
-       
-        
-    }// </editor-fold>//GEN-END:initComponents
+        populatejComboBox(jComboBox_IMieiCantieri, readDataArray());
+        comboBoxvisible(jComboBox_IMieiCantieri);
+    }
     
     //DA AGGIUNGERE AD initComponents()
     //jComboBox_IMieiCantieri.setVisible(false);
     //populatejComboBox(jComboBox_IMieiCantieri, items);
     
 
+    //POPOLARE COMBOBOX CON ARRAY COME PARAMETRO, SECONDO PARAMETRO SOSTITUIBILE CON readDataArray()
     public void populatejComboBox(JComboBox<String> comboBox,String[] items)
     {
     	for (String item : items) {
@@ -140,19 +140,22 @@ public class jFrame_principale extends javax.swing.JFrame {
         }
     }
     
-    public void comboBoxvisible()
+    //POPOLARE E RENDERE VISIBILE COMBOBOX
+    public void comboBoxvisible(JComboBox<String> jComboBox)
     {
-    	jComboBox_IMieiCantieri.setVisible(true);
-    	String[] items = readNomiCantieri();
-    	populatejComboBox(jComboBox_IMieiCantieri, items);
+    	jComboBox.setVisible(true);
+    	String[] items = readDataArray();
+    	populatejComboBox(jComboBox, items);
     }
     
-    //FUNZIONE PER IMPORTARE DA DB NOMI CANTIERI
-    private String[] readNomiCantieri() {
+    //FUNZIONE PER IMPORTARE DA DB NOMI CANTIERI 
+    private String[] readDataArray() {
     	String[] items = {"cant 1", "cant 2", "cant 3"};
 		return items;
 	}
 
+    
+    //GETTER AND SETTERS
 	public javax.swing.JButton getjButton_AggiungiCantiere() {
 		return jButton_AggiungiCantiere;
 	}
