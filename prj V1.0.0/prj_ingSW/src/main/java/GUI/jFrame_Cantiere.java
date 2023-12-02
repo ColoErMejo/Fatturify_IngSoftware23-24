@@ -60,6 +60,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jLabel_Quantita_Cant = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton_NuovaCat_Cant = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -120,21 +121,21 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Pers_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Pers_Cant.setMaximumRowCount(200);
         jComboBox_Pers_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        
+       
         jPanel_Cantiere_Right.add(jComboBox_Pers_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 80, 30));
 
         jComboBox_Categoria_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Categoria_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_Cant.setMaximumRowCount(200);
         jComboBox_Categoria_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-       
+        
         jPanel_Cantiere_Right.add(jComboBox_Categoria_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 80, 30));
 
         jComboBox_Prodotto_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_Prodotto_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Prodotto_Cant.setMaximumRowCount(200);
         jComboBox_Prodotto_Cant.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-       
+        
         jPanel_Cantiere_Right.add(jComboBox_Prodotto_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 80, 30));
 
         jButton_ToFAttura_Cant.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,21 +143,21 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_ToFAttura_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_ToFAttura_Cant.setText("fattura");
        
-        jPanel_Cantiere_Right.add(jButton_ToFAttura_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 520, 180, -1));
+        jPanel_Cantiere_Right.add(jButton_ToFAttura_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 180, -1));
 
         jButton_Aggiungi_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Aggiungi_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_Aggiungi_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Aggiungi_Cant.setText("aggiungi");
-       
+        
         jPanel_Cantiere_Right.add(jButton_Aggiungi_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 180, -1));
 
         jButton_NuovoProd_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_NuovoProd_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_NuovoProd_Cant.setForeground(new java.awt.Color(51, 51, 51));
         jButton_NuovoProd_Cant.setText("aggiungi nuovo prodotto");
-        
-        jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, -1, -1));
+       
+        jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 190, -1));
 
         jTextField_Descrizione_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_Descrizione_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -167,7 +168,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jTextField_Quantita_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_Quantita_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jTextField_Quantita_Cant.setForeground(new java.awt.Color(0, 0, 0));
-       
+        
         jPanel_Cantiere_Right.add(jTextField_Quantita_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 120, -1));
 
         jTextField_Nore_Cant.setBackground(new java.awt.Color(255, 255, 255));
@@ -197,11 +198,26 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
         jPanel_Cantiere_Right.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, -1, -1));
 
+        jButton_NuovaCat_Cant.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_NuovaCat_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_NuovaCat_Cant.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_NuovaCat_Cant.setText("aggiungi nuova categoria");
+        jButton_NuovaCat_Cant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NuovaCat_CantActionPerformed(evt);
+            }
+        });
+        jPanel_Cantiere_Right.add(jButton_NuovaCat_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, -1, -1));
+
         getContentPane().add(jPanel_Cantiere_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_NuovaCat_CantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NuovaCat_CantActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_NuovaCat_CantActionPerformed
     
     //jLabel_NomeCant.setText(nomeCantiere);
     //populateTable(jTable_Top_Cant, data);
@@ -341,6 +357,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Aggiungi_Cant;
     private javax.swing.JButton jButton_Back_Cant;
     private javax.swing.JButton jButton_Home_Cant;
+    private javax.swing.JButton jButton_NuovaCat_Cant;
     private javax.swing.JButton jButton_NuovoProd_Cant;
     private javax.swing.JButton jButton_ToFAttura_Cant;
     private javax.swing.JComboBox<String> jComboBox_Categoria_Cant;

@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import GUI.jDialog_NuovoUtente;
+import GUI.JDialog_NuovoUtente;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
@@ -60,7 +60,7 @@ public class Controller_Login implements ActionListener {
     //dialog per creare nuovo utente
     private void openDialogForNuovoUtente()
     {
-    	jDialog_NuovoUtente jdialog_nuovoutente = new jDialog_NuovoUtente(jframe_login, true);
+    	JDialog_NuovoUtente jdialog_nuovoutente = new JDialog_NuovoUtente(jframe_login, true);
     	jdialog_nuovoutente.setVisible(true);
     	
     	String NomeAzienda = jdialog_nuovoutente.getjTextField_NomeAzienda_POP().getText().trim();

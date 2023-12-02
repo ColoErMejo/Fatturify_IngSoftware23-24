@@ -52,6 +52,11 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
         jComboBox_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_POP.setMaximumRowCount(200);
         jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_POP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_Categoria_POPActionPerformed(evt);
+            }
+        });
         jPanel1.add(jComboBox_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, -1, -1));
 
         jTextFieldPrezzo_POP.setBackground(new java.awt.Color(255, 255, 255));
@@ -110,6 +115,10 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
     private void jButton_Aggiungi_Prod_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Aggiungi_Prod_POPActionPerformed
         dispose();
     }//GEN-LAST:event_jButton_Aggiungi_Prod_POPActionPerformed
+
+    private void jComboBox_Categoria_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Categoria_POPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_Categoria_POPActionPerformed
 
     
     public javax.swing.JButton getjButton_Aggiungi_Prod_POP() {

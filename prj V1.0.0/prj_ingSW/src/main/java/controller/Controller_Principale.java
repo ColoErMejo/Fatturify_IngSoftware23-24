@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import GUI.jDialog_NuovoUtente;
+import GUI.JDialog_NuovoUtente;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import GUI.jFrame_Personale;

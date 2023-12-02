@@ -84,7 +84,7 @@ public class jFrame_Login extends javax.swing.JFrame {
         jTextField_Nome_Utente.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_Nome_Utente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jTextField_Nome_Utente.setForeground(new java.awt.Color(0, 0, 0));
-       
+        
         jPanel_Right_Login.add(jTextField_Nome_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 210, -1));
 
         jLabel_Nome_Utente.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -101,7 +101,7 @@ public class jFrame_Login extends javax.swing.JFrame {
         jButton_Login.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton_Login.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Login.setText("Login");
-       
+        
         jPanel_Right_Login.add(jButton_Login, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 340, -1, -1));
 
         jLabel1_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -113,7 +113,7 @@ public class jFrame_Login extends javax.swing.JFrame {
         jButton_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton_Nuovo_Utente.setForeground(new java.awt.Color(51, 51, 51));
         jButton_Nuovo_Utente.setText("Registrati");
-       
+        
         jPanel_Right_Login.add(jButton_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu1.png"))); // NOI18N

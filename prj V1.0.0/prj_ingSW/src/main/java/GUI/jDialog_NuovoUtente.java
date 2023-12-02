@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
  *
  * @author Merlo
  */
-public class jDialog_NuovoUtente extends javax.swing.JDialog {
+public class JDialog_NuovoUtente extends javax.swing.JDialog {
 
     /**
      * Creates new form jDialog_NuovoUtente
      */
-    public jDialog_NuovoUtente(java.awt.Frame parent, boolean modal) {
+    public JDialog_NuovoUtente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }

@@ -67,10 +67,20 @@ public class jFrame_fattura extends javax.swing.JFrame {
 
         jButton_Home_Fattura.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Home_Fattura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Home.png"))); // NOI18N
+        jButton_Home_Fattura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Home_FatturaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton_Home_Fattura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jButton_Back_Fattura.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Back_Fattura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Back.png"))); // NOI18N
+        jButton_Back_Fattura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Back_FatturaActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton_Back_Fattura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
@@ -142,6 +152,11 @@ public class jFrame_fattura extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("export su desktop");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 480, 200, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 600));
@@ -149,6 +164,18 @@ public class jFrame_fattura extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton_Home_FatturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_FatturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Home_FatturaActionPerformed
+
+    private void jButton_Back_FatturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Back_FatturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Back_FatturaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

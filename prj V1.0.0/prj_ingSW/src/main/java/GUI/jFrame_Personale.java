@@ -47,21 +47,36 @@ public class jFrame_Personale extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("elimina personale");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel_Pers_Right.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
         jButton2.setText("aggiungi personale");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel_Pers_Right.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 51, 51));
         jButton3.setText("modifica personale");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel_Pers_Right.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
 
-        getContentPane().add(jPanel_Pers_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 600));
+        getContentPane().add(jPanel_Pers_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         jPanel_Pers_Left.setBackground(new java.awt.Color(0, 153, 255));
         jPanel_Pers_Left.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -87,21 +102,51 @@ public class jFrame_Personale extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable_Pers_Left);
 
-        jPanel_Pers_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        jPanel_Pers_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jButton_Back_Pers.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Back_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Back.png"))); // NOI18N
+        jButton_Back_Pers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Back_PersActionPerformed(evt);
+            }
+        });
         jPanel_Pers_Left.add(jButton_Back_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         jButton_Home_Pers.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Home_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Home.png"))); // NOI18N
+        jButton_Home_Pers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_Home_PersActionPerformed(evt);
+            }
+        });
         jPanel_Pers_Left.add(jButton_Home_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        getContentPane().add(jPanel_Pers_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
+        getContentPane().add(jPanel_Pers_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton_Home_PersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_PersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Home_PersActionPerformed
+
+    private void jButton_Back_PersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Back_PersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_Back_PersActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
