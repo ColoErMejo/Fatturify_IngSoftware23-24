@@ -123,8 +123,8 @@ public class jFrame_principale extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         jComboBox_IMieiCantieri.setVisible(false);
-        populatejComboBox(jComboBox_IMieiCantieri, readDataArray());
-        comboBoxvisible(jComboBox_IMieiCantieri);
+        
+       
     }
     
     //DA AGGIUNGERE AD initComponents()
