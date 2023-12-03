@@ -18,7 +18,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		DB db = new DB();
 		db.createDB();
-		//db.insertNuovoUtente("merloeco", "merlo", "merlo");
 		db.SelectUtentePassword();
 		
 		jFrame_Login jframe_login = new jFrame_Login();

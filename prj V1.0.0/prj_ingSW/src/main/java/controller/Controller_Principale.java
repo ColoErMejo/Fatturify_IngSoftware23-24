@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
@@ -15,9 +16,11 @@ import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
+import database.DB;
 
 public class Controller_Principale implements ActionListener{
 
+	private DB db = new DB();
 	private jFrame_principale jframe_principale;
 	private int count=0;
 
@@ -39,7 +42,13 @@ public class Controller_Principale implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()== jframe_principale.getjButton_IMieiCantieri()) jButton_IMieiCantieriActionPerformed();
+		if(e.getSource()== jframe_principale.getjButton_IMieiCantieri())
+			try {
+				jButton_IMieiCantieriActionPerformed();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		else if(e.getSource()== jframe_principale.getjButton_AggiungiCantiere()) jButton_AggiungiCantiereActionPerformed();
 		else if(e.getSource()== jframe_principale.getjButton_IlMioPersonale()) jButton_IlMioPersonaleActionPerformed();
 		else if(e.getSource()== jframe_principale.getjButton_Inventario()) jButton_InventarioActionPerformed();
@@ -51,7 +60,7 @@ public class Controller_Principale implements ActionListener{
 	}
 	
 	//RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
-    private void jButton_IMieiCantieriActionPerformed() {
+    private void jButton_IMieiCantieriActionPerformed() throws SQLException {
     	jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri());
     }
 
@@ -94,10 +103,9 @@ public class Controller_Principale implements ActionListener{
     	AddNuovoCantiere(NomeNuovoCantiere);
     }
 
-    //SALVARE NUOCO CANTIERE IN DB ---- DA FARE ----
+    //SALVARE NUOCO CANTIERE IN DB 
     private void AddNuovoCantiere(String nomeNuovoCantiere) {
-		//funzione per salvare dentro a db
-		
+		db.insertNuovoCantiere(nomeNuovoCantiere);
 	}
 
     //SELEZIONA CANTIERE DA APRIRE, PASSA NOME CANTIERE AL COSTRUTTORE DELLA CLASSE CANTIERE

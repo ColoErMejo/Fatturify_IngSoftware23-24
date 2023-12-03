@@ -4,10 +4,15 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
+
+import database.DB;
 
 /**
  *
@@ -15,7 +20,7 @@ import javax.xml.crypto.Data;
  */
 public class jFrame_principale extends javax.swing.JFrame {
 
-	
+	public DB db = new DB();	
 	
     /**
      * Creates new form jFrame_principale
@@ -124,12 +129,10 @@ public class jFrame_principale extends javax.swing.JFrame {
         
         jComboBox_IMieiCantieri.setVisible(false);
         
-       
     }
     
     //DA AGGIUNGERE AD initComponents()
     //jComboBox_IMieiCantieri.setVisible(false);
-    //populatejComboBox(jComboBox_IMieiCantieri, items);
     
 
     //POPOLARE COMBOBOX CON ARRAY COME PARAMETRO, SECONDO PARAMETRO SOSTITUIBILE CON readDataArray()
@@ -141,7 +144,7 @@ public class jFrame_principale extends javax.swing.JFrame {
     }
     
     //POPOLARE E RENDERE VISIBILE COMBOBOX
-    public void comboBoxvisible(JComboBox<String> jComboBox)
+    public void comboBoxvisible(JComboBox<String> jComboBox) throws SQLException
     {
     	jComboBox.setVisible(true);
     	String[] items = readDataArray();
@@ -149,9 +152,19 @@ public class jFrame_principale extends javax.swing.JFrame {
     }
     
     //FUNZIONE PER IMPORTARE DA DB NOMI CANTIERI 
-    private String[] readDataArray() {
-    	String[] items = {"cant 1", "cant 2", "cant 3"};
-		return items;
+    private String[] readDataArray() throws SQLException {
+    	
+		//db.SelectNomeCantiere();
+    	String string = "";
+		for (String[] riga : db.SelectNomeCantiere()) {
+            for (String valore : riga) {
+                System.out.print(valore + " ");
+                string = string  + valore + ",";
+            }
+            System.out.println(); 
+        }	
+		String [] data = string.split(",");
+		return data;	
 	}
 
     

@@ -104,23 +104,20 @@ public class Controller_Login implements ActionListener {
     	}
     }
     
-    //salvare utente in db ---- DA COMPLETARE ----
+    //salvare utente in db
     private void addUtente(String nomeAzienda, String nomeUtente, String password)
     {
     	db.insertNuovoUtente(nomeAzienda, nomeUtente, password);
     }
     
-    //check utente per login ---- DA COMPLETARE ----
+    //check utente per login
     private boolean checkUtente(String NomeUtente, String Password) throws SQLException
     {
     	List<String[]> UtentePass = db.SelectUtentePassword();
     	boolean correct=false;
-    	 for (String[] valore : UtentePass) {
-             
+    	 for (String[] valore : UtentePass) {      
                  if(valore[0].equals(NomeUtente) && valore[1].equals(Password))
                 	 correct=true;
-
-              
          }
     	System.out.println(correct);
     	return correct;
