@@ -29,7 +29,6 @@ public class DB_Login {
 			System.out.println("db utente creato con successo");
 			
 			createTableUtente();
-			createTableCantieri();
 		}
 			
 	}
@@ -52,23 +51,6 @@ public class DB_Login {
 		} 
 	}
 
-	public void createTableCantieri()
-	{
-		try {
-			Connection conn = DriverManager.getConnection(DB_URL);
-			if (conn != null) {
-				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE CANTIERE (" + "NOMECANTIERE		TEXT )";
-				stmt.executeUpdate(sql);
-				stmt.close();
-				conn.close();
-				System.out.println("Tabella cantiere creata");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} 
-	}
-	
 	//INSERISCE NUOVO UTENTE IN TABELLA UTENTE
 	public void insertNuovoUtente(String NomeAzienda, String NomeUtente, String Password)
 	{
@@ -87,28 +69,6 @@ public class DB_Login {
 		}
 	}
 	
-	//INSERISCE NUOVO CANTIERE IN DB
-	public void insertNuovoCantiere(String NomeCantiere)
-	{
-		try {
-		Connection conn = DriverManager.getConnection(DB_URL);
-		if (conn != null) 
-				{
-					Statement stmt = conn.createStatement();
-					String sql = "INSERT INTO CANTIERE VALUES (" + " \""+NomeCantiere+"\"" +")";
-					stmt.executeUpdate(sql);
-					stmt.close();
-					conn.close();
-					System.out.println("Utente inserito con successo");
-				}
-			}
-			catch (SQLException e) 
-			{
-				System.out.println(e.getMessage());
-			}
-	
-}
-
 	//SELECT TUTTI UTENTI, SOLO CONSOLE DEBUG
 	public void SelectAllUtentiPassword() throws SQLException
 	{
@@ -156,33 +116,6 @@ public class DB_Login {
 		return risultati;
 	}
 
-	public List<String[]> SelectNomeCantiere() throws SQLException
-	{
-		List<String[]> risultati = new ArrayList<>();
-		Connection conn = DriverManager.getConnection(DB_URL);
-		Statement stmt = conn.createStatement();
-		String sql = "SELECT NOMECANTIERE FROM CANTIERE";
-		ResultSet resultSet = stmt.executeQuery(sql);
-		int numeroColonne = resultSet.getMetaData().getColumnCount();
-		while (resultSet.next()) {
-            String[] riga = new String[numeroColonne];
-            for (int i = 1; i <= numeroColonne; i++) {
-                riga[i - 1] = resultSet.getString(i);
-            }
-            risultati.add(riga);
-        }
-		for (String[] riga : risultati) {
-            for (String valore : riga) {
-                System.out.print(valore + " ");
-            }
-            System.out.println(); 
-        }	
-		stmt.close();
-		conn.close();
-		System.out.println("query SelectUtentePassword con successo");
-		return risultati;
-	}
-	
 }
 
 
