@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
 
-import database.DB;
+import database.DB_Login;
 
 /**
  *
@@ -20,12 +20,13 @@ import database.DB;
  */
 public class jFrame_principale extends javax.swing.JFrame {
 
-	public DB db = new DB();	
+	public DB_Login db = new DB_Login();	
 	
     /**
      * Creates new form jFrame_principale
      */
     public jFrame_principale() {
+    	
         initComponents();
     }
     
@@ -144,29 +145,11 @@ public class jFrame_principale extends javax.swing.JFrame {
     }
     
     //POPOLARE E RENDERE VISIBILE COMBOBOX
-    public void comboBoxvisible(JComboBox<String> jComboBox) throws SQLException
+    public void comboBoxvisible(JComboBox<String> jComboBox, String[] items) throws SQLException
     {
     	jComboBox.setVisible(true);
-    	String[] items = readDataArray();
     	populatejComboBox(jComboBox, items);
     }
-    
-    //FUNZIONE PER IMPORTARE DA DB NOMI CANTIERI 
-    private String[] readDataArray() throws SQLException {
-    	
-		//db.SelectNomeCantiere();
-    	String string = "";
-		for (String[] riga : db.SelectNomeCantiere()) {
-            for (String valore : riga) {
-                System.out.print(valore + " ");
-                string = string  + valore + ",";
-            }
-            System.out.println(); 
-        }	
-		String [] data = string.split(",");
-		return data;	
-	}
-
     
     //GETTER AND SETTERS
 	public javax.swing.JButton getjButton_AggiungiCantiere() {

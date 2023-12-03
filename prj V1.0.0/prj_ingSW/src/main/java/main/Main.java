@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import controller.Controller_Login;
-import database.DB;
+import database.DB_Login;
 
 public class Main {
 
 		
 	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
-		DB db = new DB();
+		DB_Login db = new DB_Login();
 		db.createDB();
 		db.SelectUtentePassword();
 		

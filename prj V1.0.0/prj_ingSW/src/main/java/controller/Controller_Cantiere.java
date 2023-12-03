@@ -14,10 +14,12 @@ import GUI.jFrame_principale;
 public class Controller_Cantiere implements ActionListener{
 
 	private jFrame_Cantiere jframe_cantiere;
+	private String nomeUtente;
 	
-	public Controller_Cantiere (jFrame_Cantiere jFrame)
+	public Controller_Cantiere (jFrame_Cantiere jFrame, String nomeUtente)
 	{
 		this.jframe_cantiere=jFrame;
+		this.nomeUtente=nomeUtente;
 		
 		jFrame.getjButton_Aggiungi_Cant().addActionListener(this);
 		jFrame.getjButton_NuovoProd_Cant().addActionListener(this);
@@ -157,7 +159,7 @@ public class Controller_Cantiere implements ActionListener{
     //TORNA AL FRAME PRINCIPALE
     private void jButton_Home_CantActionPerformed() {
     	jFrame_principale jframe_principale = new jFrame_principale();
-		Controller_Principale controller_principale = new Controller_Principale(jframe_principale);
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, nomeUtente);
 		jframe_principale.setVisible(true);
 		jframe_cantiere.setVisible(false);
     }
@@ -165,7 +167,7 @@ public class Controller_Cantiere implements ActionListener{
     //BOTTONE BACK DI UNA PAGINA
     private void jButton_Back_CantActionPerformed() {
     	jFrame_principale jframe_principale = new jFrame_principale();
-		Controller_Principale controller_principale = new Controller_Principale(jframe_principale);
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, nomeUtente);
 		jframe_principale.setVisible(true);
 		jframe_cantiere.setVisible(false);
     }

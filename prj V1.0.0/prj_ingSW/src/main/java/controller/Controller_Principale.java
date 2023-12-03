@@ -17,16 +17,21 @@ import GUI.jFrame_Personale;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
 import database.DB;
+import database.DB_Login;
 
 public class Controller_Principale implements ActionListener{
 
-	private DB db = new DB();
+	private String NomeUtente;
+	private DB_Login db_login = new DB_Login();
+	private DB db;
 	private jFrame_principale jframe_principale;
 	private int count=0;
 
-	public Controller_Principale (jFrame_principale jFrame)
+	public Controller_Principale (jFrame_principale jFrame, String NomeUtente)
 	{
 		this.jframe_principale=jFrame;
+		this.NomeUtente=NomeUtente;
+		this.db=new DB(NomeUtente);
 		
 		jFrame.getjButton_AggiungiCantiere().addActionListener(this);
 		jFrame.getjButton_Bilancio().addActionListener(this);
@@ -37,7 +42,6 @@ public class Controller_Principale implements ActionListener{
 		jFrame.getjButton_Inventario().addActionListener(this);
 		jFrame.getjButton_VediUser().addActionListener(this);
 		jFrame.getjComboBox_IMieiCantieri().addActionListener(this);
-		
 	}
 	
 	@Override
@@ -61,7 +65,7 @@ public class Controller_Principale implements ActionListener{
 	
 	//RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
     private void jButton_IMieiCantieriActionPerformed() throws SQLException {
-    	jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri());
+    	jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri(), db.SelectNomeCantiere());
     }
 
     //PASSA A FRAME PERSONALE
@@ -116,7 +120,7 @@ public class Controller_Principale implements ActionListener{
     		String NomeCantiere = jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString();
         	System.out.println(jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString());
         	jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
-        	Controller_Cantiere controller_cantiere = new Controller_Cantiere(jframe_cantiere);
+        	Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente);
         	jframe_cantiere.setVisible(true);
         	jframe_principale.setVisible(false);
     	}

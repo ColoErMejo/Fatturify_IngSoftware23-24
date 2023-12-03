@@ -13,63 +13,32 @@ import java.util.List;
 
 public class DB {
 	
-	public static String DB_REL_FILE = "../database/DB.db3";
-	public static String DB_URL = "jdbc:sqlite:" + DB_REL_FILE;
-
-	//CREA DATABSE SE NON ESISTE NELLA CARTELLA
-	public void createDB() throws SQLException
+	public static String NomeUtente;
+	private static String DB_REL_FILE;
+	private static String DB_URL;
+	
+	public DB(String NomeUtente)
 	{
-		
-		if(new File(DB_REL_FILE).exists())
-			System.out.println("db utente gia esistente");
-		else
-		{
-			Connection conn = DriverManager.getConnection(DB_URL);
-			DatabaseMetaData meta = conn.getMetaData();
-			System.out.println("db utente creato con successo");
-			
-			createTableUtente();
-			createTableCantieri();
-		}
-			
-	}
-
-	//CREA TABELLA UTENTE
-	public void createTableUtente()
-	{
-		try {
-			Connection conn = DriverManager.getConnection(DB_URL);
-			if (conn != null) {
-				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE UTENTE (" + "NOMEAZIENDA		TEXT," + " NOMEUTENTE		TEXT," + " PASSWORD		 TEXT )";
-				stmt.executeUpdate(sql);
-				stmt.close();
-				conn.close();
-				System.out.println("Tabella utente creata");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} 
-	}
-
-	public void createTableCantieri()
-	{
-		try {
-			Connection conn = DriverManager.getConnection(DB_URL);
-			if (conn != null) {
-				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE CANTIERE (" + "NOMECANTIERE		TEXT )";
-				stmt.executeUpdate(sql);
-				stmt.close();
-				conn.close();
-				System.out.println("Tabella cantiere creata");
-			}
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		} 
+		this.NomeUtente=NomeUtente;
+		this.DB_REL_FILE = "../database/"+NomeUtente+".db3";
+		this.DB_URL = "jdbc:sqlite:" + DB_REL_FILE;
 	}
 	
-	//INSERISCE NUOVO UTENTE IN TABELLA UTENTE
+	private String[] readDataArray(List<String[]> lista) throws SQLException {
+    	String string = "";
+		for (String[] riga : lista) {
+            for (String valore : riga) {
+                System.out.print(valore + " ");
+                string = string  + valore + ",";
+            }
+            System.out.println(); 
+        }	
+		String [] data = string.split(",");
+		System.out.println(data); 
+		return data;	
+	}
+	
+	//INSERT
 	public void insertNuovoUtente(String NomeAzienda, String NomeUtente, String Password)
 	{
 		try {
@@ -87,7 +56,6 @@ public class DB {
 		}
 	}
 	
-	//INSERISCE NUOVO CANTIERE IN DB
 	public void insertNuovoCantiere(String NomeCantiere)
 	{
 		try {
@@ -99,7 +67,7 @@ public class DB {
 					stmt.executeUpdate(sql);
 					stmt.close();
 					conn.close();
-					System.out.println("Utente inserito con successo");
+					System.out.println("cantiere inserito con successo");
 				}
 			}
 			catch (SQLException e) 
@@ -107,82 +75,67 @@ public class DB {
 				System.out.println(e.getMessage());
 			}
 	
-}
-
-	//SELECT TUTTI UTENTI, SOLO CONSOLE DEBUG
-	public void SelectAllUtentiPassword() throws SQLException
+	}
+	// RITRONA String[] UTENTE
+	public String[] SelectUtente() throws SQLException
 	{
+		List<String[]> risultati = new ArrayList<>();
 		Connection conn = DriverManager.getConnection(DB_URL);
 		Statement stmt = conn.createStatement();
-		String sql = "SELECT * FROM UTENTE";
+		String sql = "SELECT NOMEUTENTE FROM UTENTE";
 		ResultSet resultSet = stmt.executeQuery(sql);
-		// stampa i risultati
+		int numeroColonne = resultSet.getMetaData().getColumnCount();
 		while (resultSet.next()) {
-			for (int i = 1; i <= 3; i++) {
-				System.out.print(resultSet.getString(i) + " ");
+           String[] riga = new String[numeroColonne];
+           for (int i = 1; i <= numeroColonne; i++) {
+                riga[i - 1] = resultSet.getString(i);
+            }
+            risultati.add(riga);
+        }
+		for (String[] riga : risultati) {
+            for (String valore : riga) {
+                System.out.print(valore + " ");
+            }
+            System.out.println(); 
+        }	
+		stmt.close();
+		conn.close();
+		System.out.println("query SelectUtente con successo");
+			
+		return readDataArray(risultati);
+	}
+
+	// RITRONA String[] CON NOMICANTIERI
+			public String[] SelectNomeCantiere() throws SQLException
+			{
+				List<String[]> risultati = new ArrayList<>();
+				Connection conn = DriverManager.getConnection(DB_URL);
+				Statement stmt = conn.createStatement();
+				String sql = "SELECT NOMECANTIERE FROM CANTIERE";
+				ResultSet resultSet = stmt.executeQuery(sql);
+				int numeroColonne = resultSet.getMetaData().getColumnCount();
+				while (resultSet.next()) {
+		            String[] riga = new String[numeroColonne];
+		            for (int i = 1; i <= numeroColonne; i++) {
+		                riga[i - 1] = resultSet.getString(i);
+		            }
+		            risultati.add(riga);
+		        }
+				for (String[] riga : risultati) {
+		            for (String valore : riga) {
+		                System.out.print(valore + " ");
+		            }
+		            System.out.println(); 
+		        }	
+				stmt.close();
+				conn.close();
+				System.out.println("query SelectNomeCantiere con successo");
+				
+				return readDataArray(risultati);
 			}
-			System.out.println();
-		}
-		stmt.close();
-		conn.close();
-		System.out.println("query SelectAllUtenti eseguita");
-	}
 	
-	// RITRONA LISTA CON COMBINAZIONE UTENTE PASSWORD
-	public List<String[]> SelectUtentePassword() throws SQLException
-	{
-		List<String[]> risultati = new ArrayList<>();
-		Connection conn = DriverManager.getConnection(DB_URL);
-		Statement stmt = conn.createStatement();
-		String sql = "SELECT NOMEUTENTE,PASSWORD FROM UTENTE";
-		ResultSet resultSet = stmt.executeQuery(sql);
-		int numeroColonne = resultSet.getMetaData().getColumnCount();
-		while (resultSet.next()) {
-            String[] riga = new String[numeroColonne];
-            for (int i = 1; i <= numeroColonne; i++) {
-                riga[i - 1] = resultSet.getString(i);
-            }
-            risultati.add(riga);
-        }
-		for (String[] riga : risultati) {
-            for (String valore : riga) {
-                System.out.print(valore + " ");
-            }
-            System.out.println(); 
-        }	
-		stmt.close();
-		conn.close();
-		System.out.println("query SelectUtentePassword con successo");
-		return risultati;
-	}
-
-	public List<String[]> SelectNomeCantiere() throws SQLException
-	{
-		List<String[]> risultati = new ArrayList<>();
-		Connection conn = DriverManager.getConnection(DB_URL);
-		Statement stmt = conn.createStatement();
-		String sql = "SELECT NOMECANTIERE FROM CANTIERE";
-		ResultSet resultSet = stmt.executeQuery(sql);
-		int numeroColonne = resultSet.getMetaData().getColumnCount();
-		while (resultSet.next()) {
-            String[] riga = new String[numeroColonne];
-            for (int i = 1; i <= numeroColonne; i++) {
-                riga[i - 1] = resultSet.getString(i);
-            }
-            risultati.add(riga);
-        }
-		for (String[] riga : risultati) {
-            for (String valore : riga) {
-                System.out.print(valore + " ");
-            }
-            System.out.println(); 
-        }	
-		stmt.close();
-		conn.close();
-		System.out.println("query SelectUtentePassword con successo");
-		return risultati;
-	}
+	
+	
+	
 	
 }
-
-

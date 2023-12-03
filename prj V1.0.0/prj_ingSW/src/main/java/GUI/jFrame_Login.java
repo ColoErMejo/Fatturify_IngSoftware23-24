@@ -13,14 +13,6 @@ import javax.swing.JFrame;
 public class jFrame_Login extends javax.swing.JFrame {
 
 	
-	
-        public void run() {
-            new jFrame_Login().setVisible(true);
-        }
-    
-    /**
-     * Creates new form jFrame_Login
-     */
     public jFrame_Login() {
     	
     	initComponents();
