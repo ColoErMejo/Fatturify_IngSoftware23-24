@@ -11,11 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
 public class DB {
 	
 	public static String DB_REL_FILE = "../database/DB.db3";
