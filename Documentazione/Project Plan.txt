@@ -1,0 +1,71 @@
+Project plan:
+
+Introduzione:
+  Il presente piano di progetto delinea il quadro strategico e operativo per lo sviluppo di un software di gestione economica aziendale, concepito e realizzato da un team di tre studenti di ingegneria informatica: 
+Lorenzo Colombo (1081134) 
+Carlo Alberto Poggiu (matricola) 
+Gabriele Merli (matricola)  
+
+Il progetto è stato concepito in risposta alla crescente necessità delle aziende di ottimizzare le loro operazioni finanziarie e organizzative attraverso l'implementazione di una soluzione software sofisticata ed efficiente.
+
+
+Modello di processo
+  Modello Incrementale:
+Caratteristiche Principali: Lo sviluppo incrementale prevede la suddivisione del progetto in parti più piccole, chiamate incrementi, ciascuno dei quali implementa e rilascia una porzione specifica delle funzionalità richieste. Ogni incremento aggiunge nuove funzionalità o migliora quelle esistenti. Questo modello consente di rilasciare parti del software più rapidamente, consentendo un feedback tempestivo dagli utenti e facilitando adattamenti in corso d'opera. 
+
+Organizzazione del progetto
+  Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in modo da tracciare una linea generale sul da farsi. 
+ La documentazione riguarda sia la fase iniziale, centrale e finale del progetto. Per la fase di sviluppo abbiamo usato i vari diagrammi messi a disposizione da UML,per poi partire con l’implementazione dell’idea.
+ In particolare, il team si incontra costantemente per verificare il lavoro svolto dall'ultimo meet e pianificare i passaggi successivi.
+
+Standard,linee guida e procedure
+Alla fine di ogni sprint bisogna creare un report in cui specificare gli obiettivi portati a termine, decisi all'interno dello sprint backlog.
+
+Attività di gestione
+Abbiamo usato il paradigma Capo squadra programmatore in cui:
+programmatore:Gabriele Merli
+Assistente campo: Lorenzo Colombo
+Design: Poggiu Carlo Alberto    
+
+
+Rischi:
+ Nel nostro caso il principale rischio è la gestione grafica e del codice per lo sviluppo dell’idea.
+Il tutto però viene risolto con l’ausilio di strumenti aggiuntivi e con l’unione delle competenze maturate durante l’anno accademico.
+
+Personale:
+Utilizzando una modalità di sviluppo SWAT che ci permette di coordinare il lavoro in modo intelligente e graduale.
+
+Metodi e tecniche:
+Le tecniche che usiamo per la rappresentazione logica del progetto sono date dai seguenti diagrammi UML: 
+Diagramma casi di uso (per l'ingegneria dei requisiti) 
+Diagramma delle classi (per la fase di progettazione)  
+Diagramma di stato 
+Diagramma di attività 
+Diagramma di componenti 
+Per la fase di implementazione e di test utilizziamo Java e junit
+
+Garanzie di qualità
+Per mantenere l'integrità del nostro codice, adottiamo strumenti collaborativi come GitHub e applichiamo le competenze tecniche acquisite durante l'anno accademico per assicurare la conformità del software. 
+Must have:interfaccia grafica
+Should have: Elenco fatture, possibilità di esportare i file in excel
+Could have: Mezzi utilizzati per i lavori, certificato lavoratori
+  
+Pacchetti di lavoro
+I ruoli sono divisi equamente sulla base della complessità del progetto
+Gabriele Merli: Si occuperà della programmazione delle parti fondamentali dell'idea
+Lorenzo Colombo: Si occuperà anche lui della programmazione del software curando anche i diagrammi UML per permettere una visione a 360° del progetto
+Carlo Alberto Poggiu: Si occuperà anche lui della progrtammazione e delineamento del database con mansione principale puntata sul design del software.
+
+Risorse
+Le tecnologie utilizzate sono: 
+Java con le relative librerie aggiuntive 
+GitHub per il lavoro condiviso
+Canva UI/UX design
+
+Cambiamenti
+I cambiamenti verranno gestiti tramite gli incontri settimanali fissati per discutere il progetto per poi in caso positivo apportare le modifiche su GitHub 
+(Qui aggiungiamo note riguardo i cambiamenti durante il progetto)
+
+
+Consegna
+Per la consegna abbiamo determinato una scadenza in base alla consegna richiesta in modo tale da apportare ulteriori modifiche/migliorie in previsione della presentazione tramite github
