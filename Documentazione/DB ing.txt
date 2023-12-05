@@ -1,0 +1,355 @@
+package database;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DB {
+	
+	public static String NomeUtente;
+	private static String DB_REL_FILE;
+	private static String DB_URL;
+	
+	public DB(String NomeUtente)
+	{
+		this.NomeUtente=NomeUtente;
+		this.DB_REL_FILE = "../database/"+NomeUtente+".db3";
+		this.DB_URL = "jdbc:sqlite:" + DB_REL_FILE;
+	}
+	
+	private String[] readDataArray(List<String[]> lista) throws SQLException {
+    	String string = "";
+		for (String[] riga : lista) {
+            for (String valore : riga) {
+                System.out.print(valore + " ");
+                string = string  + valore + ",";
+            }
+            System.out.println(); 
+        }	
+		String [] data = string.split(",");
+		System.out.println(data); 
+		return data;	
+	}
+	
+	//INSERT
+	public void insertNuovoUtente(String NomeAzienda, String NomeUtente, String Password)
+	{
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "INSERT INTO UTENTE VALUES (" + " \""+NomeAzienda+"\"," + " \""+NomeUtente+"\", " + " \""+Password+"\"  )";
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+				System.out.println("Utente inserito con successo");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+public void insertNuovoCantiere(int idCantiere, String nomeCantiere, String indirizzo, Date dataInizio, Date dataFine) {
+    try {
+        Connection conn = DriverManager.getConnection(DB_URL);
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO CANTIERE VALUES (" + idCantiere + ", " + " \"" + nomeCantiere + "\", " + " \"" + indirizzo + "\", " + " \"" + dataInizio + "\", " + " \"" + dataFine + "\", " + " /* Aggiungi qui gli altri valori */ )";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            System.out.println("Cantiere inserito con successo");
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
+public void insertNuovoProdotto(int codiceProdotto, String nomeProdotto, String descrizione, BigDecimal prezzo) {
+    try {
+        Connection conn = DriverManager.getConnection(DB_URL);
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            // Assicurati di utilizzare PreparedStatement per gestire i parametri in modo sicuro
+            String sql = "INSERT INTO PRODOTTO VALUES (" +
+                    codiceProdotto + ", " +" \"" + nomeProdotto + "\", " +" \"" + descrizione + "\", " +prezzo + ", " +" /* Aggiungi qui gli altri valori */ )";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            System.out.println("Prodotto inserito con successo");
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
+import java.sql.Date;
+import java.math.BigDecimal;
+
+public class DatabaseManager {
+    private static final String DB_URL = "jdbc:your_database_url_here";
+
+    public void insertNuovoPersonale(int idPersonale, String nome, String cognome, String ruolo, Date dataAssunzione) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            if (conn != null) {
+                Statement stmt = conn.createStatement();
+                // Assicurati di utilizzare PreparedStatement per gestire i parametri in modo sicuro
+                String sql = "INSERT INTO PERSONALE VALUES (" + idPersonale + ", " + " \"" + nome + "\", " + " \"" + cognome + "\", " + " \"" + ruolo + "\", " +" \"" + dataAssunzione + "\", " + " /* Aggiungi qui gli altri valori */ )";
+                stmt.executeUpdate(sql);
+                stmt.close();
+                conn.close();
+                System.out.println("Personale inserito con successo");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+import java.sql.Date;
+import java.math.BigDecimal;
+
+public class DatabaseManager {
+    private static final String DB_URL = "jdbc:your_database_url_here";
+    public void insertNuovaFattura(int numeroFattura, Date dataEmissione, String cliente, BigDecimal importo, String descrizione) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            if (conn != null) {
+                Statement stmt = conn.createStatement();
+                // Assicurati di utilizzare PreparedStatement per gestire i parametri in modo sicuro
+                String sql = "INSERT INTO FATTURE VALUES (" + numeroFattura + ", " + " \"" + dataEmissione + "\", " + " \"" + cliente + "\", " + importo + ", " + " \"" + descrizione + "\", " + " /* Aggiungi qui gli altri valori */ )";
+                stmt.executeUpdate(sql);
+                stmt.close();
+                conn.close();
+                System.out.println("Fattura inserita con successo");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+public void insertNuovaCategoria(int idCategoria, String nomeCategoria, String descrizione) {
+    try {
+        Connection conn = DriverManager.getConnection(DB_URL);
+        if (conn != null) {
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO CATEGORIE VALUES (" +idCategoria + ", " + " \"" + nomeCategoria + "\", " + " \"" + descrizione + "\", " + " /* Aggiungi qui gli altri valori */ )";
+            stmt.executeUpdate(sql);
+            stmt.close();
+            conn.close();
+            System.out.println("Categoria inserita con successo");
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+}
+
+	// RITRONA String[] UTENTE
+	public String[] SelectUtente() throws SQLException
+	{
+		List<String[]> risultati = new ArrayList<>();
+		Connection conn = DriverManager.getConnection(DB_URL);
+		Statement stmt = conn.createStatement();
+		String sql = "SELECT NOMEUTENTE FROM UTENTE";
+		ResultSet resultSet = stmt.executeQuery(sql);
+		int numeroColonne = resultSet.getMetaData().getColumnCount();
+		while (resultSet.next()) {
+           String[] riga = new String[numeroColonne];
+           for (int i = 1; i <= numeroColonne; i++) {
+                riga[i - 1] = resultSet.getString(i);
+            }
+            risultati.add(riga);
+        }
+		for (String[] riga : risultati) {
+            for (String valore : riga) {
+                System.out.print(valore + " ");
+            }
+            System.out.println(); 
+        }	
+		stmt.close();
+		conn.close();
+		System.out.println("query SelectUtente con successo");
+			
+		return readDataArray(risultati);
+	}
+
+	// RITRONA String[] CON NOMICANTIERI
+	public String[] selectNomiCantieri() throws SQLException {
+    List<String[]> risultati = new ArrayList<>();
+    Connection conn = DriverManager.getConnection(DB_URL);
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT NOME_CANTIERE FROM CANTIERE";
+    ResultSet resultSet = stmt.executeQuery(sql);
+    
+    int numeroColonne = resultSet.getMetaData().getColumnCount();
+    
+    while (resultSet.next()) {
+        String[] riga = new String[numeroColonne];
+        for (int i = 1; i <= numeroColonne; i++) {
+            riga[i - 1] = resultSet.getString(i);
+        }
+        risultati.add(riga);
+    }
+    
+    for (String[] riga : risultati) {
+        for (String valore : riga) {
+            System.out.print(valore + " ");
+        }
+        System.out.println();
+    }
+    
+    resultSet.close();
+    stmt.close();
+    conn.close();
+    
+    System.out.println("Query selectNomiCantieri con successo");
+    
+    return readDataArray(risultati);
+}
+
+	// RITRONA String[] CON PRODOTTO
+	public String[] selectNomiProdotti() throws SQLException {
+    List<String[]> risultati = new ArrayList<>();
+    Connection conn = DriverManager.getConnection(DB_URL);
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT NOME_PRODOTTO FROM PRODOTTO";
+    ResultSet resultSet = stmt.executeQuery(sql);
+    
+    int numeroColonne = resultSet.getMetaData().getColumnCount();
+    
+    while (resultSet.next()) {
+        String[] riga = new String[numeroColonne];
+        for (int i = 1; i <= numeroColonne; i++) {
+            riga[i - 1] = resultSet.getString(i);
+        }
+        risultati.add(riga);
+    }
+    
+    for (String[] riga : risultati) {
+        for (String valore : riga) {
+            System.out.print(valore + " ");
+        }
+        System.out.println();
+    }
+    
+    resultSet.close();
+    stmt.close();
+    conn.close();
+    
+    System.out.println("Query selectNomiProdotti con successo");
+    
+    return readDataArray(risultati);
+}
+
+	// RITRONA String[] CON PERSONALE
+	public String[] selectNomiPersonale() throws SQLException {
+    List<String[]> risultati = new ArrayList<>();
+    Connection conn = DriverManager.getConnection(DB_URL);
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT NOME FROM PERSONALE";
+    ResultSet resultSet = stmt.executeQuery(sql);
+    
+    int numeroColonne = resultSet.getMetaData().getColumnCount();
+    
+    while (resultSet.next()) {
+        String[] riga = new String[numeroColonne];
+        for (int i = 1; i <= numeroColonne; i++) {
+            riga[i - 1] = resultSet.getString(i);
+        }
+        risultati.add(riga);
+    }
+    
+    for (String[] riga : risultati) {
+        for (String valore : riga) {
+            System.out.print(valore + " ");
+        }
+        System.out.println();
+    }
+    
+    resultSet.close();
+    stmt.close();
+    conn.close();
+    
+    System.out.println("Query selectNomiPersonale con successo");
+    
+    return readDataArray(risultati);
+}
+
+	// RITRONA String[] CON FATTURE
+	public String[] selectNumeriFatture() throws SQLException {
+    List<String[]> risultati = new ArrayList<>();
+    Connection conn = DriverManager.getConnection(DB_URL);
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT NUMERO_FATTURA FROM FATTURE";
+    ResultSet resultSet = stmt.executeQuery(sql);
+    
+    int numeroColonne = resultSet.getMetaData().getColumnCount();
+    
+    while (resultSet.next()) {
+        String[] riga = new String[numeroColonne];
+        for (int i = 1; i <= numeroColonne; i++) {
+            riga[i - 1] = resultSet.getString(i);
+        }
+        risultati.add(riga);
+    }
+    
+    for (String[] riga : risultati) {
+        for (String valore : riga) {
+            System.out.print(valore + " ");
+        }
+        System.out.println();
+    }
+    
+    resultSet.close();
+    stmt.close();
+    conn.close();
+    
+    System.out.println("Query selectNumeriFatture con successo");
+    
+    return readDataArray(risultati);
+}
+
+	// RITRONA String[] CON CATEGORIE
+	public String[] selectNomiCategorie() throws SQLException {
+    List<String[]> risultati = new ArrayList<>();
+    Connection conn = DriverManager.getConnection(DB_URL);
+    Statement stmt = conn.createStatement();
+    String sql = "SELECT NOME_CATEGORIA FROM CATEGORIE";
+    ResultSet resultSet = stmt.executeQuery(sql);
+    
+    int numeroColonne = resultSet.getMetaData().getColumnCount();
+    
+    while (resultSet.next()) {
+        String[] riga = new String[numeroColonne];
+        for (int i = 1; i <= numeroColonne; i++) {
+            riga[i - 1] = resultSet.getString(i);
+        }
+        risultati.add(riga);
+    }
+    
+    for (String[] riga : risultati) {
+        for (String valore : riga) {System.out.print(valore + " ");
+}
+        System.out.println();
+    }
+    
+    resultSet.close();
+    stmt.close();
+    conn.close();
+    
+    System.out.println("Query selectNomiCategorie con successo");
+    
+    return readDataArray(risultati);
+}
+		
+	
+}
