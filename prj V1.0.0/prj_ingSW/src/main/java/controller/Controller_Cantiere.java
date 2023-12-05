@@ -10,16 +10,21 @@ import GUI.JDialog_AggiungiProdotto;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
+import database.DB;
 
 public class Controller_Cantiere implements ActionListener{
 
 	private jFrame_Cantiere jframe_cantiere;
-	private String nomeUtente;
+	private String NomeUtente;
+	private String NomeCantiere;
+	private DB db;
 	
-	public Controller_Cantiere (jFrame_Cantiere jFrame, String nomeUtente)
+	public Controller_Cantiere (jFrame_Cantiere jFrame, String NomeUtente, String NomeCantiere)
 	{
 		this.jframe_cantiere=jFrame;
-		this.nomeUtente=nomeUtente;
+		this.NomeCantiere=NomeCantiere;
+		this.NomeUtente=NomeUtente;
+		this.db=new DB(NomeUtente);
 		
 		jFrame.getjButton_Aggiungi_Cant().addActionListener(this);
 		jFrame.getjButton_NuovoProd_Cant().addActionListener(this);
@@ -151,7 +156,7 @@ public class Controller_Cantiere implements ActionListener{
     //PASSA A FRAME FATTURA
     private void jButton_ToFAttura_CantActionPerformed() {
     	jFrame_fattura jframe_fattura = new jFrame_fattura();
-    	Controller_Fattura controller_fattura = new Controller_Fattura(jframe_fattura);
+    	Controller_Fattura controller_fattura = new Controller_Fattura(jframe_fattura, NomeUtente, NomeCantiere);
     	jframe_fattura.setVisible(true);
     	jframe_cantiere.setVisible(false);
     }
@@ -159,7 +164,7 @@ public class Controller_Cantiere implements ActionListener{
     //TORNA AL FRAME PRINCIPALE
     private void jButton_Home_CantActionPerformed() {
     	jFrame_principale jframe_principale = new jFrame_principale();
-		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, nomeUtente);
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, NomeUtente);
 		jframe_principale.setVisible(true);
 		jframe_cantiere.setVisible(false);
     }
@@ -167,7 +172,7 @@ public class Controller_Cantiere implements ActionListener{
     //BOTTONE BACK DI UNA PAGINA
     private void jButton_Back_CantActionPerformed() {
     	jFrame_principale jframe_principale = new jFrame_principale();
-		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, nomeUtente);
+		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, NomeUtente);
 		jframe_principale.setVisible(true);
 		jframe_cantiere.setVisible(false);
     }

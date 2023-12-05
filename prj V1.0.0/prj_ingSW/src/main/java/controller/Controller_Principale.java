@@ -71,6 +71,8 @@ public class Controller_Principale implements ActionListener{
     //PASSA A FRAME PERSONALE
     private void jButton_IlMioPersonaleActionPerformed() {
     	jFrame_Personale jframe_personale = new jFrame_Personale();
+    	Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);
+    	System.out.println("Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);");
     	jframe_personale.setVisible(true);
     	jframe_principale.setVisible(false);	
     }
@@ -120,7 +122,7 @@ public class Controller_Principale implements ActionListener{
     		String NomeCantiere = jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString();
         	System.out.println(jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString());
         	jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
-        	Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente);
+        	Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente, NomeCantiere);
         	jframe_cantiere.setVisible(true);
         	jframe_principale.setVisible(false);
     	}

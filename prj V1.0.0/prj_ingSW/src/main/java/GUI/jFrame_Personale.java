@@ -27,9 +27,9 @@ public class jFrame_Personale extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel_Pers_Right = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButton_EliminaPersonale = new javax.swing.JButton();
+        jButton_AddPersonale = new javax.swing.JButton();
+        jButton_ModificaPersonale = new javax.swing.JButton();
         jPanel_Pers_Left = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_Pers_Left = new javax.swing.JTable();
@@ -43,38 +43,26 @@ public class jFrame_Personale extends javax.swing.JFrame {
         jPanel_Pers_Right.setBackground(new java.awt.Color(255, 255, 255));
         jPanel_Pers_Right.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Rimuovi personale");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel_Pers_Right.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
+        jButton_EliminaPersonale.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_EliminaPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_EliminaPersonale.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_EliminaPersonale.setText("elimina personale");
+        
+        jPanel_Pers_Right.add(jButton_EliminaPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Aggiungi personale");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel_Pers_Right.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
+        jButton_AddPersonale.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_AddPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_AddPersonale.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_AddPersonale.setText("aggiungi personale");
+        
+        jPanel_Pers_Right.add(jButton_AddPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
-        jButton3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setText("Modifica personale");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel_Pers_Right.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
+        jButton_ModificaPersonale.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_ModificaPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_ModificaPersonale.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_ModificaPersonale.setText("modifica personale");
+        
+        jPanel_Pers_Right.add(jButton_ModificaPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
 
         getContentPane().add(jPanel_Pers_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
@@ -106,20 +94,12 @@ public class jFrame_Personale extends javax.swing.JFrame {
 
         jButton_Back_Pers.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Back_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Back.png"))); // NOI18N
-        jButton_Back_Pers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Back_PersActionPerformed(evt);
-            }
-        });
+        
         jPanel_Pers_Left.add(jButton_Back_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         jButton_Home_Pers.setBackground(new java.awt.Color(0, 153, 255));
         jButton_Home_Pers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/Home.png"))); // NOI18N
-        jButton_Home_Pers.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Home_PersActionPerformed(evt);
-            }
-        });
+       
         jPanel_Pers_Left.add(jButton_Home_Pers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         getContentPane().add(jPanel_Pers_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
@@ -128,67 +108,62 @@ public class jFrame_Personale extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_Home_PersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Home_PersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Home_PersActionPerformed
+       public javax.swing.JButton getjButton_AddPersonale() {
+		return jButton_AddPersonale;
+	}
 
-    private void jButton_Back_PersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Back_PersActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_Back_PersActionPerformed
+	public void setjButton_AddPersonale(javax.swing.JButton jButton_AddPersonale) {
+		this.jButton_AddPersonale = jButton_AddPersonale;
+	}
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+	public javax.swing.JButton getjButton_Back_Pers() {
+		return jButton_Back_Pers;
+	}
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+	public void setjButton_Back_Pers(javax.swing.JButton jButton_Back_Pers) {
+		this.jButton_Back_Pers = jButton_Back_Pers;
+	}
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+	public javax.swing.JButton getjButton_EliminaPersonale() {
+		return jButton_EliminaPersonale;
+	}
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFrame_Personale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFrame_Personale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFrame_Personale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFrame_Personale.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+	public void setjButton_EliminaPersonale(javax.swing.JButton jButton_EliminaPersonale) {
+		this.jButton_EliminaPersonale = jButton_EliminaPersonale;
+	}
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new jFrame_Personale().setVisible(true);
-            }
-        });
-    }
+	public javax.swing.JButton getjButton_Home_Pers() {
+		return jButton_Home_Pers;
+	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+	public void setjButton_Home_Pers(javax.swing.JButton jButton_Home_Pers) {
+		this.jButton_Home_Pers = jButton_Home_Pers;
+	}
+
+	public javax.swing.JButton getjButton_ModificaPersonale() {
+		return jButton_ModificaPersonale;
+	}
+
+	public void setjButton_ModificaPersonale(javax.swing.JButton jButton_ModificaPersonale) {
+		this.jButton_ModificaPersonale = jButton_ModificaPersonale;
+	}
+
+	public javax.swing.JTable getjTable_Pers_Left() {
+		return jTable_Pers_Left;
+	}
+
+	public void setjTable_Pers_Left(javax.swing.JTable jTable_Pers_Left) {
+		this.jTable_Pers_Left = jTable_Pers_Left;
+	}
+
+
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_AddPersonale;
     private javax.swing.JButton jButton_Back_Pers;
+    private javax.swing.JButton jButton_EliminaPersonale;
     private javax.swing.JButton jButton_Home_Pers;
+    private javax.swing.JButton jButton_ModificaPersonale;
     private javax.swing.JPanel jPanel_Pers_Left;
     private javax.swing.JPanel jPanel_Pers_Right;
     private javax.swing.JScrollPane jScrollPane1;
