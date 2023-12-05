@@ -86,7 +86,7 @@ public class jFrame_Login extends javax.swing.JFrame {
 
         jLabel_Password.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel_Password.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel_Password.setText("password");
+        jLabel_Password.setText("Password");
         jPanel_Right_Login.add(jLabel_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 150, -1));
 
         jButton_Login.setBackground(new java.awt.Color(255, 255, 255));
@@ -98,7 +98,7 @@ public class jFrame_Login extends javax.swing.JFrame {
 
         jLabel1_Nuovo_Utente.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel1_Nuovo_Utente.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1_Nuovo_Utente.setText("nuovo utente?");
+        jLabel1_Nuovo_Utente.setText("Nuovo utente?");
         jPanel_Right_Login.add(jLabel1_Nuovo_Utente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, -1, -1));
 
         jButton_Nuovo_Utente.setBackground(new java.awt.Color(255, 255, 255));

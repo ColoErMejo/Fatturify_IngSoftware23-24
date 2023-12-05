@@ -146,21 +146,21 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_ToFAttura_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ToFAttura_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_ToFAttura_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_ToFAttura_Cant.setText("fattura");
+        jButton_ToFAttura_Cant.setText("Fattura");
         
         jPanel_Cantiere_Right.add(jButton_ToFAttura_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 530, 180, -1));
 
         jButton_Aggiungi_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Aggiungi_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_Aggiungi_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_Aggiungi_Cant.setText("aggiungi");
+        jButton_Aggiungi_Cant.setText("Aggiungi");
         
         jPanel_Cantiere_Right.add(jButton_Aggiungi_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 180, -1));
 
         jButton_NuovoProd_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_NuovoProd_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_NuovoProd_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_NuovoProd_Cant.setText("aggiungi nuovo prodotto");
+        jButton_NuovoProd_Cant.setText("Aggiungi nuovo prodotto");
         
         jPanel_Cantiere_Right.add(jButton_NuovoProd_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, 210, -1));
 
@@ -184,17 +184,17 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
         jLabel_Descrizione_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Descrizione_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Descrizione_Cant.setText("descrizione");
+        jLabel_Descrizione_Cant.setText("Descrizione");
         jPanel_Cantiere_Right.add(jLabel_Descrizione_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, -1, -1));
 
         jLabel_Nore_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nore_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nore_Cant.setText("numero ore");
+        jLabel_Nore_Cant.setText("Numero ore");
         jPanel_Cantiere_Right.add(jLabel_Nore_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, -1, 20));
 
         jLabel_Quantita_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Quantita_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Quantita_Cant.setText("quantità");
+        jLabel_Quantita_Cant.setText("Quantità");
         jPanel_Cantiere_Right.add(jLabel_Quantita_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
@@ -206,7 +206,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jButton_NuovaCat_Cant.setBackground(new java.awt.Color(255, 255, 255));
         jButton_NuovaCat_Cant.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_NuovaCat_Cant.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_NuovaCat_Cant.setText("aggiungi nuova categoria");
+        jButton_NuovaCat_Cant.setText("Aggiungi nuova categoria");
         
         jPanel_Cantiere_Right.add(jButton_NuovaCat_Cant, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 210, -1));
 
