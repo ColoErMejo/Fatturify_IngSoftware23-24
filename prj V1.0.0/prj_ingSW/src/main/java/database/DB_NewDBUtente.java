@@ -32,6 +32,10 @@ public class DB_NewDBUtente {
 			// funzioni create table
 			createTableUtente();
 			createTableCantiere();
+			createTableProdotto();
+			createTablePersonale();
+			createTableFatture();
+			createTableCategoria();
 		}
 	}
 	
@@ -42,7 +46,7 @@ public class DB_NewDBUtente {
 				Connection conn = DriverManager.getConnection(DB_URL);
 				if (conn != null) {
 					Statement stmt = conn.createStatement();
-					String sql = "CREATE TABLE UTENTE (" + "NOMEAZIENDA		TEXT," + " NOMEUTENTE		TEXT," + " PASSWORD		 TEXT )";
+					String sql = "CREATE TABLE UTENTE (" + "NOMEAZIENDA		TEXT PRIMARY KEY," + " NOMEUTENTE		TEXT," + " PASSWORD		 TEXT )";
 					stmt.executeUpdate(sql);
 					stmt.close();
 					conn.close();
@@ -59,7 +63,7 @@ public class DB_NewDBUtente {
 				Connection conn = DriverManager.getConnection(DB_URL);
 				if (conn != null) {
 					Statement stmt = conn.createStatement();
-					String sql = "CREATE TABLE CANTIERE ( NOMECANTIERE		TEXT)";
+					String sql = "CREATE TABLE CANTIERE ( NOMECANTIERE		TEXT PRIMARY KEY)";
 					stmt.executeUpdate(sql);
 					stmt.close();
 					conn.close();
@@ -69,4 +73,70 @@ public class DB_NewDBUtente {
 				System.out.println(e.getMessage());
 			} 
 		}
+		
+		public void createTableProdotto() {
+		    try {
+		        Connection conn = DriverManager.getConnection(DB_URL);
+		        if (conn != null) {
+		            Statement stmt = conn.createStatement();
+		            String sql = "CREATE TABLE PRODOTTO (" +"CODICE_PRODOTTO  TEXT PRIMARY KEY," +"NOME_PRODOTTO    TEXT," +"DESCRIZIONE      TEXT," + "PREZZO           DECIMAL(10, 2))";
+		            stmt.executeUpdate(sql);
+		            stmt.close();
+		            conn.close();
+		            System.out.println("Tabella prodotto creata");
+		        }
+		    } catch (SQLException e) {
+		        System.out.println(e.getMessage());
+		    }
+		}
+
+		public void createTablePersonale() {
+		    try {
+		        Connection conn = DriverManager.getConnection(DB_URL);
+		        if (conn != null) {
+		            Statement stmt = conn.createStatement();
+		            String sql = "CREATE TABLE PERSONALE (" +"ID_PERSONALE     TEXT PRIMARY KEY," +"NOME             TEXT," +"COGNOME          TEXT," +"MANSIONE            TEXT)";
+		            stmt.executeUpdate(sql);
+		            stmt.close();
+		            conn.close();
+		            System.out.println("Tabella personale creata");
+		        }
+		    } catch (SQLException e) {
+		        System.out.println(e.getMessage());
+		    }
+		}
+
+		public void createTableFatture() {
+		    try {
+		        Connection conn = DriverManager.getConnection(DB_URL);
+		        if (conn != null) {
+		            Statement stmt = conn.createStatement();
+		            String sql = "CREATE TABLE FATTURE (" +"NUMERO_FATTURA   INT PRIMARY KEY," + "DATA_EMISSIONE   DATE," + "CLIENTE          TEXT," + "IMPORTO          DECIMAL(10, 2)," +"DESCRIZIONE      TEXT)";
+		            stmt.executeUpdate(sql);
+		            stmt.close();
+		            conn.close();
+		            System.out.println("Tabella fatture creata");
+		        }
+		    } catch (SQLException e) {
+		        System.out.println(e.getMessage());
+		    }
+		}
+
+		public void createTableCategoria()
+		{
+			try {
+				Connection conn = DriverManager.getConnection(DB_URL);
+				if (conn != null) {
+					Statement stmt = conn.createStatement();
+					String sql = "CREATE TABLE CATEGORIA ( NOMECATEGORIA		TEXT PRIMARY KEY)";
+					stmt.executeUpdate(sql);
+					stmt.close();
+					conn.close();
+					System.out.println("Tabella categoria creata");
+				}
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			} 
+		}
+
 }

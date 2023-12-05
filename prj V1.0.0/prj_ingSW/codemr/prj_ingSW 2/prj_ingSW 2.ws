@@ -1,0 +1,1 @@
+{"prj_ingSW":{"name":"prj_ingSW","packages":{"controller":{"packageName":"controller","isAll":false,"classes":["Lcontroller/Controller_Principale;","Lcontroller/Controller_Fattura;","Lcontroller/Controller_Cantiere;","Lcontroller/Controller_Login;"]}}}}
