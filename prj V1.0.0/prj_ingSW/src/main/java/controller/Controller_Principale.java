@@ -19,20 +19,19 @@ import GUI.jFrame_principale;
 import database.DB;
 import database.DB_Login;
 
-public class Controller_Principale implements ActionListener{
+public class Controller_Principale implements ActionListener {
 
 	private String NomeUtente;
 	private DB_Login db_login = new DB_Login();
 	private DB db;
 	private jFrame_principale jframe_principale;
-	private int count=0;
+	private int count = 0;
 
-	public Controller_Principale (jFrame_principale jFrame, String NomeUtente)
-	{
-		this.jframe_principale=jFrame;
-		this.NomeUtente=NomeUtente;
-		this.db=new DB(NomeUtente);
-		
+	public Controller_Principale(jFrame_principale jFrame, String NomeUtente) {
+		this.jframe_principale = jFrame;
+		this.NomeUtente = NomeUtente;
+		this.db = new DB(NomeUtente);
+
 		jFrame.getjButton_AggiungiCantiere().addActionListener(this);
 		jFrame.getjButton_Bilancio().addActionListener(this);
 		jFrame.getjButton_Fatture().addActionListener(this);
@@ -43,99 +42,113 @@ public class Controller_Principale implements ActionListener{
 		jFrame.getjButton_VediUser().addActionListener(this);
 		jFrame.getjComboBox_IMieiCantieri().addActionListener(this);
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()== jframe_principale.getjButton_IMieiCantieri())
+		if (e.getSource() == jframe_principale.getjButton_IMieiCantieri())
 			try {
 				jButton_IMieiCantieriActionPerformed();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		else if(e.getSource()== jframe_principale.getjButton_AggiungiCantiere()) jButton_AggiungiCantiereActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_IlMioPersonale()) jButton_IlMioPersonaleActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_Inventario()) jButton_InventarioActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_Fatture()) jButton_FattureActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_Bilancio()) jButton_BilancioActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_Impostazioni()) jButton_ImpostazioniActionPerformed();
-		else if(e.getSource()== jframe_principale.getjButton_VediUser()) jButton_VediUserActionPerformed();
-		else if(e.getSource()== jframe_principale.getjComboBox_IMieiCantieri()) jComboBox_IMieiCantieriActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_AggiungiCantiere())
+			jButton_AggiungiCantiereActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_IlMioPersonale())
+			jButton_IlMioPersonaleActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_Inventario())
+			jButton_InventarioActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_Fatture())
+			jButton_FattureActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_Bilancio())
+			jButton_BilancioActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_Impostazioni())
+			jButton_ImpostazioniActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_VediUser())
+			jButton_VediUserActionPerformed();
+		else if (e.getSource() == jframe_principale.getjComboBox_IMieiCantieri())
+			jComboBox_IMieiCantieriActionPerformed();
 	}
-	
-	//RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
-    private void jButton_IMieiCantieriActionPerformed() throws SQLException {
-    	jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri(), db.SelectNomeCantiere());
-    }
 
-    //PASSA A FRAME PERSONALE
-    private void jButton_IlMioPersonaleActionPerformed() {
-    	jFrame_Personale jframe_personale = new jFrame_Personale();
-    	Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);
-    	System.out.println("Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);");
-    	jframe_personale.setVisible(true);
-    	jframe_principale.setVisible(false);	
-    }
+	// RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
+	private void jButton_IMieiCantieriActionPerformed() throws SQLException {
+		jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri(), db.SelectNomeCantiere());
+	}
 
-    //PASSA A FRAME INVENTARIO
-    private void jButton_InventarioActionPerformed() {
-    	jFrame_Inventario jframe_inventario = new jFrame_Inventario();
-    	jframe_inventario.setVisible(true);
-    	jframe_principale.setVisible(false);	
-    }
+	// PASSA A FRAME PERSONALE
+	private void jButton_IlMioPersonaleActionPerformed() {
+		jFrame_Personale jframe_personale = new jFrame_Personale();
+		Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);
 
-    //APRE FRAME FATTURE (PRESA DA BOZZA GUI PROGETTO MA SECONDO ME DA TOGLIERE)
-    private void jButton_FattureActionPerformed() {
-    	jFrame_fattura jframe_fattura = new jFrame_fattura();
-    	jframe_fattura.setVisible(true);
-    	jframe_principale.setVisible(false);
-    }
+		jframe_personale.setVisible(true);
+		jframe_principale.setVisible(false);
+		System.out.println("open jframe_personale");
+	}
 
-    //FRAME BILANCIO NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
-    private void jButton_BilancioActionPerformed() {
-        //manca GUI
-    }
+	// PASSA A FRAME INVENTARIO
+	private void jButton_InventarioActionPerformed() {
+		jFrame_Inventario jframe_inventario = new jFrame_Inventario();
+		Controller_Inventario controller_inventario = new Controller_Inventario(jframe_inventario, NomeUtente);
+		jframe_inventario.setVisible(true);
+		jframe_principale.setVisible(false);
+		System.out.println("open jframe_inventario");
+	}
 
-    //APRE POP UP PER INSERIRE NUOCO CANTIERE
-    private void jButton_AggiungiCantiereActionPerformed() {
-    	JDialog_NuovoCantiere Jdialog_nuovocantiere = new JDialog_NuovoCantiere(jframe_principale, true);
-    	Jdialog_nuovocantiere.setVisible(true);
-    	String NomeNuovoCantiere = Jdialog_nuovocantiere.getjTextField_NomeCat_POP().getText().trim();
-    	if(NomeNuovoCantiere.isEmpty()) 
-    		{
-    			JOptionPane.showMessageDialog(Jdialog_nuovocantiere, "i campi non possono essere vuoti");
-    		}	
-    	//System.out.println(NomeNuovoCantiere);
-    	AddNuovoCantiere(NomeNuovoCantiere);
-    }
+	// APRE FRAME FATTURE (PRESA DA BOZZA GUI PROGETTO MA SECONDO ME DA TOGLIERE)
+	private void jButton_FattureActionPerformed() {
+		jFrame_fattura jframe_fattura = new jFrame_fattura();
+		jframe_fattura.setVisible(true);
+		jframe_principale.setVisible(false);
+		System.out.println("open jframe_fattura");
+	}
 
-    //SALVARE NUOCO CANTIERE IN DB 
-    private void AddNuovoCantiere(String nomeNuovoCantiere) {
+	// FRAME BILANCIO NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
+	private void jButton_BilancioActionPerformed() {
+		// manca GUI
+	}
+
+	// APRE POP UP PER INSERIRE NUOCO CANTIERE
+	private void jButton_AggiungiCantiereActionPerformed() {
+		JDialog_NuovoCantiere Jdialog_nuovocantiere = new JDialog_NuovoCantiere(jframe_principale, true);
+		Jdialog_nuovocantiere.setVisible(true);
+		String NomeNuovoCantiere = Jdialog_nuovocantiere.getjTextField_NomeCat_POP().getText().trim();
+		if (NomeNuovoCantiere.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_nuovocantiere, "i campi non possono essere vuoti");
+		}
+		// System.out.println(NomeNuovoCantiere);
+		AddNuovoCantiere(NomeNuovoCantiere);
+	}
+
+	// SALVARE NUOCO CANTIERE IN DB
+	private void AddNuovoCantiere(String nomeNuovoCantiere) {
 		db.insertNuovoCantiere(nomeNuovoCantiere);
 	}
 
-    //SELEZIONA CANTIERE DA APRIRE, PASSA NOME CANTIERE AL COSTRUTTORE DELLA CLASSE CANTIERE
+	// SELEZIONA CANTIERE DA APRIRE, PASSA NOME CANTIERE AL COSTRUTTORE DELLA CLASSE
+	// CANTIERE
 	private void jComboBox_IMieiCantieriActionPerformed() {
-    	if(count==0)count++;
-    	else
-    	{
-    		String NomeCantiere = jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString();
-        	System.out.println(jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString());
-        	jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
-        	Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente, NomeCantiere);
-        	jframe_cantiere.setVisible(true);
-        	jframe_principale.setVisible(false);
-    	}
-    }
-    
-	//IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
-    private void jButton_ImpostazioniActionPerformed() {
-    	
-    }
+		if (count == 0)
+			count++;
+		else {
+			String NomeCantiere = jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString();
+			System.out.println(jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString());
+			jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
+			Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente,
+					NomeCantiere);
+			jframe_cantiere.setVisible(true);
+			jframe_principale.setVisible(false);
+			System.out.println("open jframe_cantiere");
+		}
+	}
 
-   //IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
-    private void jButton_VediUserActionPerformed() {
-    	
-    }
+	// IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
+	private void jButton_ImpostazioniActionPerformed() {
+
+	}
+
+	// IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
+	private void jButton_VediUserActionPerformed() {
+
+	}
 
 }
