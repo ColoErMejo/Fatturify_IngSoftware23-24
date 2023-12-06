@@ -76,7 +76,7 @@ public class DB_NewDBUtente {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE PRODOTTO (" + "CODICE_PRODOTTO  TEXT PRIMARY KEY," + "NOME_PRODOTTO    TEXT,"
-						+ "DESCRIZIONE      TEXT," + "PREZZO           DECIMAL(10, 2))";
+						 + "PREZZO           DECIMAL(10, 2)," + "CATEGORIA      TEXT)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();

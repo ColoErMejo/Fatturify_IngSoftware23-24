@@ -4,6 +4,13 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
@@ -12,9 +19,17 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
 
     /**
      * Creates new form JDialog_AggiungiProdotto
+     * @param nomeUtente 
      */
-    public JDialog_AggiungiProdotto(java.awt.Frame parent, boolean modal) {
+	private String nomeUtente;
+	private DB db;
+	private Return_Avalaible_Data Avalaible_Data;
+	
+    public JDialog_AggiungiProdotto(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
+        this.nomeUtente=nomeUtente;
+        this.db= new DB(nomeUtente);
+        this.Avalaible_Data= new Return_Avalaible_Data();
         initComponents();
     }
 
@@ -51,7 +66,7 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
         jComboBox_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_POP.setMaximumRowCount(200);
-        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Categoria_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Categoria_POPActionPerformed(evt);
@@ -110,10 +125,25 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        
+        try {
+			populatejComboBox(jComboBox_Categoria_POP, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
 
     private void jButton_Aggiungi_Prod_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Aggiungi_Prod_POPActionPerformed
-        dispose();
+    	
+    	dispose();
     }//GEN-LAST:event_jButton_Aggiungi_Prod_POPActionPerformed
 
     private void jComboBox_Categoria_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Categoria_POPActionPerformed

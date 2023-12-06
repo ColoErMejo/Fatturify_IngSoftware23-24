@@ -7,11 +7,13 @@ public class Prodotto {
 	public String IDprodotto;
 	public String NomeProdotto;
 	private float PrezzoProdotto;
+	private String categoria;
 
-	public Prodotto(String NomeProdotto, float PrezzoProdotto) {
+	public Prodotto(String NomeProdotto, float PrezzoProdotto,String categoria) {
 		this.IDprodotto = GenerateID(NomeProdotto);
 		this.NomeProdotto = NomeProdotto;
 		this.PrezzoProdotto = PrezzoProdotto;
+		this.categoria=categoria;
 	}
 
 	public String GenerateID(String NomeProdotto) {
@@ -20,6 +22,16 @@ public class Prodotto {
 		String finalID = NomeProdotto.substring(0, Math.min(NomeProdotto.length(), 3));
 		finalID += numeroCasuale;
 		return finalID;
+	}
+
+	
+	
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getIDprodotto() {

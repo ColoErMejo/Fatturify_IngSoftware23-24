@@ -141,6 +141,7 @@ public class jFrame_principale extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 600));
 
         pack();
+        jComboBox_IMieiCantieri.setVisible(false);
         setLocationRelativeTo(null);
     }
     

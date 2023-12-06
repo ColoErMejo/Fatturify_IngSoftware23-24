@@ -88,7 +88,7 @@ public class Controller_Principale implements ActionListener {
 
 	// PASSA A FRAME INVENTARIO
 	private void jButton_InventarioActionPerformed() {
-		jFrame_Inventario jframe_inventario = new jFrame_Inventario();
+		jFrame_Inventario jframe_inventario = new jFrame_Inventario(NomeUtente);
 		Controller_Inventario controller_inventario = new Controller_Inventario(jframe_inventario, NomeUtente);
 		jframe_inventario.setVisible(true);
 		jframe_principale.setVisible(false);

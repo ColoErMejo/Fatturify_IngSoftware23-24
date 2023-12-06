@@ -11,6 +11,8 @@ import GUI.jFrame_Cantiere;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
 import database.DB;
+import model.Categoria;
+import model.Prodotto;
 
 public class Controller_Cantiere implements ActionListener {
 
@@ -18,6 +20,7 @@ public class Controller_Cantiere implements ActionListener {
 	private String NomeUtente;
 	private String NomeCantiere;
 	private DB db;
+	
 
 	public Controller_Cantiere(jFrame_Cantiere jFrame, String NomeUtente, String NomeCantiere) {
 		this.jframe_cantiere = jFrame;
@@ -204,13 +207,13 @@ public class Controller_Cantiere implements ActionListener {
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
 	// ---- DA FINIRE ----
 	private void addCategoria(String nomeCategoria) {
-		// SALVARE IN DB
+		db.insertNuovaCategoria(nomeCategoria);
 	}
 
 	// AGGIUNGI NUOVO PRODOTTO AD UNA CATEGORIA PIù CONTROLLI DOVUTI PER INPUT
 	// UTENTE
 	private void openDialogForNuovoProdotto() {
-		JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jframe_cantiere, true);
+		JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jframe_cantiere, true, NomeUtente);
 		Jdialog_aggiungiprodotto.setVisible(true);
 
 		String NomeProdotto = Jdialog_aggiungiprodotto.getjTextField_Nome_POP().getText().trim();
@@ -249,6 +252,11 @@ public class Controller_Cantiere implements ActionListener {
 	//// DA FINIRE ----
 	private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria) {
 		// SALVARE IN DB
+		Prodotto prod=new Prodotto(NomeProdotto, PrezzoUnitario, Categoria);
+		Categoria cat = new Categoria(Categoria);
+		cat.AddProdotto(prod);
+		System.out.println(cat.toString());
+		db.insertNuovoProdotto(prod);
 	}
 
 }
