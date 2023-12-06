@@ -51,6 +51,9 @@ public class jFrame_principale extends javax.swing.JFrame {
         jButton_Impostazioni = new javax.swing.JButton();
         jButton_AggiungiCantiere = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -62,28 +65,28 @@ public class jFrame_principale extends javax.swing.JFrame {
         jButton_IMieiCantieri.setBackground(new java.awt.Color(255, 255, 255));
         jButton_IMieiCantieri.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_IMieiCantieri.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_IMieiCantieri.setText("I miei cantieri");
+        jButton_IMieiCantieri.setText("i miei cantieri");
        
         jPanel1.add(jButton_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 50));
 
         jButton_Bilancio.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Bilancio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Bilancio.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_Bilancio.setText("Bilancio");
+        jButton_Bilancio.setText("bilancio");
        
         jPanel1.add(jButton_Bilancio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 230, 50));
 
         jButton_IlMioPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_IlMioPersonale.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_IlMioPersonale.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_IlMioPersonale.setText("Il mio personale");
-       
+        jButton_IlMioPersonale.setText("il mio personale");
+        
         jPanel1.add(jButton_IlMioPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 240, 50));
 
         jButton_Inventario.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Inventario.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Inventario.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_Inventario.setText("Inventario");
+        jButton_Inventario.setText("inventario");
         
         jPanel1.add(jButton_Inventario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, 230, 50));
 
@@ -97,8 +100,8 @@ public class jFrame_principale extends javax.swing.JFrame {
         jButton_Fatture.setBackground(new java.awt.Color(255, 255, 255));
         jButton_Fatture.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jButton_Fatture.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_Fatture.setText("Fatture");
-       
+        jButton_Fatture.setText("fatture");
+        
         jPanel1.add(jButton_Fatture, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 230, 50));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 600));
@@ -106,30 +109,39 @@ public class jFrame_principale extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton_VediUser.setText("user, manca png");
+        jButton_VediUser.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_VediUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/utente_1.png"))); // NOI18N
        
         jPanel2.add(jButton_VediUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, -1, -1));
 
-        jButton_Impostazioni.setText("impostazioni, manca png");
-       
-        jPanel2.add(jButton_Impostazioni, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
+        jButton_Impostazioni.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Impostazioni.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/ingranaggio_1.png"))); // NOI18N
+        
+        jPanel2.add(jButton_Impostazioni, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, -1));
 
-        jButton_AggiungiCantiere.setText("aggiungi cantiere manca png");
-       
-        jPanel2.add(jButton_AggiungiCantiere, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
+        jButton_AggiungiCantiere.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_AggiungiCantiere.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/aggiungi_1.png"))); // NOI18N
+        
+        jPanel2.add(jButton_AggiungiCantiere, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Aggiungi nuovo cantiere");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        jLabel1.setText("aggiungi nuovo cantiere");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu2.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu3.png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu2.png"))); // NOI18N
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 0, 510, 600));
 
         pack();
         setLocationRelativeTo(null);
-        
-        jComboBox_IMieiCantieri.setVisible(false);
-        
     }
     
     //DA AGGIUNGERE AD initComponents()
@@ -235,6 +247,9 @@ public class jFrame_principale extends javax.swing.JFrame {
     private javax.swing.JButton jButton_VediUser;
     private javax.swing.JComboBox<String> jComboBox_IMieiCantieri;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

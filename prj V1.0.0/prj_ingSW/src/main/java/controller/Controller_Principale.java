@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import GUI.JDialog_Import;
 import GUI.JDialog_NuovoCantiere;
 import GUI.JDialog_NuovoUtente;
 import GUI.jFrame_Cantiere;
@@ -143,7 +144,8 @@ public class Controller_Principale implements ActionListener {
 
 	// IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
 	private void jButton_ImpostazioniActionPerformed() {
-
+		JDialog_Import JDialog_import = new JDialog_Import(jframe_principale, true);
+		JDialog_import.setVisible(true);
 	}
 
 	// IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
