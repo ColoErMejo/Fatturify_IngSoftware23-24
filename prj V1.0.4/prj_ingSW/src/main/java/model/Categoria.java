@@ -12,15 +12,15 @@ public class Categoria {
 		this.NomeCategoria = NomeCategoria;
 	}
 
-	public void AddProdotti(Prodotto prodotto) {
+	public void addProdotto(Prodotto prodotto) {
 		ListaProdotti.add(prodotto);
 	}
 
-	public void RimuoviProdotto(Prodotto prodotto) {
+	public void rimuoviProdotto(Prodotto prodotto) {
 		ListaProdotti.remove(prodotto);
 	}
 
-	public void ModificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto) {
+	public void modificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto) {
 		System.out.println("vecchio prodotto");
 		prodotto.toString();
 		int posizione = ListaProdotti.indexOf(prodotto);
