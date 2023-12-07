@@ -1,0 +1,1 @@
+{"GitHub":{"name":"GitHub","packages":{"model":{"packageName":"model","isAll":false,"classes":["Lmodel/Categoria;","Lmodel/Fattura;","Lmodel/Utente;","Lmodel/Cantiere;","Lmodel/Prodotto;","Lmodel/Dipendente;"]}}}}
