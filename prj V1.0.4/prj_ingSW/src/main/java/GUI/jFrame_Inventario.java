@@ -127,7 +127,7 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         jButton_AddProd.setForeground(new java.awt.Color(51, 51, 51));
         jButton_AddProd.setText("Aggiungi Prodotto");
         
-        jPanel_Inventario_Right.add(jButton_AddProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, -1));
+        jPanel_Inventario_Right.add(jButton_AddProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 160, -1));
 
         jButton_EliminaCat.setBackground(new java.awt.Color(255, 255, 255));
         jButton_EliminaCat.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -148,7 +148,7 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         jButton_ChangeProd.setForeground(new java.awt.Color(51, 51, 51));
         jButton_ChangeProd.setText("Modifica Prodotto");
        
-        jPanel_Inventario_Right.add(jButton_ChangeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 160, -1));
+        jPanel_Inventario_Right.add(jButton_ChangeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, -1));
 
         jButton_ChangeCat1.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ChangeCat1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
