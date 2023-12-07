@@ -46,21 +46,21 @@ public class jFrame_Personale extends javax.swing.JFrame {
         jButton_EliminaPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_EliminaPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_EliminaPersonale.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_EliminaPersonale.setText("elimina personale");
+        jButton_EliminaPersonale.setText("Elimina personale");
         
         jPanel_Pers_Right.add(jButton_EliminaPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
 
         jButton_AddPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_AddPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_AddPersonale.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_AddPersonale.setText("aggiungi personale");
+        jButton_AddPersonale.setText("Aggiungi personale");
         
         jPanel_Pers_Right.add(jButton_AddPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
 
         jButton_ModificaPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ModificaPersonale.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_ModificaPersonale.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_ModificaPersonale.setText("modifica personale");
+        jButton_ModificaPersonale.setText("Modifica personale");
         
         jPanel_Pers_Right.add(jButton_ModificaPersonale, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
 
