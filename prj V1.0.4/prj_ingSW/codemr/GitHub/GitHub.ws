@@ -1,0 +1,1 @@
+{"GitHub":{"name":"GitHub","packages":{"controller":{"packageName":"controller","isAll":false,"classes":["Lcontroller/Controller_Principale;","Lcontroller/Controller_Personale;","Lcontroller/Controller_Fattura;","Lcontroller/Return_Avalaible_Data;","Lcontroller/Controller_Cantiere;","Lcontroller/Controller_Login;","Lcontroller/Controller_Inventario;"]}}}}
