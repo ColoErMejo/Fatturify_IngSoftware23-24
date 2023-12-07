@@ -94,7 +94,7 @@ public class DB {
 				System.out.println("prodotto inserito con successo");
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			System.out.println(e.getMessage());			
 		}
 	}
 

@@ -142,6 +142,7 @@ public class JDialog_Import extends javax.swing.JDialog {
 				while ((linea = reader.readLine()) != null) {
 					// SALVARE IN DB ---- IMPORTANTE ----
 					System.out.println(linea);
+					//return variabile
 				}
 
 				reader.close();

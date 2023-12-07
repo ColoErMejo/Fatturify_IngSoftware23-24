@@ -129,7 +129,7 @@ public class Controller_Cantiere implements ActionListener {
 	// ---- DA FARE----
 	private void addProdottoToCantiere(String NomeCantiere, String Categoria_Personale, String prodotto_desc,
 			float quantita_Nore) {
-
+		
 	}
 
 	// DOPO AVER SCELTO CATEGOIRA SETTA VISIBILE IL COMBOBOX DEI PRODOTTI

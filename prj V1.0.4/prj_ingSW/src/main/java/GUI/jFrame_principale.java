@@ -143,6 +143,9 @@ public class jFrame_principale extends javax.swing.JFrame {
         pack();
         jComboBox_IMieiCantieri.setVisible(false);
         setLocationRelativeTo(null);
+        
+        jButton_Bilancio.setVisible(false);
+        
     }
     
     //DA AGGIUNGERE AD initComponents()

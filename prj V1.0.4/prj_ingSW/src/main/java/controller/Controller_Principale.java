@@ -146,6 +146,7 @@ public class Controller_Principale implements ActionListener {
 	private void jButton_ImpostazioniActionPerformed() {
 		JDialog_Import JDialog_import = new JDialog_Import(jframe_principale, true);
 		JDialog_import.setVisible(true);
+		
 	}
 
 	// IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
