@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class Dipendente {
 
     private String idDipendente;  
@@ -9,14 +11,23 @@ public class Dipendente {
     private String posizione;     
     private double stipendio;     
 
-    public Dipendente(String idDipendente, String nome, String cognome, String reparto, String posizione, double stipendio) {
-        this.idDipendente = idDipendente;
+    public Dipendente(String nome, String cognome, String reparto, String posizione, double stipendio) {
+        
         this.nome = nome;
         this.cognome = cognome;
+        this.idDipendente =GenerateID(nome, cognome);
         this.reparto = reparto;
         this.posizione = posizione;
         this.stipendio = stipendio;
     }
+    
+	public String GenerateID(String Nome, String Cognome) {
+		Random random = new Random();
+		int numeroCasuale = random.nextInt(90) + 10;
+		String finalID = Nome.substring(0, Math.min(Nome.length(), 3))+Cognome.substring(0, Math.min(Cognome.length(), 3));
+		finalID += numeroCasuale;
+		return finalID;
+	}
 
     public String getIdDipendente() {
         return idDipendente;

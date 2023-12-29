@@ -10,10 +10,10 @@ public class Prodotto {
 	private String categoria;
 
 	public Prodotto(String NomeProdotto, float PrezzoProdotto,String categoria) {
-		this.IDprodotto = GenerateID(NomeProdotto);
 		this.NomeProdotto = NomeProdotto;
 		this.PrezzoProdotto = PrezzoProdotto;
 		this.categoria=categoria;
+		this.IDprodotto = GenerateID(NomeProdotto);
 	}
 
 	public String GenerateID(String NomeProdotto) {
@@ -62,6 +62,14 @@ public class Prodotto {
 	public String toString() {
 		return "Prodotto [IDprodotto=" + IDprodotto + ", NomeProdotto=" + NomeProdotto + ", PrezzoProdotto="
 				+ PrezzoProdotto + "]";
+	}
+	
+	public void ModificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto, String categoria) {
+		System.out.println("vecchio prodotto");
+		System.out.println(prodotto.toString());
+		//int posizione = ListaProdotti.indexOf(prodotto);
+		Prodotto prodottoNew = new Prodotto(NuovoNome, NuovoCosto, categoria);
+		//ListaProdotti.set(posizione, prodottoNew);
 	}
 
 }

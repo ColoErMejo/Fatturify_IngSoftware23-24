@@ -25,13 +25,13 @@ public class Categoria {
 	}
 
 	//DA RIFARE IN PRODOTTO
-	public void ModificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto) {
+	/*public void ModificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto) {
 		System.out.println("vecchio prodotto");
 		System.out.println("prodotto.toString()");
 		int posizione = ListaProdotti.indexOf(prodotto);
 		Prodotto prodottoNew = new Prodotto(NuovoNome, NuovoCosto, NomeCategoria);
 		ListaProdotti.set(posizione, prodottoNew);
-	}
+	}*/
 
 	public String NumeroDiProdotti() {
 	    String data = Integer.toString(ListaProdotti.size());

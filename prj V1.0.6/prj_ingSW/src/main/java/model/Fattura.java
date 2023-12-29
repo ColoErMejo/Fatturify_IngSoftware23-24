@@ -3,30 +3,40 @@ import java.util.Date;
 
 
 public class Fattura {
-    private int numeroFattura;
+    private int idFattura;
+    private String idCliente;
     private Date dataEmissione;
     private float importo;
     private String descrizione;
     static final int aliquotaIVA = 22;
 
     // Costruttore
-    public Fattura(int numeroFattura, Date dataEmissione, float importo, String descrizione) {
-        this.numeroFattura = numeroFattura;
+    public Fattura(int idFattura, String idCliente, Date dataEmissione, float importo, String descrizione) {
+        this.idFattura = idFattura;
+        this.idCliente = idCliente;
         this.dataEmissione = dataEmissione;
         this.importo = importo;
         this.descrizione = descrizione;
     }
 
     // Getters e setters
-    public int getNumeroFattura() {
-        return numeroFattura;
+    public int getIdFattura() {
+        return idFattura;
     }
 
-    public void setNumeroFattura(int numeroFattura) {
-        this.numeroFattura = numeroFattura;
+    public void setIdFattura(int idFattura) {
+        this.idFattura = idFattura;
     }
 
-    public Date getDataEmissione() {
+    public String getIdCliente() {
+		return idCliente;
+	}
+
+	public void setIdCliente(String idCliente) {
+		this.idCliente = idCliente;
+	}
+
+	public Date getDataEmissione() {
         return dataEmissione;
     }
 
@@ -51,6 +61,14 @@ public class Fattura {
     }
     public double calcolaIVA(int aliquotaIVA) {
         return importo * aliquotaIVA / 100;
+    }
+    public String toString() {
+        return "Fattura{" +
+                "idFattura='" + idFattura + '\'' +
+                ", idCliente='" + idCliente + '\'' +
+                ", dataFattura=" + dataEmissione +
+                ", totaleImporto=" + importo +
+                '}';
     }
 
 }

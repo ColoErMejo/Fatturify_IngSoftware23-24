@@ -62,7 +62,7 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
 
         jLabel_Nome_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP.setText("nome");
+        jLabel_Nome_POP.setText("Nome e Cognome");
         jPanel2.add(jLabel_Nome_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
@@ -172,6 +172,11 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
             }
         });
     }
+    
+    public javax.swing.JTextField getjTextField_Nome_POP() {
+		return jTextField_Nome_POP;
+	}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Aggiungi_Pers_POP;
