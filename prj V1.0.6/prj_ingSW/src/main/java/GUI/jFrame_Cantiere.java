@@ -224,8 +224,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
         
-        populateTable(jTable_Top_Cant, data);
-        populateTable(jTable_Bot_Cant, data);
+        populateTable(jTable_Top_Cant, data, Column_top);
+        populateTable(jTable_Bot_Cant, data, Column_bot);
         
         comboBoxvisible(jComboBox_Categoria_Cant);
         comboBoxvisible(jComboBox_Pers_Cant);
@@ -252,13 +252,18 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
      */
    
     
-    //POPOLA TABELLE ALLA CREAZIONE DEL FRAME
-    public void populateTable(JTable table,Object[][] data)
+    public final static String[] Column_top = {"Colonna 1", "Colonna 2", "Colonna 3"};
+    public final static String[] Column_bot = {"Colonna 1", "Colonna 2", "Colonna 3"};
+
+    public void populateTable(JTable table,Object[][] data, String[] Column)
     {
-        DefaultTableModel tblmodel =  (DefaultTableModel)table.getModel();
-        for (Object[] row : data) {     
-            	tblmodel.addRow(row);
-        }
+    	DefaultTableModel tblmodel = new DefaultTableModel(data, Column) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        table.setModel(tblmodel);
     }
     
     //FUNZIONE PER IMPORTARE DA DB NOMI ARRAY DI NOMI
