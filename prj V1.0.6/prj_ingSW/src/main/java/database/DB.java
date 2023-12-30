@@ -13,6 +13,7 @@ import java.util.List;
 
 import controller.Return_Avalaible_Data;
 import model.Categoria;
+import model.Dipendente;
 import model.Prodotto;
 
 public class DB {
@@ -73,6 +74,29 @@ public class DB {
 				stmt.close();
 				conn.close();
 				System.out.println("categoria inserito con successo");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void insertNuovoDipendente(Dipendente dip) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "INSERT INTO PERSONALE (ID_PERSONALE, NOME, COGNOME, MANSIONE, PAGA) VALUES (" +
+					    "'" + dip.getIdDipendente() + "'," +
+					    "'" + dip.getNome() + "'," +
+					    "'" + dip.getCognome() + "'," +
+					    "'" + dip.getMansione() + "'," +
+					    dip.getPaga() + 
+					    ")";
+						
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+				System.out.println("Dipendente inserito con successo");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

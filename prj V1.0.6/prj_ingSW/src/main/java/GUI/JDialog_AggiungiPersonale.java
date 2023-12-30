@@ -176,6 +176,12 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
     public javax.swing.JTextField getjTextField_Nome_POP() {
 		return jTextField_Nome_POP;
 	}
+    public javax.swing.JTextField getjTextField_Paga_POP() {
+ 		return jTextField_PagaOraria_POP;
+ 	}
+    public javax.swing.JTextField getjTextField_Mansione_POP() {
+ 		return jTextField_Mansione_POP;
+ 	}
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

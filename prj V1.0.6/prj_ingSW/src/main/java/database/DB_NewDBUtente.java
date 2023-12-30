@@ -92,8 +92,13 @@ public class DB_NewDBUtente {
 			Connection conn = DriverManager.getConnection(DB_URL);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE PERSONALE (" + "ID_PERSONALE     TEXT PRIMARY KEY,"
-						+ "NOME             TEXT," + "COGNOME          TEXT," + "MANSIONE            TEXT)";
+				String sql = "CREATE TABLE PERSONALE (" +
+					    "ID_PERSONALE     TEXT PRIMARY KEY," +
+					    "NOME             TEXT," +
+					    "COGNOME          TEXT," +
+					    "MANSIONE         TEXT," +
+					    "PAGA             DECIMAL(10,2)" +
+					    ")";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();

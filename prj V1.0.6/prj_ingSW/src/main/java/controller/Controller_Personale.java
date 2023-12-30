@@ -83,29 +83,28 @@ public class Controller_Personale implements ActionListener {
 	private void openDialogForNuovoDipendente() {
 				JDialog_AggiungiPersonale Jdialog_aggiungidipendente = new JDialog_AggiungiPersonale(jframe_personale, true);
 				Jdialog_aggiungidipendente.setVisible(true);
-
 				String[] parti = Jdialog_aggiungidipendente.getjTextField_Nome_POP().getText().split(" ");
+				String Mansione = Jdialog_aggiungidipendente.getjTextField_Mansione_POP().getText();
+				double PagaOraria = Double.parseDouble(Jdialog_aggiungidipendente.getjTextField_Paga_POP().getText());
 				if (parti.length >= 2) {
 		            NomeDipendente = parti[0];
 		            CognomeDipendente = parti[1]; // Considera lo spazio tra nome e cognome
 		        } else {
 		            JOptionPane.showMessageDialog(null, "Inserisci sia il nome che il cognome separati da uno spazio.");
 		        }
-				if (NomeDipendente.isEmpty()|| CognomeDipendente.isEmpty()) {
+				if (NomeDipendente.isEmpty()|| CognomeDipendente.isEmpty()|| Mansione.isEmpty() || PagaOraria==0 ) {
 					JOptionPane.showMessageDialog(Jdialog_aggiungidipendente, "i campi non possono essere vuoti");
 				} else {
-					/*addDipendente(NomeDipendente, CognomeDipendente);*/
+					addDipendente(NomeDipendente, CognomeDipendente, Mansione, PagaOraria);
 				}
 			}
 
-	/*private void addDipendente(String nomeDipendente2, String cognomeDipendente2) {
-		Dipendente prod=new Dipendente(NomeDipendente, PrezzoUnitario, Categoria);
-		Categoria cat = new Categoria(Categoria);
-		cat.AddProdotto(prod);
-		System.out.println(cat.toString());
-		db.insertNuovoProdotto(prod);
+	private void addDipendente(String nomeDipendente2, String cognomeDipendente2, String mansione2, double paga2) {
+		Dipendente dip=new Dipendente(NomeDipendente, CognomeDipendente, mansione2, paga2);
+		System.out.println(dip.toString());
+		db.insertNuovoDipendente(dip);
 		
-	}*/
+	}
 			
 }
 

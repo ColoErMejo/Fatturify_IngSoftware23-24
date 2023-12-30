@@ -7,18 +7,18 @@ public class Dipendente {
     private String idDipendente;  
     private String nome;          
     private String cognome;       
-    private String reparto;       
-    private String posizione;     
-    private double stipendio;     
+    //private String reparto;       
+    private String mansione;     
+    private double pagaOraria;     
 
-    public Dipendente(String nome, String cognome, String reparto, String posizione, double stipendio) {
+    public Dipendente(String nome, String cognome, String mansione, double pagaOraria) {
         
+    	this.idDipendente =GenerateID(nome, cognome);
         this.nome = nome;
         this.cognome = cognome;
-        this.idDipendente =GenerateID(nome, cognome);
-        this.reparto = reparto;
-        this.posizione = posizione;
-        this.stipendio = stipendio;
+        /*this.reparto = reparto;*/
+        this.mansione = mansione;
+        this.pagaOraria = pagaOraria;
     }
     
 	public String GenerateID(String Nome, String Cognome) {
@@ -53,28 +53,28 @@ public class Dipendente {
         this.cognome = cognome;
     }
 
-    public String getReparto() {
+    /*public String getReparto() {
         return reparto;
     }
 
     public void setReparto(String reparto) {
         this.reparto = reparto;
+    }*/
+
+    public String getMansione() {
+        return mansione;
     }
 
-    public String getPosizione() {
-        return posizione;
+    public void setMansione(String mansione) {
+        this.mansione = mansione;
     }
 
-    public void setPosizione(String posizione) {
-        this.posizione = posizione;
+    public double getPaga() {
+        return pagaOraria;
     }
 
-    public double getStipendio() {
-        return stipendio;
-    }
-
-    public void setStipendio(double stipendio) {
-        this.stipendio = stipendio;
+    public void setPaga(double pagaOraria) {
+        this.pagaOraria = pagaOraria;
     }
 
     @Override
@@ -83,9 +83,9 @@ public class Dipendente {
                 "idDipendente='" + idDipendente + '\'' +
                 ", nome='" + nome + '\'' +
                 ", cognome='" + cognome + '\'' +
-                ", reparto='" + reparto + '\'' +
-                ", posizione='" + posizione + '\'' +
-                ", stipendio=" + stipendio +
+                /*", reparto='" + reparto + '\'' +*/
+                ", mansione='" + mansione + '\'' +
+                ", paga oraria=" + pagaOraria +
                 '}';
     }
 }
