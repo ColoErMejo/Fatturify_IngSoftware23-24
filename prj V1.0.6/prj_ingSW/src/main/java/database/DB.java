@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -235,6 +236,46 @@ public class DB {
 		return Avalaible_Data.DataPerProdottiTable(risultati);
 		// return readDataArray(risultati);
 	}
+	////DA SISTEMARE
+	public static Object[][] fetchTablePersonaleData() {
+        Object[][] data = null;
+        try {
+        	Connection conn = DriverManager.getConnection(DB_URL);
+    		Statement stmt = conn.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM PERSONALE");
+
+            // Ottenere il numero di colonne dalla tabella
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // Contare il numero di righe nel result set
+            int rowCount = 0;
+            while (resultSet.next()) {
+                rowCount++;
+            }
+
+            // Riporta il result set alla posizione iniziale
+            resultSet.beforeFirst();
+
+            // Inizializzazione dell'array bidimensionale
+            data = new Object[rowCount][columnCount];
+
+            // Riempire l'array bidimensionale con i dati
+            int row = 0;
+            while (resultSet.next()) {
+                for (int col = 0; col < columnCount; col++) {
+                    data[row][col] = resultSet.getObject(col + 1);
+                }
+                row++;
+            }
+
+            conn.close(); // Chiudere la connessione al database
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return data;
+    }
 
 
 }

@@ -4,6 +4,11 @@
  */
 package GUI;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import database.DB;
+
 /**
  *
  * @author merlo
@@ -106,7 +111,24 @@ public class jFrame_Personale extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
+        ////DA SISTEMARE
+        Object[][] tableData = DB.fetchTablePersonaleData(); // Ottieni i dati dal database
+        populateTable(jTable_Pers_Left, tableData, Columns);
+        
     }// </editor-fold>//GEN-END:initComponents
+    
+////DA SISTEMARE
+    public final static String[] Columns = {"Nome", "Cognome", "Mansione", "Paga"};
+    public void populateTable(JTable table,Object[][] data, String[] Column)
+    {   
+    	DefaultTableModel tblmodel = new DefaultTableModel(data, Column) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return false;
+            }
+        };
+        table.setModel(tblmodel);
+    }
 
        public javax.swing.JButton getjButton_AddPersonale() {
 		return jButton_AddPersonale;
