@@ -132,7 +132,7 @@ public class Controller_Cantiere implements ActionListener {
 		
 	}
 
-	// DOPO AVER SCELTO CATEGOIRA SETTA VISIBILE IL COMBOBOX DEI PRODOTTI
+	// DOPO AVER SCELTO CATEGORIA SETTA VISIBILE IL COMBOBOX DEI PRODOTTI
 	private void jComboBox_Categoria_CantActionPerformed() {
 		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
 		jframe_cantiere.comboBoxvisible(jframe_cantiere.getjComboBox_Prodotto_Cant());
@@ -257,6 +257,7 @@ public class Controller_Cantiere implements ActionListener {
 		cat.AddProdotto(prod);
 		System.out.println(cat.toString());
 		db.insertNuovoProdotto(prod);
+		System.out.println("prodotto" + prod.toString() + " inserito correttamente nel db");
 	}
 
 }
