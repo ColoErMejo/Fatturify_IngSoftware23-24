@@ -3,10 +3,16 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
+import GUI.JDialog_AggiungiProdotto;
+import GUI.JDialog_EliminaProdotto;
 import GUI.jFrame_Inventario;
 import GUI.jFrame_principale;
 import database.DB;
 import database.DB_Login;
+import model.Categoria;
+import model.Prodotto;
 
 public class Controller_Inventario implements ActionListener {
 
@@ -85,11 +91,61 @@ public class Controller_Inventario implements ActionListener {
 	}
 
 	private void jButton_AddProdActionPerformed() {
+		JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jFrame_inventario, true, NomeUtente);
+		Jdialog_aggiungiprodotto.setVisible(true);
+		
+		String NomeProdotto = Jdialog_aggiungiprodotto.getjTextField_Nome_POP().getText().trim();
+		String PrezzoUnitario = Jdialog_aggiungiprodotto.getjTextFieldPrezzo_POP().getText().trim();
+		String Categoria = Jdialog_aggiungiprodotto.getjComboBox_Categoria_POP().getSelectedItem().toString();
+
+		boolean ERROR = false;
+		if (NomeProdotto.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		} else if (PrezzoUnitario.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		} else if (Categoria.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			boolean errorFloat = true;
+			try {
+				float PrezzoUnitarioFloat = Float.parseFloat(PrezzoUnitario);
+				System.out.println(NomeProdotto + PrezzoUnitarioFloat + Categoria);
+				errorFloat = false;
+				addProdotto(NomeProdotto, PrezzoUnitarioFloat, Categoria);
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+			} finally {
+				if (errorFloat) {
+					JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "il costo deve essere un numero");
+				}
+			}
+		}
 
 	}
 
 	private void jButton_EliminaProdActionPerformed() {
+		JDialog_EliminaProdotto Jdialog_eliminaprodotto = new JDialog_EliminaProdotto(jFrame_inventario, true, NomeUtente);
+		Jdialog_eliminaprodotto.setVisible(true);
+		
 
 	}
+	
+	
+	private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria) {
+		// SALVARE IN DB
+		Prodotto prod=new Prodotto(NomeProdotto, PrezzoUnitario, Categoria);
+		Categoria cat = new Categoria(Categoria);
+		cat.AddProdotto(prod);
+		System.out.println(cat.toString());
+		db.insertNuovoProdotto(prod);
+		System.out.println("prodotto" + prod.toString() + " inserito correttamente nel db");
+	}
+	
+	  
+
 
 }

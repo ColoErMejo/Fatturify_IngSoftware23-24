@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -209,6 +210,35 @@ public class DB {
 		// return readDataArray(risultati);
 	}
 	
+	public String[] SelectNomeProdotto(String categoria) throws SQLException {
+		List<String[]> risultati = new ArrayList<>();
+		Connection conn = DriverManager.getConnection(DB_URL);
+		Statement stmt = conn.createStatement();
+		String sql = "SELECT NOME_PRODOTTO FROM PRODOTTO WHERE CATEGORIA = '" + categoria + "'";
+		ResultSet resultSet = stmt.executeQuery(sql);
+		int numeroColonne = resultSet.getMetaData().getColumnCount();
+		while (resultSet.next()) {
+			String[] riga = new String[numeroColonne];
+			for (int i = 1; i <= numeroColonne; i++) {
+				riga[i - 1] = resultSet.getString(i);
+			}
+			risultati.add(riga);
+		}
+		for (String[] riga : risultati) {
+			for (String valore : riga) {
+				System.out.print(valore + " ");
+			}
+			System.out.println();
+		}
+		stmt.close();
+		conn.close();
+		System.out.println("query SelectNomeProdotto con successo");
+
+		return Avalaible_Data.ReadDataByListOfArray(risultati);
+		// return readDataArray(risultati);
+	}
+	
+	
 	public String[][] SelectProdotto() throws SQLException {
 		List<String[]> risultati = new ArrayList<>();
 		Connection conn = DriverManager.getConnection(DB_URL);
@@ -231,7 +261,7 @@ public class DB {
 		}
 		stmt.close();
 		conn.close();
-		System.out.println("query SelectNomeCantiere con successo");
+		System.out.println("query SelectProdotto con successo");
 
 		return Avalaible_Data.DataPerProdottiTable(risultati);
 		// return readDataArray(risultati);
@@ -276,6 +306,49 @@ public class DB {
 
         return data;
     }
+	
+	  // Metodo per cancellare un prodotto dal database
+    public void cancellaProdotto(String nomeProdotto) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
 
-
+        try {
+            // Connessione al database
+            Connection conn1 = DriverManager.getConnection(DB_URL);
+            
+            // Query per cancellare il prodotto con l'ID specificato
+            String query = "DELETE FROM PRODOTTO WHERE NOME_PRODOTTO = ?";
+            
+            // Creazione del prepared statement
+            pstmt = conn1.prepareStatement(query);
+            pstmt.setString(1, nomeProdotto);
+            
+            // Esecuzione della query per cancellare il prodotto
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // Verifica se il prodotto è stato cancellato correttamente
+            if (rowsAffected > 0) {
+                System.out.println("Prodotto con ID " + nomeProdotto + " cancellato con successo.");
+            } else {
+                System.out.println("Nessun prodotto trovato con l'ID " + nomeProdotto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Chiusura delle risorse
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
+
+
+

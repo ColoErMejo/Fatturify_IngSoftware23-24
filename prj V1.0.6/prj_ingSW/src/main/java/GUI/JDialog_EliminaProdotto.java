@@ -4,20 +4,60 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_EliminaProdotto extends javax.swing.JDialog {
-
-    /**
+	
+	private static String nomeUtente;
+	private DB db;
+    private Return_Avalaible_Data Avalaible_Data;
+	/**
      * Creates new form JDialog_EliminaProdotto
      */
-    public JDialog_EliminaProdotto(java.awt.Frame parent, boolean modal) {
+    public JDialog_EliminaProdotto(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
-        initComponents();
-    }
+        this.nomeUtente=nomeUtente;
+        this.db= new DB(nomeUtente);
+        this.Avalaible_Data= new Return_Avalaible_Data();
+     
 
+        initComponents();
+        jComboBox_Categoria_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String categoriaSelezionata = (String) jComboBox_Categoria_POP.getSelectedItem();
+                
+                // Carica i prodotti basati sulla categoria selezionata
+                String[] prodottiCategoria = null;
+				try {
+					prodottiCategoria = db.SelectNomeProdotto(categoriaSelezionata);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                // Pulisci la seconda JComboBox
+                jComboBox_Prodotto_POP.removeAllItems();
+                
+                // Popola la seconda JComboBox con i prodotti della categoria selezionata
+                for (String prodotto : prodottiCategoria) {
+                    jComboBox_Prodotto_POP.addItem(prodotto);
+                }
+            }
+        });
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +90,7 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
 
         jLabel_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP.setText("categoria");
+        jLabel_Categoria_POP.setText("Categoria");
         jPanel2.add(jLabel_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
 
         jLabel_Prezzo_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -67,7 +107,7 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
         jComboBox_Prodotto_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Prodotto_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Prodotto_POP.setMaximumRowCount(200);
-        jComboBox_Prodotto_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Prodotto_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Prodotto_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Prodotto_POPActionPerformed(evt);
@@ -118,11 +158,12 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
         jComboBox_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_POP.setMaximumRowCount(200);
-        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Categoria_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Categoria_POPActionPerformed(evt);
             }
+        
         });
         jPanel1.add(jComboBox_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 190, -1));
 
@@ -130,7 +171,29 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+        try {
+			populatejComboBox(jComboBox_Categoria_POP, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    };// </editor-fold>//GEN-END:initComponents
+   
+    
+    
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+    
+    public String ottieniValoreSelezionato(JComboBox<String> comboBox) {
+        String valoreSelezionato = comboBox.getSelectedItem().toString();
+        return valoreSelezionato;
+    }
+
+    
 
     private void jComboBox_Prodotto_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Prodotto_POPActionPerformed
         // TODO add your handling code here:
@@ -144,6 +207,15 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_Categoria_POPActionPerformed
 
+    public javax.swing.JComboBox<String> getjComboBox_Categoria_POP() {
+		return jComboBox_Categoria_POP;
+	}
+
+	public void setjComboBox_Categoria_POP(javax.swing.JComboBox<String> jComboBox_Categoria_POP) {
+		this.jComboBox_Categoria_POP = jComboBox_Categoria_POP;
+	}
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -174,7 +246,7 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialog_EliminaProdotto dialog = new JDialog_EliminaProdotto(new javax.swing.JFrame(), true);
+                JDialog_EliminaProdotto dialog = new JDialog_EliminaProdotto(new javax.swing.JFrame(), true, nomeUtente);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -185,6 +257,7 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Elimina_Prod_POP;
@@ -200,5 +273,6 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    
     // End of variables declaration//GEN-END:variables
 }

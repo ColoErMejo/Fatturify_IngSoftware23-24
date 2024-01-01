@@ -47,6 +47,18 @@ public class Return_Avalaible_Data {
 		}
 		return risultati;
 	}
+	
+	public String[] ReadDataByListOfArrayToComboBoxProd(List<Prodotto> lista) throws SQLException {
+		
+		String[] risultati = new String[lista.size()];
+		List<Prodotto> prod = lista;
+		for (int i=0; i<prod.size(); i++)
+		{
+			risultati[i]=prod.get(i).getNomeProdotto();
+			System.out.println(risultati[i]);
+		}
+		return risultati;
+	}
 
 	public static String[][] ReadDataByListOfArrayBiDimensional(List<String> lista) {
 		int dimensioneLista = lista.size();
