@@ -205,7 +205,6 @@ public class Controller_Cantiere implements ActionListener {
 	}
 
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
-	// ---- DA FINIRE ----
 	private void addCategoria(String nomeCategoria) {
 		db.insertNuovaCategoria(nomeCategoria);
 	}
@@ -249,7 +248,6 @@ public class Controller_Cantiere implements ActionListener {
 	}
 
 	//// SALVARE IN DB NUOVO PRODOTTO(CHIAMATA DA openDialogForNuovoProdotto()) ----
-	//// DA FINIRE ----
 	private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria) {
 		// SALVARE IN DB
 		Prodotto prod=new Prodotto(NomeProdotto, PrezzoUnitario, Categoria);

@@ -266,46 +266,34 @@ public class DB {
 		return Avalaible_Data.DataPerProdottiTable(risultati);
 		// return readDataArray(risultati);
 	}
-	////DA SISTEMARE
-	public static Object[][] fetchTablePersonaleData() {
-        Object[][] data = null;
-        try {
-        	Connection conn = DriverManager.getConnection(DB_URL);
-    		Statement stmt = conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM PERSONALE");
+	
+	public String[][] SelectPersonale() throws SQLException {
+		List<String[]> risultati = new ArrayList<>();
+		Connection conn = DriverManager.getConnection(DB_URL);
+		Statement stmt = conn.createStatement();
+		String sql = "SELECT NOME, COGNOME, MANSIONE, PAGA FROM PERSONALE";
+		ResultSet resultSet = stmt.executeQuery(sql);
+		int numeroColonne = resultSet.getMetaData().getColumnCount();
+		while (resultSet.next()) {
+			String[] riga = new String[numeroColonne];
+			for (int i = 1; i <= numeroColonne; i++) {
+				riga[i - 1] = resultSet.getString(i);
+			}
+			risultati.add(riga);
+		}
+		for (String[] riga : risultati) {
+			for (String valore : riga) {
+				System.out.print(valore + " ");
+			}
+			System.out.println();
+		}
+		stmt.close();
+		conn.close();
+		System.out.println("query SelectPersonale eseguita con successo");
 
-            // Ottenere il numero di colonne dalla tabella
-            ResultSetMetaData metaData = resultSet.getMetaData();
-            int columnCount = metaData.getColumnCount();
-
-            // Contare il numero di righe nel result set
-            int rowCount = 0;
-            while (resultSet.next()) {
-                rowCount++;
-            }
-
-            // Riporta il result set alla posizione iniziale
-            resultSet.beforeFirst();
-
-            // Inizializzazione dell'array bidimensionale
-            data = new Object[rowCount][columnCount];
-
-            // Riempire l'array bidimensionale con i dati
-            int row = 0;
-            while (resultSet.next()) {
-                for (int col = 0; col < columnCount; col++) {
-                    data[row][col] = resultSet.getObject(col + 1);
-                }
-                row++;
-            }
-
-            conn.close(); // Chiudere la connessione al database
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return data;
-    }
+		return Avalaible_Data.DataPerProdottiTable(risultati);
+		// return readDataArray(risultati);
+	}
 	
 	  // Metodo per cancellare un prodotto dal database
     public void deleteProdotto(String nomeProdotto) {

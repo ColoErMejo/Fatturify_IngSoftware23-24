@@ -4,9 +4,12 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controller.Return_Avalaible_Data;
 import database.DB;
 
 /**
@@ -18,7 +21,13 @@ public class jFrame_Personale extends javax.swing.JFrame {
     /**
      * Creates new form jFrame_Personale
      */
-    public jFrame_Personale() {
+	private String nomeUtente;
+ 	private Return_Avalaible_Data Return_avalaible_data = new Return_Avalaible_Data();
+ 	private DB db;
+ 	
+    public jFrame_Personale(String nomeUtente) {
+    	this.nomeUtente=nomeUtente;
+		this.db=new DB(nomeUtente);
         initComponents();
     }
 
@@ -112,24 +121,16 @@ public class jFrame_Personale extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-        ////DA SISTEMARE
-        Object[][] tableData = DB.fetchTablePersonaleData(); // Ottieni i dati dal database
-        populateTable(jTable_Pers_Left, tableData, Columns);
+        
+        try {
+			Return_avalaible_data.populateTable(jTable_Pers_Left, db.SelectPersonale());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
     }// </editor-fold>//GEN-END:initComponents
     
-////DA SISTEMARE
-    
-    public void populateTable(JTable table,Object[][] data, String[] Columns)
-    {   
-    	DefaultTableModel tblmodel = new DefaultTableModel(data, Columns) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-        table.setModel(tblmodel);
-    }
 
        public javax.swing.JButton getjButton_AddPersonale() {
 		return jButton_AddPersonale;

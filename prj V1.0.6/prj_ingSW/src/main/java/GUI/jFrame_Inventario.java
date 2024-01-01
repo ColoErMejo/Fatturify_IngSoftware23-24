@@ -185,22 +185,7 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 	
     }
 	
-	/*
-	try {
-			Return_avalaible_data.populateTable(jTable_InvCat_Top, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
-			System.out.println("tabella categorie popolata con successo");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			Return_avalaible_data.populateTable(jTable_InvProd_Bot, db.SelectProdotto());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-	*/
+
 	public javax.swing.JButton getjButtonAddCategoria() {
 		return jButtonAddCategoria;
 	}

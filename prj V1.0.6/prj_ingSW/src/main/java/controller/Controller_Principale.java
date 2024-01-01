@@ -81,7 +81,7 @@ public class Controller_Principale implements ActionListener {
 
 	// PASSA A FRAME PERSONALE
 	private void jButton_IlMioPersonaleActionPerformed() {
-		jFrame_Personale jframe_personale = new jFrame_Personale();
+		jFrame_Personale jframe_personale = new jFrame_Personale(NomeUtente);
 		Controller_Personale controller_personale = new Controller_Personale(jframe_personale, NomeUtente);
 
 		jframe_personale.setVisible(true);
