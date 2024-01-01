@@ -308,7 +308,7 @@ public class DB {
     }
 	
 	  // Metodo per cancellare un prodotto dal database
-    public void cancellaProdotto(String nomeProdotto) {
+    public void deleteProdotto(String nomeProdotto) {
     	Connection conn = null;
     	PreparedStatement pstmt = null;
 
@@ -330,7 +330,7 @@ public class DB {
             if (rowsAffected > 0) {
                 System.out.println("Prodotto con ID " + nomeProdotto + " cancellato con successo.");
             } else {
-                System.out.println("Nessun prodotto trovato con l'ID " + nomeProdotto);
+                System.out.println("Nessun prodotto con il seguente nome: " + nomeProdotto);
             }
         } catch (SQLException e) {
             e.printStackTrace();

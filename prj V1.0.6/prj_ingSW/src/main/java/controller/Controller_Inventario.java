@@ -130,6 +130,23 @@ public class Controller_Inventario implements ActionListener {
 	private void jButton_EliminaProdActionPerformed() {
 		JDialog_EliminaProdotto Jdialog_eliminaprodotto = new JDialog_EliminaProdotto(jFrame_inventario, true, NomeUtente);
 		Jdialog_eliminaprodotto.setVisible(true);
+	
+		String NomeProdotto = (String) Jdialog_eliminaprodotto.getjComboBox_Prodotto_POP().getSelectedItem();
+		
+		
+		boolean ERROR = false;
+		if (NomeProdotto.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_eliminaprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		} 
+		if (!ERROR) {
+			try {
+				System.out.println(NomeProdotto);
+				rimuoviProdotto(NomeProdotto);
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+			}
+		}
 		
 
 	}
@@ -145,6 +162,10 @@ public class Controller_Inventario implements ActionListener {
 		System.out.println("prodotto" + prod.toString() + " inserito correttamente nel db");
 	}
 	
+	private void rimuoviProdotto(String NomeProdotto) {
+		//cancellare dal DB
+		db.deleteProdotto(NomeProdotto);
+	}
 	  
 
 

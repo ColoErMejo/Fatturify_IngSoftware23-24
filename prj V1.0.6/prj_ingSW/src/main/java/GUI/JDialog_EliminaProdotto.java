@@ -216,7 +216,15 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
 	}
     
     
-    /**
+    public javax.swing.JComboBox<String> getjComboBox_Prodotto_POP() {
+		return jComboBox_Prodotto_POP;
+	}
+
+	public void setjComboBox_Prodotto_POP(javax.swing.JComboBox<String> jComboBox_Prodotto_POP) {
+		this.jComboBox_Prodotto_POP = jComboBox_Prodotto_POP;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
