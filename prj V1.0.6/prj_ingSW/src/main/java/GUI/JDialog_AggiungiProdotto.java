@@ -98,24 +98,24 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
 
         jLabel_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP.setText("categoria");
+        jLabel_Categoria_POP.setText("Categoria");
         jPanel2.add(jLabel_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel_Prezzo_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Prezzo_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP.setText("prezzo unitario");
+        jLabel_Prezzo_POP.setText("Prezzo unitario");
         jPanel2.add(jLabel_Prezzo_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         jLabel_Nome_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP.setText("nome");
+        jLabel_Nome_POP.setText("Nome");
         jPanel2.add(jLabel_Nome_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
         jLabel_Aggiungi_Prodotto_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel_Aggiungi_Prodotto_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Aggiungi_Prodotto_POP.setText("aggiungi prodotto");
+        jLabel_Aggiungi_Prodotto_POP.setText("Aggiungi Prodotto");
         jPanel1.add(jLabel_Aggiungi_Prodotto_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N

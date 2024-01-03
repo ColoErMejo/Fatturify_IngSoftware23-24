@@ -4,18 +4,55 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_ModificaProdotto extends javax.swing.JDialog {
+	private static String nomeUtente;
+	private DB db;
+	private Return_Avalaible_Data Avalaible_Data;
 
     /**
      * Creates new form JDialog_ModificaProdotto
      */
-    public JDialog_ModificaProdotto(java.awt.Frame parent, boolean modal) {
+    public JDialog_ModificaProdotto(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
+        this.nomeUtente=nomeUtente;
+        this.db= new DB(nomeUtente);
+        this.Avalaible_Data= new Return_Avalaible_Data();
         initComponents();
+        jComboBox_Categoria_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String categoriaSelezionata = (String) jComboBox_Categoria_POP.getSelectedItem();
+                
+                // Carica i prodotti basati sulla categoria selezionata
+                String[] prodottiCategoria = null;
+				try {
+					prodottiCategoria = db.SelectNomeProdotto(categoriaSelezionata);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                // Pulisci la seconda JComboBox
+                jComboBox_Prodotto_POP.removeAllItems();
+                
+                // Popola la seconda JComboBox con i prodotti della categoria selezionata
+                for (String prodotto : prodottiCategoria) {
+                    jComboBox_Prodotto_POP.addItem(prodotto);
+                }
+            }
+        });
     }
 
     /**
@@ -54,7 +91,7 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
 
         jLabel_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP.setText("categoria");
+        jLabel_Categoria_POP.setText("Categoria");
         jPanel2.add(jLabel_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, -1, 30));
 
         jLabel_Prezzo_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -81,7 +118,7 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
         jComboBox_Prodotto_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Prodotto_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Prodotto_POP.setMaximumRowCount(200);
-        jComboBox_Prodotto_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Prodotto_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Prodotto_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Prodotto_POPActionPerformed(evt);
@@ -109,17 +146,17 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
 
         jLabel_Categoria_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP1.setText("categoria");
+        jLabel_Categoria_POP1.setText("Categoria");
         jPanel3.add(jLabel_Categoria_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Prezzo_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP1.setText("prezzo unitario");
+        jLabel_Prezzo_POP1.setText("Prezzo unitario");
         jPanel3.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
 
         jLabel_Nome_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP1.setText("nome");
+        jLabel_Nome_POP1.setText("Nome");
         jPanel3.add(jLabel_Nome_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
@@ -136,7 +173,7 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
         jComboBox_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_POP.setMaximumRowCount(200);
-        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Categoria_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Categoria_POPActionPerformed(evt);
@@ -152,8 +189,21 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
+        try {
+			populatejComboBox(jComboBox_Categoria_POP, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }// </editor-fold>//GEN-END:initComponents
 
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+    
     private void jComboBox_Prodotto_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Prodotto_POPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_Prodotto_POPActionPerformed
@@ -166,7 +216,39 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_Categoria_POPActionPerformed
 
-    /**
+    public javax.swing.JComboBox<String> getjComboBox_Categoria_POP() {
+		return jComboBox_Categoria_POP;
+	}
+
+	public void setjComboBox_Categoria_POP(javax.swing.JComboBox<String> jComboBox_Categoria_POP) {
+		this.jComboBox_Categoria_POP = jComboBox_Categoria_POP;
+	}
+
+	public javax.swing.JComboBox<String> getjComboBox_Prodotto_POP() {
+		return jComboBox_Prodotto_POP;
+	}
+
+	public void setjComboBox_Prodotto_POP(javax.swing.JComboBox<String> jComboBox_Prodotto_POP) {
+		this.jComboBox_Prodotto_POP = jComboBox_Prodotto_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_NuovoNome_POP() {
+		return jTextField_NuovoNome_POP;
+	}
+
+	public void setjTextField_NuovoNome_POP(javax.swing.JTextField jTextField_NuovoNome_POP) {
+		this.jTextField_NuovoNome_POP = jTextField_NuovoNome_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_NuovoPrezzo_POP() {
+		return jTextField_NuovoPrezzo_POP;
+	}
+
+	public void setjTextField_NuovoPrezzo_POP(javax.swing.JTextField jTextField_NuovoPrezzo_POP) {
+		this.jTextField_NuovoPrezzo_POP = jTextField_NuovoPrezzo_POP;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -196,7 +278,7 @@ public class JDialog_ModificaProdotto extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialog_ModificaProdotto dialog = new JDialog_ModificaProdotto(new javax.swing.JFrame(), true);
+                JDialog_ModificaProdotto dialog = new JDialog_ModificaProdotto(new javax.swing.JFrame(), true, nomeUtente);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

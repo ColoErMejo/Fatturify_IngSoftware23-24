@@ -180,6 +180,82 @@ public class DB {
 
 		return risultati;
 	}
+	
+	public Categoria recuperaCategoriaPerNome(String nomeCategoria) {
+	    Categoria categoria = null;
+	    try {
+	        Connection conn = DriverManager.getConnection(DB_URL);
+	        String query = "SELECT * FROM CATEGORIA WHERE NOMECATEGORIA = ?";
+	        PreparedStatement pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, nomeCategoria);
+
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            // Se esiste una categoria con il nome specificato, crea un'istanza di Categoria
+	            categoria = new Categoria(nomeCategoria); // istanzia l'oggetto Categoria con il nome
+	            // Puoi anche caricare altri dati necessari da questa riga del ResultSet se necessario
+	        }
+
+	        // Chiusura delle risorse
+	        rs.close();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return categoria;
+	}
+	
+	public Prodotto recuperaProdotto(String nomeProdotto, float prezzo, String categoria) {
+	    Prodotto prod = null;
+	    try {
+	        Connection conn = DriverManager.getConnection(DB_URL);
+	        String query = "SELECT * FROM PRODOTTO WHERE NOME_PRODOTTO = ?, PREZZO_UNITARIO = ?, CATEGORIA = ? ";
+	        PreparedStatement pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, nomeProdotto);
+	        pstmt.setFloat(2, prezzo);
+            pstmt.setString(3, categoria);
+
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            // Se esiste un prodotto con il nome specificato, crea un'istanza di prodotto
+	            prod = new Prodotto(nomeProdotto, prezzo, categoria); // istanzia l'oggetto prodotto
+	            }
+
+	        // Chiusura delle risorse
+	        rs.close();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return prod;
+	}
+	
+	public int contaProdottiPerCategoria(String nomeCategoria) {
+	    int count = 0;
+	    try {
+	        Connection conn = DriverManager.getConnection(DB_URL);
+	        String query = "SELECT COUNT(*) AS count FROM PRODOTTO WHERE CATEGORIA = ? GROUP BY CATEGORIA";
+	        PreparedStatement pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, nomeCategoria);
+
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            count = rs.getInt("count");
+	        }
+
+	        // Chiusura delle risorse
+	        rs.close();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return count;
+	}
+
+
 
 	// RITRONA String[] CON NOMICANTIERI
 	public String[] SelectNomeCantiere() throws SQLException {
@@ -336,7 +412,36 @@ public class DB {
             }
         }
     }
+    
+    public void changeProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float nuovoPrezzo, String Categoria) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String query = "UPDATE PRODOTTO SET NOME_PRODOTTO = ?, PREZZO = ? WHERE CATEGORIA = ? AND NOME_PRODOTTO = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, nuovoNomeProdotto);
+            pstmt.setFloat(2, nuovoPrezzo);
+            pstmt.setString(3, Categoria);
+            pstmt.setString(4, vecchioNomeProdotto);
+            
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Prodotto modificato con successo.");
+            } else {
+                System.out.println("Nessun prodotto trovato con il nome specificato.");
+            }
+
+            // Chiusura delle risorse
+            pstmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
 
+	
 
 

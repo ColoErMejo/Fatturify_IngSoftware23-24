@@ -91,7 +91,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
             },
             new String [] {
-                "dipendente", "ore", "costo manodopera"
+                "Dipendente", "Ore", "Costo manodopera"
             }
         ));
         jScrollPane1.setViewportView(jTable_Bot_Cant);
@@ -105,7 +105,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
             },
             new String [] {
-                "id", "quantità", "costo totale"
+                "Id", "Quantità", "Costo totale"
             }
         ));
         jScrollPane2.setViewportView(jTable_Top_Cant);

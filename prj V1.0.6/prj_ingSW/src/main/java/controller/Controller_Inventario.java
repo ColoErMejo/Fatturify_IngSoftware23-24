@@ -5,8 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import GUI.JDialog_AggiungiCategoria;
 import GUI.JDialog_AggiungiProdotto;
 import GUI.JDialog_EliminaProdotto;
+import GUI.JDialog_ModificaProdotto;
 import GUI.jFrame_Inventario;
 import GUI.jFrame_principale;
 import database.DB;
@@ -57,6 +59,8 @@ public class Controller_Inventario implements ActionListener {
 	}
 
 	private void jButtonAddCategoriaActionPerformed() {
+		openDialogForNuovaCategoria();
+		
 
 	}
 
@@ -87,7 +91,39 @@ public class Controller_Inventario implements ActionListener {
 	}
 
 	private void jButton_ChangeProdActionPerformed() {
-
+		JDialog_ModificaProdotto Jdialog_modificaprodotto = new JDialog_ModificaProdotto(jFrame_inventario, true, NomeUtente);
+		Jdialog_modificaprodotto.setVisible(true);
+		
+		String NuovoNomeProdotto = Jdialog_modificaprodotto.getjTextField_NuovoNome_POP().getText().trim();
+		String PrezzoUnitario = Jdialog_modificaprodotto.getjTextField_NuovoPrezzo_POP().getText().trim();
+		String Categoria = Jdialog_modificaprodotto.getjComboBox_Categoria_POP().getSelectedItem().toString();
+		String VecchioNomeProdotto = Jdialog_modificaprodotto.getjComboBox_Prodotto_POP().getSelectedItem().toString();
+		
+		boolean ERROR = false;
+		if (NuovoNomeProdotto.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		} else if (PrezzoUnitario.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			boolean errorFloat = true;
+			try {
+				float PrezzoUnitarioFloat = Float.parseFloat(PrezzoUnitario);
+				System.out.println(NuovoNomeProdotto + PrezzoUnitarioFloat + Categoria);
+				errorFloat = false;
+				modificaProdotto(VecchioNomeProdotto, NuovoNomeProdotto, PrezzoUnitarioFloat, Categoria);
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+			} finally {
+				if (errorFloat) {
+					JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "il costo deve essere un numero");
+				}
+			}
+		}
+		
+		
 	}
 
 	private void jButton_AddProdActionPerformed() {
@@ -150,22 +186,66 @@ public class Controller_Inventario implements ActionListener {
 		
 
 	}
-	
-	
-	private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria) {
-		// SALVARE IN DB
-		Prodotto prod=new Prodotto(NomeProdotto, PrezzoUnitario, Categoria);
-		Categoria cat = new Categoria(Categoria);
-		cat.AddProdotto(prod);
-		System.out.println(cat.toString());
-		db.insertNuovoProdotto(prod);
-		System.out.println("prodotto" + prod.toString() + " inserito correttamente nel db");
+
+	private void addProdotto(String nomeProdotto, float prezzoUnitario, String categoria) {
+	    // Recuperare la categoria esistente dal database
+	    Categoria cat = db.recuperaCategoriaPerNome(categoria);
+
+	    if (cat != null) {
+	        // La categoria esiste già nel database
+	        Prodotto prod = new Prodotto(nomeProdotto, prezzoUnitario, categoria);
+	        
+	        // Aggiungi il prodotto all'oggetto Categoria esistente
+	        cat.AddProdotto(prod);
+	        
+	        // Esegui l'inserimento del nuovo prodotto nel database
+	        db.insertNuovoProdotto(prod);
+	        
+	        System.out.println("Prodotto " + prod.toString() + " inserito correttamente nella categoria " + cat.toString());
+	    } /*else {
+	        System.out.println("La categoria " + categoria + " non esiste nel database.");
+	    }*/
 	}
+
 	
 	private void rimuoviProdotto(String NomeProdotto) {
 		//cancellare dal DB
 		db.deleteProdotto(NomeProdotto);
 	}
+	
+	// AGGIUNGE NUOVA CATEGORIA
+	private void openDialogForNuovaCategoria() {
+			JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jFrame_inventario, true);
+			Jdialog_aggiungicategoria.setVisible(true);
+
+			String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
+			if (NomeCategoria.isEmpty()) {
+				JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
+			} else {
+				addCategoria(NomeCategoria);
+			}
+		}
+
+	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
+	private void addCategoria(String nomeCategoria) {
+			db.insertNuovaCategoria(nomeCategoria);
+		}
+		
+	private void modificaProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float prezzoUnitario, String categoria) {
+		    // Recuperare la categoria esistente dal database
+		    Categoria cat = db.recuperaCategoriaPerNome(categoria);
+
+		    if (cat != null) {
+		        // La categoria esiste già nel database
+		        cat.ModificaProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario);
+		        // Esegui la modifica del nuovo prodotto nel database
+		        db.changeProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario, categoria);
+		        
+		        System.out.println("Prodotto inserito correttamente nella categoria " + cat.toString());
+		    } /*else {
+		        System.out.println("La categoria " + categoria + " non esiste nel database.");
+		    }*/
+		}
 	  
 
 

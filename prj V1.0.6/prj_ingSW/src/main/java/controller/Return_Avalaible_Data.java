@@ -81,7 +81,7 @@ public class Return_Avalaible_Data {
 		for (int i=0; i<cat.size(); i++)
 		{
 			risultati[i][0]=cat.get(i).getNomeCategoria();
-			risultati[i][1]=cat.get(i).NumeroDiProdotti();
+			risultati[i][1]=cat.get(i).NumeroDiProdotti(cat.get(i).getListaProdotti());
 			System.out.println(risultati[i][0] + "-" + risultati[i][1]);
 		}
 		return risultati;

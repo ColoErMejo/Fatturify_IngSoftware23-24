@@ -24,16 +24,19 @@ public class Categoria {
 		ListaProdotti.remove(prodotto);
 	}
 
-	//DA RIFARE IN PRODOTTO
-	/*public void ModificaProdotto(Prodotto prodotto, String NuovoNome, float NuovoCosto) {
-		System.out.println("vecchio prodotto");
-		System.out.println("prodotto.toString()");
-		int posizione = ListaProdotti.indexOf(prodotto);
-		Prodotto prodottoNew = new Prodotto(NuovoNome, NuovoCosto, NomeCategoria);
-		ListaProdotti.set(posizione, prodottoNew);
-	}*/
+	public void ModificaProdotto(String vecchioNome, String nuovoNome, float nuovoPrezzo) {
+	// Itera sulla lista dei prodotti della categoria per trovare il prodotto corrispondente
+    for (Prodotto prodotto : ListaProdotti) {
+        if (prodotto.getNomeProdotto() == vecchioNome) {
+            // Modifica il prodotto nella lista
+            prodotto.setNomeProdotto(nuovoNome);
+            prodotto.setPrezzoProdotto(nuovoPrezzo);
+            break; // Esci dal ciclo una volta trovato il prodotto
+        	}
+    	}
+	}
 
-	public String NumeroDiProdotti() {
+	public String NumeroDiProdotti(List<Prodotto> ListaProdotti) {
 	    String data = Integer.toString(ListaProdotti.size());
 		return data;
 	}
