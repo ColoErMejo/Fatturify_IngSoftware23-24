@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import GUI.JDialog_AggiungiCategoria;
+import GUI.JDialog_ModificaCategoria;
 import GUI.JDialog_AggiungiProdotto;
 import GUI.JDialog_EliminaProdotto;
 import GUI.JDialog_ModificaProdotto;
@@ -83,6 +84,14 @@ public class Controller_Inventario implements ActionListener {
 	}
 
 	private void jButton_ChangeCat1ActionPerformed() {
+		JDialog_ModificaCategoria Jdialog_modificacategoria = new JDialog_ModificaCategoria(jFrame_inventario, true, NomeUtente);
+		Jdialog_modificacategoria.setVisible(true);
+		
+		String VecchiaCategoria = Jdialog_modificacategoria.getjComboBox_Categoria_POP().getSelectedItem().toString();
+		String NuovaCategoria = Jdialog_modificacategoria.getjTextField_NomeCategoria_POP().getSelectedText();
+		boolean CheckBox = Jdialog_modificacategoria.getjCheckBox1_Elimina().isSelected();
+		
+		
 
 	}
 
