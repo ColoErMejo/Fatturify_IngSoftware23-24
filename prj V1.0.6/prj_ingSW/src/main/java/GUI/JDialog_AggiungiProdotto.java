@@ -8,8 +8,10 @@ import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 
+
 import controller.Return_Avalaible_Data;
 import database.DB;
+
 
 /**
  *
@@ -141,9 +143,10 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
         }
     }
 
+
     private void jButton_Aggiungi_Prod_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Aggiungi_Prod_POPActionPerformed
-    	
     	dispose();
+    	
     }//GEN-LAST:event_jButton_Aggiungi_Prod_POPActionPerformed
 
     private void jComboBox_Categoria_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_Categoria_POPActionPerformed
@@ -198,4 +201,8 @@ public class JDialog_AggiungiProdotto extends javax.swing.JDialog {
     private javax.swing.JTextField jTextFieldPrezzo_POP;
     private javax.swing.JTextField jTextField_Nome_POP;
     // End of variables declaration//GEN-END:variables
+
+
+
+	
 }

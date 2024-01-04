@@ -12,13 +12,15 @@ import GUI.JDialog_AggiungiProdotto;
 import GUI.JDialog_EliminaProdotto;
 import GUI.JDialog_ModificaProdotto;
 import GUI.jFrame_Inventario;
+
 import GUI.jFrame_principale;
 import database.DB;
 import database.DB_Login;
 import model.Categoria;
 import model.Prodotto;
 
-public class Controller_Inventario implements ActionListener {
+public class Controller_Inventario implements ActionListener{
+	
 
 	private String NomeUtente;
 	private DB db;
@@ -107,6 +109,10 @@ public class Controller_Inventario implements ActionListener {
 					db.deleteProdottoByCategoria(VecchiaCategoria);
 				}
 				modificaCategoria(VecchiaCategoria, NuovaCategoria);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabCat();
+					jFrame_inventario.aggiornaTabProd();
+				}
 				
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
@@ -130,6 +136,10 @@ public class Controller_Inventario implements ActionListener {
 				System.out.println(Categoria);
 				JOptionPane.showMessageDialog(Jdialog_eliminacategoria, "Eliminando questa categoria, verranno rimossi anche tutti i prodotti ad essa associati");
 				eliminaCategoria(Categoria);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabCat();
+					jFrame_inventario.aggiornaTabProd();
+				}
 				
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
@@ -162,6 +172,9 @@ public class Controller_Inventario implements ActionListener {
 				System.out.println(NuovoNomeProdotto + PrezzoUnitarioFloat + Categoria);
 				errorFloat = false;
 				modificaProdotto(VecchioNomeProdotto, NuovoNomeProdotto, PrezzoUnitarioFloat, Categoria);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabProd();
+				}
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
 			} finally {
@@ -177,6 +190,7 @@ public class Controller_Inventario implements ActionListener {
 	private void jButton_AddProdActionPerformed() {
 		JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jFrame_inventario, true, NomeUtente);
 		Jdialog_aggiungiprodotto.setVisible(true);
+		
 		
 		String NomeProdotto = Jdialog_aggiungiprodotto.getjTextField_Nome_POP().getText().trim();
 		String PrezzoUnitario = Jdialog_aggiungiprodotto.getjTextFieldPrezzo_POP().getText().trim();
@@ -200,6 +214,9 @@ public class Controller_Inventario implements ActionListener {
 				System.out.println(NomeProdotto + PrezzoUnitarioFloat + Categoria);
 				errorFloat = false;
 				addProdotto(NomeProdotto, PrezzoUnitarioFloat, Categoria);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabProd();
+				}
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
 			} finally {
@@ -227,6 +244,9 @@ public class Controller_Inventario implements ActionListener {
 			try {
 				System.out.println(NomeProdotto);
 				rimuoviProdotto(NomeProdotto);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabProd();
+				}
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
 			}
@@ -287,6 +307,9 @@ public class Controller_Inventario implements ActionListener {
 					JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
 				} else {
 					addCategoria(NomeCategoria);
+					if(jFrame_inventario!=null) {
+						jFrame_inventario.aggiornaTabCat();
+					}
 				}
 			}
 
@@ -313,6 +336,7 @@ public class Controller_Inventario implements ActionListener {
 		//procedo ad eliminare la categoria dal db
 		db.deleteCategoria(nomeCategoria);
 	}
+
 	
 	  
 

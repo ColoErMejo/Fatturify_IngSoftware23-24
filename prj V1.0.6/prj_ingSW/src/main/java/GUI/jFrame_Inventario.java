@@ -4,7 +4,11 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
+
+import javax.swing.table.DefaultTableModel;
 
 import controller.Return_Avalaible_Data;
 import database.DB;
@@ -14,6 +18,9 @@ import database.DB;
  * @author Merlo
  */
 public class jFrame_Inventario extends javax.swing.JFrame {
+	private javax.swing.JTable jTable_InvProd, jTable_InvCat;
+
+	
 
 	/**
 	 * Creates new form jFrame_Inventario
@@ -43,9 +50,9 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         jButton_Back_Invent = new javax.swing.JButton();
         jButton_Home_Invent = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_InvProd_Bot = new javax.swing.JTable();
+        jTable_InvProd = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_InvCat_Top = new javax.swing.JTable();
+        jTable_InvCat = new javax.swing.JTable();
         jPanel_Inventario_Right = new javax.swing.JPanel();
         jButton_AddProd = new javax.swing.JButton();
         jButton_EliminaCat = new javax.swing.JButton();
@@ -73,8 +80,8 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable_InvProd_Bot.setBackground(new java.awt.Color(255, 255, 255));
-        jTable_InvProd_Bot.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_InvProd.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_InvProd.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -90,14 +97,14 @@ public class jFrame_Inventario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable_InvProd_Bot);
+        jScrollPane1.setViewportView(jTable_InvProd);
 
         jPanel_Inventario_Left.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 230));
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable_InvCat_Top.setBackground(new java.awt.Color(255, 255, 255));
-        jTable_InvCat_Top.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_InvCat.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_InvCat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -113,7 +120,7 @@ public class jFrame_Inventario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable_InvCat_Top);
+        jScrollPane2.setViewportView(jTable_InvCat);
 
         jPanel_Inventario_Left.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 230));
 
@@ -170,14 +177,14 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
         try {
-			Return_avalaible_data.populateTable(jTable_InvCat_Top, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
+			Return_avalaible_data.populateTable(jTable_InvCat, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
 			System.out.println("Tabella categorie popolata con successo");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
-			Return_avalaible_data.populateTable(jTable_InvProd_Bot, db.SelectProdotto());
+			Return_avalaible_data.populateTable(jTable_InvProd, db.SelectProdotto());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -185,25 +192,57 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 	
     }
 	
+	public void RestartTabProd() {
+        DefaultTableModel model = (DefaultTableModel) jTable_InvProd.getModel();
+        model.setRowCount(0);
+    }
+	public void RestartTabCat() {
+        DefaultTableModel model = (DefaultTableModel) jTable_InvCat.getModel();
+        model.setRowCount(0);
+    }
+	
+	public void aggiornaTabCat() {
+		RestartTabCat();
+		try {
+			Return_avalaible_data.populateTable(jTable_InvCat, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
+			System.out.println("Tabella categorie aggiornata con successo");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void aggiornaTabProd() {
+		RestartTabProd();
+		try {
+			Return_avalaible_data.populateTable(jTable_InvProd, db.SelectProdotto());
+			System.out.println("Tabella prodotti aggiornata con successo");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 	public javax.swing.JButton getjButtonAddCategoria() {
 		return jButtonAddCategoria;
 	}
 
 	public javax.swing.JTable getjTable_InvCat_Top() {
-		return jTable_InvCat_Top;
+		return jTable_InvCat;
 	}
 
 	public void setjTable_InvCat_Top(javax.swing.JTable jTable_InvCat_Top) {
-		this.jTable_InvCat_Top = jTable_InvCat_Top;
+		this.jTable_InvCat = jTable_InvCat_Top;
 	}
 
 	public javax.swing.JTable getjTable_InvProd_Bot() {
-		return jTable_InvProd_Bot;
+		return jTable_InvProd;
 	}
 
 	public void setjTable_InvProd_Bot(javax.swing.JTable jTable_InvProd_Bot) {
-		this.jTable_InvProd_Bot = jTable_InvProd_Bot;
+		this.jTable_InvProd = jTable_InvProd_Bot;
 	}
 
 	public void setjButtonAddCategoria(javax.swing.JButton jButtonAddCategoria) {
@@ -279,7 +318,6 @@ public class jFrame_Inventario extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_Inventario_Right;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable_InvCat_Top;
-    private javax.swing.JTable jTable_InvProd_Bot;
     // End of variables declaration//GEN-END:variables
+
 }
