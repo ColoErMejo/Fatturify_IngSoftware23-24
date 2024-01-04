@@ -311,6 +311,7 @@ public class Controller_Inventario implements ActionListener{
 					addCategoria(NomeCategoria);
 					if(jFrame_inventario!=null) {
 						jFrame_inventario.aggiornaTabCat();
+						jFrame_inventario.aggiornaTabProd();
 					}
 				}
 			}
