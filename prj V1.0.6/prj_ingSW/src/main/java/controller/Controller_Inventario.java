@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 import GUI.JDialog_AggiungiCategoria;
 import GUI.JDialog_ModificaCategoria;
+import GUI.JDialog_EliminaCategoria;
 import GUI.JDialog_AggiungiProdotto;
 import GUI.JDialog_EliminaProdotto;
 import GUI.JDialog_ModificaProdotto;
@@ -115,6 +116,25 @@ public class Controller_Inventario implements ActionListener {
 	
 
 	private void jButton_EliminaCatActionPerformed() {
+		JDialog_EliminaCategoria Jdialog_eliminacategoria = new JDialog_EliminaCategoria(jFrame_inventario, true, NomeUtente);
+		Jdialog_eliminacategoria.setVisible(true);
+		
+		String Categoria = Jdialog_eliminacategoria.getjComboBox_Categoria_POP().getSelectedItem().toString();
+		boolean ERROR = false;
+		if (Categoria.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_eliminacategoria, "Selezionare una categoria");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			try {
+				System.out.println(Categoria);
+				JOptionPane.showMessageDialog(Jdialog_eliminacategoria, "Eliminando questa categoria, verranno rimossi anche tutti i prodotti ad essa associati");
+				eliminaCategoria(Categoria);
+				
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+				}
+			}
 
 	}
 
@@ -286,7 +306,13 @@ public class Controller_Inventario implements ActionListener {
 		    }
 		
 	}
-		
+	
+	private void eliminaCategoria(String nomeCategoria) {
+		//eliminando una categoria devo rimuovere anche tutti i prodotti associati ad essa
+		db.deleteProdottoByCategoria(nomeCategoria);
+		//procedo ad eliminare la categoria dal db
+		db.deleteCategoria(nomeCategoria);
+	}
 	
 	  
 

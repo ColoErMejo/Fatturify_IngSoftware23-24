@@ -441,8 +441,6 @@ public class DB {
         }
     }
 
-
-    
     public void changeProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float nuovoPrezzo, String Categoria) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
@@ -507,6 +505,46 @@ public class DB {
     	
     }
 
+    public void deleteCategoria(String nomeCategoria) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+
+        try {
+            // Connessione al database
+            Connection conn1 = DriverManager.getConnection(DB_URL);
+            
+            // Query per cancellare la categoria col nome specificato
+            String query = "DELETE FROM CATEGORIA WHERE NOMECATEGORIA= ?";
+            
+            // Creazione del prepared statement
+            pstmt = conn1.prepareStatement(query);
+            pstmt.setString(1, nomeCategoria);
+            
+            // Esecuzione della query per cancellare la categoria
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // Verifica se la categoria è stata cancellata correttamente
+            if (rowsAffected > 0) {
+                System.out.println("Categoria " + nomeCategoria + " cancellata con successo.");
+            } else {
+                System.out.println("Nessuna categoria con il seguente nome: " + nomeCategoria);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Chiusura delle risorse
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
 

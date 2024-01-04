@@ -4,17 +4,30 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_EliminaCategoria extends javax.swing.JDialog {
+	private static String nomeUtente;
+	private DB db;
+	private Return_Avalaible_Data Avalaible_Data;
 
     /**
      * Creates new form JDialog_EliminaCategoria
      */
-    public JDialog_EliminaCategoria(java.awt.Frame parent, boolean modal) {
+    public JDialog_EliminaCategoria(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
+        this.nomeUtente=nomeUtente;
+        this.db= new DB(nomeUtente);
+        this.Avalaible_Data= new Return_Avalaible_Data();
         initComponents();
     }
 
@@ -35,7 +48,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         jLabel_Categoria_POP1 = new javax.swing.JLabel();
         jLabel_Prezzo_POP1 = new javax.swing.JLabel();
         jLabel_Nome_POP1 = new javax.swing.JLabel();
-        jLabel_Modifica_Prodotto_POP = new javax.swing.JLabel();
+        jLabel_Elimina_Categoria_POP = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox_Categoria_POP = new javax.swing.JComboBox<>();
 
@@ -48,7 +61,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
 
         jLabel_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP.setText("categoria");
+        jLabel_Categoria_POP.setText("Categoria");
         jPanel2.add(jLabel_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
@@ -70,27 +83,27 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         jPanel3.setBackground(new java.awt.Color(0, 153, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Categoria_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        /*jLabel_Categoria_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Categoria_POP1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Categoria_POP1.setText("categoria");
-        jPanel3.add(jLabel_Categoria_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        jPanel3.add(jLabel_Categoria_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));*/
 
-        jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        /*jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Prezzo_POP1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Prezzo_POP1.setText("prezzo unitario");
-        jPanel3.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+        jPanel3.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));*/
 
-        jLabel_Nome_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        /*jLabel_Nome_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Nome_POP1.setText("nome");
-        jPanel3.add(jLabel_Nome_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
+        jPanel3.add(jLabel_Nome_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));*/
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
-        jLabel_Modifica_Prodotto_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel_Modifica_Prodotto_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Modifica_Prodotto_POP.setText("Elimina Categoria");
-        jPanel1.add(jLabel_Modifica_Prodotto_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
+        jLabel_Elimina_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_Elimina_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Elimina_Categoria_POP.setText("Elimina Categoria");
+        jPanel1.add(jLabel_Elimina_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
@@ -99,7 +112,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         jComboBox_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Categoria_POP.setMaximumRowCount(200);
-        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Categoria_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Categoria_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Categoria_POPActionPerformed(evt);
@@ -111,8 +124,21 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
+        try {
+			populatejComboBox(jComboBox_Categoria_POP, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }// </editor-fold>//GEN-END:initComponents
 
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+    
     private void jButton_EliminaCat_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaCat_POPActionPerformed
         dispose();
     }//GEN-LAST:event_jButton_EliminaCat_POPActionPerformed
@@ -121,7 +147,15 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_Categoria_POPActionPerformed
 
-    /**
+    public javax.swing.JComboBox<String> getjComboBox_Categoria_POP() {
+		return jComboBox_Categoria_POP;
+	}
+
+	public void setjComboBox_Categoria_POP(javax.swing.JComboBox<String> jComboBox_Categoria_POP) {
+		this.jComboBox_Categoria_POP = jComboBox_Categoria_POP;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -151,7 +185,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialog_EliminaCategoria dialog = new JDialog_EliminaCategoria(new javax.swing.JFrame(), true);
+                JDialog_EliminaCategoria dialog = new JDialog_EliminaCategoria(new javax.swing.JFrame(), true, nomeUtente);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -169,7 +203,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Categoria_POP;
     private javax.swing.JLabel jLabel_Categoria_POP1;
-    private javax.swing.JLabel jLabel_Modifica_Prodotto_POP;
+    private javax.swing.JLabel jLabel_Elimina_Categoria_POP;
     private javax.swing.JLabel jLabel_Nome_POP1;
     private javax.swing.JLabel jLabel_Prezzo_POP1;
     private javax.swing.JPanel jPanel1;
