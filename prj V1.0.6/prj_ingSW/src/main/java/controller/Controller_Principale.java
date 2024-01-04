@@ -30,6 +30,7 @@ public class Controller_Principale implements ActionListener {
 	private DB db;
 	private jFrame_principale jframe_principale;
 	private int count = 0;
+	private boolean vedi_cant = false;
 
 	public Controller_Principale(jFrame_principale jFrame, String NomeUtente) {
 		this.jframe_principale = jFrame;
@@ -76,7 +77,12 @@ public class Controller_Principale implements ActionListener {
 
 	// RENDE COMBOBOX VISIBILE PER SCELTA CANTIERE
 	private void jButton_IMieiCantieriActionPerformed() throws SQLException {
-		jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri(), db.SelectNomeCantiere());
+		if (!vedi_cant)
+		{
+			jframe_principale.comboBoxvisible(jframe_principale.getjComboBox_IMieiCantieri(), db.SelectNomeCantiere());
+			vedi_cant=true;
+		}
+		
 	}
 
 	// PASSA A FRAME PERSONALE
