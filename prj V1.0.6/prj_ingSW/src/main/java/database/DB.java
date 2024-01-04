@@ -232,28 +232,87 @@ public class DB {
 	    return prod;
 	}
 	
-	public int contaProdottiPerCategoria(String nomeCategoria) {
-	    int count = 0;
+	/*public Object[][] contaProdottiPerCategoria() {
 	    try {
 	        Connection conn = DriverManager.getConnection(DB_URL);
-	        String query = "SELECT COUNT(*) AS count FROM PRODOTTO WHERE CATEGORIA = ? GROUP BY CATEGORIA";
-	        PreparedStatement pstmt = conn.prepareStatement(query);
-	        pstmt.setString(1, nomeCategoria);
+	        Statement stmt = conn.createStatement();
 
-	        ResultSet rs = pstmt.executeQuery();
-	        if (rs.next()) {
-	            count = rs.getInt("count");
+	        String query = "SELECT CATEGORIA, COUNT(*) AS NUMEROPRODOTTI FROM PRODOTTO GROUP BY CATEGORIA";
+	        ResultSet rs = stmt.executeQuery(query);
+
+	        List<Object[]> resultList = new ArrayList<>();
+
+	        while (rs.next()) {
+	            String Categoria = rs.getString("CATEGORIA");
+	            int NumeroProdotti = rs.getInt("NUMEROPRODOTTI");
+	            Object[] categoriaENumero = {Categoria, NumeroProdotti};
+	            resultList.add(categoriaENumero);
 	        }
 
-	        // Chiusura delle risorse
 	        rs.close();
-	        pstmt.close();
+	        stmt.close();
 	        conn.close();
+
+	        return resultList.toArray(new Object[0][0]);
 	    } catch (SQLException e) {
 	        e.printStackTrace();
+	        // Gestione delle eccezioni
 	    }
-	    return count;
+
+	    return new Object[0][0]; // Se qualcosa va storto, restituisce un array vuoto
+	}*/
+	
+	public Object[][] contaProdottiPerCategoria() {
+	    try {
+	        Connection conn = DriverManager.getConnection(DB_URL);
+	        Statement stmt = conn.createStatement();
+
+	        // Ottieni tutte le categorie dalla tabella Categoria
+	        String queryCategorie = "SELECT NOMECATEGORIA FROM CATEGORIA";
+	        ResultSet rsCategorie = stmt.executeQuery(queryCategorie);
+
+	        List<Object[]> resultList = new ArrayList<>();
+
+	        // Inizializza la lista di array con tutte le categorie e inizialmente 0 prodotti
+	        while (rsCategorie.next()) {
+	            String categoria = rsCategorie.getString("NOMECATEGORIA");
+	            Object[] categoriaENumero = {categoria, 0};
+	            resultList.add(categoriaENumero);
+	        }
+
+	        // Ottieni il conteggio dei prodotti per ciascuna categoria
+	        String queryConteggio = "SELECT CATEGORIA, COUNT(*) AS NUMEROPRODOTTI FROM PRODOTTO GROUP BY CATEGORIA";
+	        ResultSet rsConteggio = stmt.executeQuery(queryConteggio);
+
+	        // Aggiorna il conteggio effettivo dei prodotti per ciascuna categoria
+	        while (rsConteggio.next()) {
+	            String categoria = rsConteggio.getString("CATEGORIA");
+	            int numeroProdotti = rsConteggio.getInt("NUMEROPRODOTTI");
+
+	            // Aggiorna il numero di prodotti per la categoria corrispondente
+	            for (Object[] coppia : resultList) {
+	                if (categoria.equals(coppia[0])) {
+	                    coppia[1] = numeroProdotti;
+	                    break;
+	                }
+	            }
+	        }
+
+	        rsCategorie.close();
+	        rsConteggio.close();
+	        stmt.close();
+	        conn.close();
+
+	        return resultList.toArray(new Object[0][0]);
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        // Gestione delle eccezioni
+	    }
+
+	    return new Object[0][0]; // Se qualcosa va storto, restituisce un array vuoto
 	}
+
+
 
 
 

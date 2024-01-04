@@ -215,6 +215,7 @@ public class Controller_Inventario implements ActionListener{
 				errorFloat = false;
 				addProdotto(NomeProdotto, PrezzoUnitarioFloat, Categoria);
 				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabCat();
 					jFrame_inventario.aggiornaTabProd();
 				}
 			} catch (ArithmeticException e) {
@@ -245,6 +246,7 @@ public class Controller_Inventario implements ActionListener{
 				System.out.println(NomeProdotto);
 				rimuoviProdotto(NomeProdotto);
 				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabCat();
 					jFrame_inventario.aggiornaTabProd();
 				}
 			} catch (ArithmeticException e) {

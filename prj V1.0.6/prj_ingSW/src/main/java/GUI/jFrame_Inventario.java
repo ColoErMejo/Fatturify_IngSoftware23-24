@@ -176,13 +176,8 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         
-        try {
-			Return_avalaible_data.populateTable(jTable_InvCat, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
-			System.out.println("Tabella categorie popolata con successo");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        Return_avalaible_data.populateTable(jTable_InvCat, db.contaProdottiPerCategoria());
+		System.out.println("Tabella categorie popolata con successo");
 		try {
 			Return_avalaible_data.populateTable(jTable_InvProd, db.SelectProdotto());
 		} catch (SQLException e) {
@@ -203,13 +198,8 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 	
 	public void aggiornaTabCat() {
 		RestartTabCat();
-		try {
-			Return_avalaible_data.populateTable(jTable_InvCat, Return_avalaible_data.DataPerCategoriaTable(db.SelectCategoria()));
-			System.out.println("Tabella categorie aggiornata con successo");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Return_avalaible_data.populateTable(jTable_InvCat, db.contaProdottiPerCategoria());
+		System.out.println("Tabella categorie aggiornata con successo");
 	}
 	
 	public void aggiornaTabProd() {
