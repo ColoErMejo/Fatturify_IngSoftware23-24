@@ -392,7 +392,7 @@ public class DB {
             
             // Verifica se il prodotto è stato cancellato correttamente
             if (rowsAffected > 0) {
-                System.out.println("Prodotto con ID " + nomeProdotto + " cancellato con successo.");
+                System.out.println("Prodotto " + nomeProdotto + " cancellato con successo.");
             } else {
                 System.out.println("Nessun prodotto con il seguente nome: " + nomeProdotto);
             }
@@ -412,6 +412,36 @@ public class DB {
             }
         }
     }
+    
+    public void deleteProdottoByCategoria(String nomeCategoria) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            PreparedStatement pstmt = null;
+
+            // Query per eliminare i prodotti associati alla categoria specificata
+            String deleteQuery = "DELETE FROM PRODOTTO WHERE CATEGORIA IN (SELECT NOMECATEGORIA FROM CATEGORIA WHERE NOMECATEGORIA = ?)";
+            pstmt = conn.prepareStatement(deleteQuery);
+            pstmt.setString(1, nomeCategoria);
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Prodotti appartenenti alla categoria " + nomeCategoria + " eliminati con successo.");
+            } else {
+                System.out.println("Nessun prodotto trovato appartenente alla categoria: " + nomeCategoria);
+            }
+
+            // Chiusura delle risorse
+            if (pstmt != null) {
+                pstmt.close();
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     
     public void changeProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float nuovoPrezzo, String Categoria) {
         try {
@@ -437,6 +467,44 @@ public class DB {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void changeCategoria(String vecchioNomeCategoria, String nuovoNomeCategoria) {
+    	try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String query = "UPDATE CATEGORIA SET NOMECATEGORIA = ? WHERE NOMECATEGORIA = ?" ;
+            PreparedStatement pstmtCategoria = conn.prepareStatement(query);
+            pstmtCategoria.setString(1, nuovoNomeCategoria);
+            pstmtCategoria.setString(2, vecchioNomeCategoria);
+
+            int rowsUpdatedCategoria = pstmtCategoria.executeUpdate();
+            if (rowsUpdatedCategoria > 0) {
+                // Aggiorna a cascata i prodotti che appartengono alla categoria
+                String updateProdottiQuery = "UPDATE PRODOTTO SET CATEGORIA = ? WHERE CATEGORIA = ?";
+                PreparedStatement pstmtProdotti = conn.prepareStatement(updateProdottiQuery);
+                pstmtProdotti.setString(1, nuovoNomeCategoria);
+                pstmtProdotti.setString(2, vecchioNomeCategoria);
+                int rowsUpdatedProdotti = pstmtProdotti.executeUpdate();
+
+                System.out.println("Categoria modificata con successo.");
+
+                if (rowsUpdatedProdotti > 0) {
+                    System.out.println("Prodotti appartenenti alla categoria aggiornati.");
+                } else {
+                    System.out.println("Nessun prodotto trovato appartenente alla categoria.");
+                }
+
+                pstmtProdotti.close();
+            } else {
+                System.out.println("Nessuna categoria trovata con il nome specificato.");
+            }
+
+            pstmtCategoria.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    	
     }
 
 

@@ -88,12 +88,31 @@ public class Controller_Inventario implements ActionListener {
 		Jdialog_modificacategoria.setVisible(true);
 		
 		String VecchiaCategoria = Jdialog_modificacategoria.getjComboBox_Categoria_POP().getSelectedItem().toString();
-		String NuovaCategoria = Jdialog_modificacategoria.getjTextField_NomeCategoria_POP().getSelectedText();
+		String NuovaCategoria = Jdialog_modificacategoria.getjTextField_NomeCategoria_POP().getText();
 		boolean CheckBox = Jdialog_modificacategoria.getjCheckBox1_Elimina().isSelected();
 		
-		
-
-	}
+		boolean ERROR = false;
+		if (VecchiaCategoria.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificacategoria, "Selezionare una categoria");
+			ERROR = true;
+		} else if (NuovaCategoria.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificacategoria, "Inserire il nuovo nome");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			try {
+				System.out.println(NuovaCategoria);
+				if(CheckBox == true) {
+					db.deleteProdottoByCategoria(VecchiaCategoria);
+				}
+				modificaCategoria(VecchiaCategoria, NuovaCategoria);
+				
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+				}
+			}
+		}
+	
 
 	private void jButton_EliminaCatActionPerformed() {
 
@@ -215,6 +234,22 @@ public class Controller_Inventario implements ActionListener {
 	        System.out.println("La categoria " + categoria + " non esiste nel database.");
 	    }*/
 	}
+	
+	private void modificaProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float prezzoUnitario, String categoria) {
+	    // Recuperare la categoria esistente dal database
+	    Categoria cat = db.recuperaCategoriaPerNome(categoria);
+
+	    if (cat != null) {
+	        // La categoria esiste già nel database
+	        cat.ModificaProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario);
+	        // Esegui la modifica del nuovo prodotto nel database
+	        db.changeProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario, categoria);
+	        
+	        System.out.println("Prodotto inserito correttamente nella categoria " + cat.toString());
+	    } /*else {
+	        System.out.println("La categoria " + categoria + " non esiste nel database.");
+	    }*/
+	}
 
 	
 	private void rimuoviProdotto(String NomeProdotto) {
@@ -223,38 +258,36 @@ public class Controller_Inventario implements ActionListener {
 	}
 	
 	// AGGIUNGE NUOVA CATEGORIA
-	private void openDialogForNuovaCategoria() {
-			JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jFrame_inventario, true);
-			Jdialog_aggiungicategoria.setVisible(true);
+		private void openDialogForNuovaCategoria() {
+				JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jFrame_inventario, true);
+				Jdialog_aggiungicategoria.setVisible(true);
 
-			String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
-			if (NomeCategoria.isEmpty()) {
-				JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
-			} else {
-				addCategoria(NomeCategoria);
+				String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
+				if (NomeCategoria.isEmpty()) {
+					JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
+				} else {
+					addCategoria(NomeCategoria);
+				}
 			}
-		}
 
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
 	private void addCategoria(String nomeCategoria) {
 			db.insertNuovaCategoria(nomeCategoria);
 		}
-		
-	private void modificaProdotto(String vecchioNomeProdotto, String nuovoNomeProdotto, float prezzoUnitario, String categoria) {
-		    // Recuperare la categoria esistente dal database
-		    Categoria cat = db.recuperaCategoriaPerNome(categoria);
-
-		    if (cat != null) {
+	private void modificaCategoria(String vecchioNomecategoria, String nuovoNomecategoria) {
+		Categoria cat = db.recuperaCategoriaPerNome(vecchioNomecategoria);
+		 if (cat != null) {
 		        // La categoria esiste già nel database
-		        cat.ModificaProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario);
-		        // Esegui la modifica del nuovo prodotto nel database
-		        db.changeProdotto(vecchioNomeProdotto, nuovoNomeProdotto, prezzoUnitario, categoria);
+		        cat.setNomeCategoria(nuovoNomecategoria);
+		        // Esegui la modifica della categoria nel database
+		        db.changeCategoria(vecchioNomecategoria, nuovoNomecategoria);
 		        
-		        System.out.println("Prodotto inserito correttamente nella categoria " + cat.toString());
-		    } /*else {
-		        System.out.println("La categoria " + categoria + " non esiste nel database.");
-		    }*/
-		}
+		        System.out.println("Categoria modificata correttamente " + cat.toString());
+		    }
+		
+	}
+		
+	
 	  
 
 
