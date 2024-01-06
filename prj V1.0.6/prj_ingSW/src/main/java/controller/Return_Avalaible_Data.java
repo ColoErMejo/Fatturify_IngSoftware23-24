@@ -100,6 +100,19 @@ public class Return_Avalaible_Data {
         return data;
 	}
 	
+	public String[] extractNames(String[][] personalArray) {
+	    String[] names = new String[personalArray.length];
+
+	    for (int i = 0; i < personalArray.length; i++) {
+	        names[i] = personalArray[i][0] + " " + personalArray[i][1]; // Unisce nome e cognome con uno spazio
+	    }
+
+	    return names;
+	}
+
+
+
+	
 	
 	
 	public void populateTable(JTable table,Object[][] data)

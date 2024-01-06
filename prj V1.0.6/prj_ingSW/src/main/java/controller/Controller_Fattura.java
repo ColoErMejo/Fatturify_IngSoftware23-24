@@ -53,7 +53,7 @@ public class Controller_Fattura implements ActionListener {
 
 	// DA RIVEDERE E IMPLEMENTARE CON DB
 	private void jButton_Back_FatturaActionPerformed() {
-		jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
+		jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere, NomeUtente);
 		Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente, NomeCantiere);
 		jframe_cantiere.setVisible(true);
 		jframe_fattura.setVisible(false);

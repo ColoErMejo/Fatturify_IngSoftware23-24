@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -42,7 +43,15 @@ public class Controller_Cantiere implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == jframe_cantiere.getjButton_Aggiungi_Cant())
-			jButton_Aggiungi_CantActionPerformed();
+			try {
+				jButton_Aggiungi_CantActionPerformed();
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		else if (e.getSource() == jframe_cantiere.getjButton_NuovoProd_Cant())
 			jButton_NuovoProd_CantActionPerformed();
 		else if (e.getSource() == jframe_cantiere.getjButton_Back_Cant())
@@ -62,7 +71,7 @@ public class Controller_Cantiere implements ActionListener {
 	}
 
 	// SALVA NEL DB I DATI INSERITI DAL UTENTE
-	private void jButton_Aggiungi_CantActionPerformed() {
+	private void jButton_Aggiungi_CantActionPerformed() throws NumberFormatException, SQLException {
 
 		// IMPORT VALORI SCRITTI DA UTENTE
 		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
@@ -91,6 +100,9 @@ public class Controller_Cantiere implements ActionListener {
 						+ Descrizione + " - " + NoreSelezionateFloat + " - ");
 			}
 		}
+		
+		jframe_cantiere.aggiornaTabProd(ProdottoSelezionato, Integer.parseInt(QuantitaSelezionata));
+		jframe_cantiere.aggiornaTabPers(PersonaleSelezionato, NoreSelezionate, Descrizione);
 	}
 
 	// FA CAST DA STRING A FLOAT

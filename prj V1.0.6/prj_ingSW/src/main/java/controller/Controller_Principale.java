@@ -164,7 +164,7 @@ public class Controller_Principale implements ActionListener {
 		else {
 			String NomeCantiere = jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString();
 			System.out.println(jframe_principale.getjComboBox_IMieiCantieri().getSelectedItem().toString());
-			jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere);
+			jFrame_Cantiere jframe_cantiere = new jFrame_Cantiere(NomeCantiere, NomeUtente);
 			Controller_Cantiere Controller_cantiere = new Controller_Cantiere(jframe_cantiere, NomeUtente,
 					NomeCantiere);
 			jframe_cantiere.setVisible(true);

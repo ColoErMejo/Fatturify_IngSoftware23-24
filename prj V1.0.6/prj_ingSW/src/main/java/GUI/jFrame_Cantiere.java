@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -11,11 +15,18 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
 
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class jFrame_Cantiere extends javax.swing.JFrame {
+	
+	private static String nomeUtente;
+	private DB db;
+	private Return_Avalaible_Data Avalaible_Data;
 
 	// da togliere, serviva a me per fare i test
 	private  Object[][] data = {
@@ -32,9 +43,41 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
      * Creates new form jFrame_Cantiere
      * @param nomeCantiere 
      */
-    public jFrame_Cantiere(String nomeCantiere) {
+    public jFrame_Cantiere(String nomeCantiere, String nomeUtente) {
     	this.nomeCantiere=nomeCantiere;
+    	this.nomeUtente=nomeUtente;
+        this.db= new DB(nomeUtente);
+        this.Avalaible_Data= new Return_Avalaible_Data();
         initComponents();
+        jComboBox_Categoria_Cant.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String categoriaSelezionata = jComboBox_Categoria_Cant.getSelectedItem().toString();
+                
+                // Carica i prodotti basati sulla categoria selezionata
+                String[] prodottiCategoria = null;
+				try {
+					prodottiCategoria = db.SelectNomeProdotto(categoriaSelezionata);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				jComboBox_Prodotto_Cant.setVisible(true);
+                // Pulisci la seconda JComboBox
+                jComboBox_Prodotto_Cant.removeAllItems();
+                
+                // Popola la seconda JComboBox con i prodotti della categoria selezionata
+                for (String prodotto : prodottiCategoria) {
+                    jComboBox_Prodotto_Cant.addItem(prodotto);
+                }
+            }
+        });
+        jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                
+            	
+            	
+            }
+        });
     }
 
     
@@ -91,7 +134,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Dipendente", "Ore", "Costo manodopera"
+                "Dipendente", "Ore", "Descrizione"
             }
         ));
         jScrollPane1.setViewportView(jTable_Bot_Cant);
@@ -105,7 +148,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Quantità", "Costo totale"
+            	"Nome Prodotto", "Quantità", "Costo totale"
             }
         ));
         jScrollPane2.setViewportView(jTable_Top_Cant);
@@ -224,11 +267,24 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
         
-        populateTable(jTable_Top_Cant, data, Column_top);
-        populateTable(jTable_Bot_Cant, data, Column_bot);
+        //populateTable(jTable_Top_Cant, data, Column_top);
+        //populateTable(jTable_Bot_Cant, data, Column_bot);
         
         comboBoxvisible(jComboBox_Categoria_Cant);
         comboBoxvisible(jComboBox_Pers_Cant);
+        
+        try {
+			populatejComboBox(jComboBox_Categoria_Cant, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			populatejComboBox(jComboBox_Pers_Cant, Avalaible_Data.extractNames(db.SelectPersonale()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         
     }
@@ -252,10 +308,10 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
      */
    
     
-    public final static String[] Column_top = {"Colonna 1", "Colonna 2", "Colonna 3"};
-    public final static String[] Column_bot = {"Colonna 1", "Colonna 2", "Colonna 3"};
+    //public final static String[] Column_top = {"Nome Prodotto", "Quantità", "Costo totale"};
+    //public final static String[] Column_bot = {"Dipendente", "Ore", "Descrizione"};
 
-    public void populateTable(JTable table,Object[][] data, String[] Column)
+    /*public void populateTable(JTable table,Object[][] data, String[] Column)
     {
     	DefaultTableModel tblmodel = new DefaultTableModel(data, Column) {
             @Override
@@ -264,7 +320,33 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
             }
         };
         table.setModel(tblmodel);
+    }*/
+    
+    public void restartTabProd() {
+        DefaultTableModel model = (DefaultTableModel) jTable_Top_Cant.getModel();
+        model.setRowCount(0);
     }
+	public void restartTabPers() {
+        DefaultTableModel model = (DefaultTableModel) jTable_Bot_Cant.getModel();
+        model.setRowCount(0);
+    }
+	
+	public void aggiornaTabPers(String nomeDipendente, String nOre, String Descrizione) {
+		//restartTabPers();
+		Object[] rowPers = {nomeDipendente, nOre, Descrizione};
+		DefaultTableModel model = (DefaultTableModel) jTable_Bot_Cant.getModel();
+		model.addRow(rowPers);
+		System.out.println("Tabella Personale aggiornata con successo");
+	}
+	
+	public void aggiornaTabProd(String nomeProdotto, int numero) throws SQLException {
+		//restartTabProd();
+		float costoTotale = numero*(db.getProductPriceByName(nomeProdotto));
+		Object[] rowProd = {nomeProdotto, numero, costoTotale };
+		DefaultTableModel model = (DefaultTableModel) jTable_Top_Cant.getModel();
+		model.addRow(rowProd);
+		System.out.println("Tabella Prodotti aggiornata con successo");
+	}
     
     //FUNZIONE PER IMPORTARE DA DB NOMI ARRAY DI NOMI
     private String[] readDataArray() {
@@ -273,24 +355,26 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 	}
     
     //SETTA COMBOBOX VISIBILE E LA POPOLA CON PRODOTTI, PRENDE PARAMETRO CATEGORIA
-    public void comboBoxvisible(JComboBox<String> jComboBox, String categoria)
+    /*public void comboBoxvisible(JComboBox<String> jComboBox, String categoria)
     {
     	jComboBox.setVisible(true);
     	String[] items = readCategorieOrProdotti(categoria);
     	populatejComboBox(jComboBox, items);
-    }
+    }*/
+    
+    
     //RITORNA ARRAY DI STRINGHE PER POPOLARE COMBOBOX PRODOTTI, PARAMETRO CATEGORIA
-    private String[] readCategorieOrProdotti(String Categoria) {
+    /*private String[] readCategorieOrProdotti(String Categoria) {
     	String categoria[] = {"1","2","3"}; //SOLO PER TESTARE, DA TOGLIERE
 		return categoria;
-	}
+	}*/
     
     //SETTA COMBOBOX VISIBILE E LA POPOLA CON CATEGORIE O PERSONALE
     public void comboBoxvisible(JComboBox<String> jComboBox)
     {
     	jComboBox.setVisible(true);
-    	String[] items = readCategorieOrProdotti();
-    	populatejComboBox(jComboBox, items);
+    	/*String[] items = readCategorieOrProdotti();
+    	populatejComboBox(jComboBox, items);*/
     }
     
     //RITORNA ARRAY DI STRINGHE PER POPOLARE COMBOBOX CATEGORIE O PERSONALE

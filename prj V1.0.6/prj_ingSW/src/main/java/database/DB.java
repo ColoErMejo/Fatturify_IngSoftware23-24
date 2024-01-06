@@ -232,6 +232,37 @@ public class DB {
 	    return prod;
 	}
 	
+	   // Metodo per recuperare il prezzo di un prodotto dato il suo nome
+	   public float getProductPriceByName(String productName) throws SQLException {
+	       float price = 0;
+	       
+	       ResultSet rs = null;
+	        try {
+	        	Connection conn = DriverManager.getConnection(DB_URL);
+		        String query = "SELECT PREZZO_UNITARIO FROM PRODOTTO WHERE NOME_PRODOTTO = ? ";
+		        PreparedStatement pstmt = conn.prepareStatement(query);
+	            pstmt.setString(1, productName);
+
+	            // Esecuzione della query
+	            rs = pstmt.executeQuery();
+
+	            // Se il prodotto è trovato, ottieni il prezzo
+	            if (rs.next()) {
+	                price = rs.getFloat("PREZZO_UNITARIO");
+	            }
+	            rs.close();
+		        pstmt.close();
+		        conn.close();
+	        } catch (SQLException e) {
+	            // Gestione delle eccezioni
+	            e.printStackTrace();
+	        	} 
+	        return price;
+	        }
+
+	
+
+	
 	/*public Object[][] contaProdottiPerCategoria() {
 	    try {
 	        Connection conn = DriverManager.getConnection(DB_URL);
