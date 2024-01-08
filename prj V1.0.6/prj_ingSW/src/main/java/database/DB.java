@@ -205,6 +205,39 @@ public class DB {
 	    }
 	    return categoria;
 	}
+
+	
+	public Dipendente recuperaDipendentePerNome(String nome, String cognome) {
+	    Dipendente dip = null;
+	    try {
+	        Connection conn = DriverManager.getConnection(DB_URL);
+	        String query = "SELECT * FROM PERSONALE WHERE NOME = ? AND COGNOME = ? ";
+	        PreparedStatement pstmt = conn.prepareStatement(query);
+	        pstmt.setString(1, nome);
+	        pstmt.setString(2, cognome);
+
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            String nomeD = rs.getString("NOME");
+	            String cognomeD = rs.getString("COGNOME");
+	            String mansioneD = rs.getString("MANSIONE");
+	            float pagaD = rs.getFloat("PAGA");
+
+	            dip = new Dipendente(nomeD, cognomeD, mansioneD, pagaD);
+	            System.out.println("Dipendente trovato: " + dip.toString());
+	        }
+
+	        // Chiusura delle risorse
+	        rs.close();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return dip;
+	}
+
+	
 	
 	public Prodotto recuperaProdotto(String nomeProdotto, float prezzo, String categoria) {
 	    Prodotto prod = null;
@@ -233,7 +266,7 @@ public class DB {
 	}
 	
 	   // Metodo per recuperare il prezzo di un prodotto dato il suo nome
-	   public float getProductPriceByName(String productName) throws SQLException {
+	public float getProductPriceByName(String productName) throws SQLException {
 	       float price = 0;
 	       
 	       ResultSet rs = null;
@@ -503,6 +536,7 @@ public class DB {
         }
     }
     
+    // Metodo per cancellare un prodotto da una categoria
     public void deleteProdottoByCategoria(String nomeCategoria) {
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
@@ -636,6 +670,59 @@ public class DB {
         }
     }
 
+    public void changeDipendente(String nome, String cognome, String nuovaMansione, float nuovaPaga) {
+    	
+    	try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            String query = "UPDATE PERSONALE SET MANSIONE = ?, PAGA = ? WHERE NOME = ? AND COGNOME = ? " ;
+            PreparedStatement pstmtPersonale = conn.prepareStatement(query);
+            pstmtPersonale.setString(1, nuovaMansione);
+            pstmtPersonale.setFloat(2, nuovaPaga);
+            pstmtPersonale.setString(3, nome);
+            pstmtPersonale.setString(4, cognome);
+            
+            int rowsUpdated = pstmtPersonale.executeUpdate();
+            if (rowsUpdated > 0) {
+                System.out.println("Dipendente modificato con successo.");
+            } else {
+                System.out.println("Nessun dipendente trovato con il nome specificato.");
+            }
+            
+			pstmtPersonale.close();
+			conn.close();
+			System.out.println("Dipendente " + nome + " " + cognome + " Aggiornato");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void createNewTableCantiere(String NomeCantiere) {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "CREATE TABLE " +NomeCantiere + " ( NOMECANTIERE		TEXT PRIMARY KEY)";
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+				System.out.println("Nuova tabella " + NomeCantiere + " creata");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+    
+    /*public void insertIntoNewCantiere(String NomeCantiere, String Categoria, String Prodotto, float Quantita) {
+    	try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "INSERT INTO " + NomeCantiere + " VALUES (" + " \"" + Categoria + "\"," + " \""
+						+ prod.getNomeProdotto() + "\"," + " \"" + prod.getPrezzoProdotto() + "\"," + " \""
+						+ prod.getCategoria() + "\"" + ")";;
+				}
+    	}
+    }*/
 }
 
 	

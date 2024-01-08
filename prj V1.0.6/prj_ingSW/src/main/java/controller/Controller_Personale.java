@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 //import GUI.JDialog_AggiungiCategoria;
 import GUI.JDialog_AggiungiPersonale;
+import GUI.JDialog_ModificaPersonale;
+import GUI.JDialog_ModificaProdotto;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Personale;
 import GUI.jFrame_principale;
@@ -73,6 +75,52 @@ public class Controller_Personale implements ActionListener {
 
 	private void jButton_ModificaPersonaleActionPerformed() {
 		// AGGIUNGERE FUNZIONE PER MODIFICARE PERSONALE IN DB
+		JDialog_ModificaPersonale Jdialog_modificapersonale = new JDialog_ModificaPersonale(jframe_personale, true, nomeUtente);
+		Jdialog_modificapersonale.setVisible(true);
+		
+		String NomeDipendente = Jdialog_modificapersonale.getjComboBox_Personale_POP().getSelectedItem().toString();
+		String Mansione = Jdialog_modificapersonale.getjTextField_Mansione_POP().getText();
+		String PagaOraria = Jdialog_modificapersonale.getjTextField_NuovaPagaOraria_POP().getText();
+		
+		String[] parti = NomeDipendente.split(" ");
+		String nome = null;
+		String cognome = null;
+
+        if (parti.length == 2) {
+            nome = parti[0]; // Prima parte come nome
+            cognome = parti[1]; // Seconda parte come cognome
+        }
+		
+        System.out.println("split corretto: " + nome + cognome);
+		
+		boolean ERROR = false;
+		if (NomeDipendente.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificapersonale, "i campi non possono essere vuoti");
+			ERROR = true;
+		} else if (Mansione.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificapersonale, "i campi non possono essere vuoti");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			boolean errorFloat = true;
+			try {
+				float PagaOrariaFloat = Float.parseFloat(PagaOraria);
+				System.out.println(NomeDipendente +" "+ Mansione+ " " + PagaOrariaFloat);
+				errorFloat = false;
+				modificaDipendente(nome, cognome, Mansione, PagaOrariaFloat);
+				if(jframe_personale!=null) {
+					jframe_personale.aggiornaTabPers();
+				}
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+			} finally {
+				if (errorFloat) {
+					JOptionPane.showMessageDialog(Jdialog_modificapersonale, "la paga deve essere un numero");
+				}
+			}
+		}
+		
+		
 	}
 
 	private void jButton_EliminaPersonaleActionPerformed() {
@@ -85,7 +133,7 @@ public class Controller_Personale implements ActionListener {
 				Jdialog_aggiungidipendente.setVisible(true);
 				String[] parti = Jdialog_aggiungidipendente.getjTextField_Nome_POP().getText().split(" ");
 				String Mansione = Jdialog_aggiungidipendente.getjTextField_Mansione_POP().getText();
-				double PagaOraria = Double.parseDouble(Jdialog_aggiungidipendente.getjTextField_Paga_POP().getText());
+				float PagaOraria = Float.parseFloat(Jdialog_aggiungidipendente.getjTextField_Paga_POP().getText());
 				if (parti.length >= 2) {
 		            NomeDipendente = parti[0];
 		            CognomeDipendente = parti[1]; // Considera lo spazio tra nome e cognome
@@ -96,14 +144,37 @@ public class Controller_Personale implements ActionListener {
 					JOptionPane.showMessageDialog(Jdialog_aggiungidipendente, "i campi non possono essere vuoti");
 				} else {
 					addDipendente(NomeDipendente, CognomeDipendente, Mansione, PagaOraria);
+					if(jframe_personale!=null) {
+						jframe_personale.aggiornaTabPers();
+					}
 				}
 			}
 
-	private void addDipendente(String nomeDipendente2, String cognomeDipendente2, String mansione2, double paga2) {
+	private void addDipendente(String nomeDipendente2, String cognomeDipendente2, String mansione2, float paga2) {
 		Dipendente dip=new Dipendente(NomeDipendente, CognomeDipendente, mansione2, paga2);
 		System.out.println(dip.toString());
 		db.insertNuovoDipendente(dip);
 		
+	}
+	
+	private void modificaDipendente(String Nome, String Cognome, String nuovaMansione, float nuovaPagaOraria) {
+	    // Recuperare il dipendente esistente dal database
+		Dipendente dip = null;
+		dip = db.recuperaDipendentePerNome(Nome, Cognome);
+
+	    System.out.println("dip in modificadipendente: "+dip.toString());
+
+	    if (dip != null) {
+	        // Il Dipendente esiste già nel database
+	        dip.setMansione(nuovaMansione);
+	        dip.setPaga(nuovaPagaOraria);
+	        // Esegui la modifica del nuovo prodotto nel database
+	        db.changeDipendente(Nome, Cognome, nuovaMansione, nuovaPagaOraria);
+	        
+	        System.out.println("Modifica completata: " + dip.toString());
+	    } else {
+	        System.out.println("Il Dipendente " + dip + " non esiste nel database.");
+	    }
 	}
 			
 }

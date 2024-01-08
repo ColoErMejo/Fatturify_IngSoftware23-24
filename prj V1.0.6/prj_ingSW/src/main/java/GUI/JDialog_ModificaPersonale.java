@@ -4,17 +4,30 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_ModificaPersonale extends javax.swing.JDialog {
+	private static  String nomeUtente;
+	private Return_Avalaible_Data Return_avalaible_data = new Return_Avalaible_Data();
+	private DB db;
 
     /**
      * Creates new form JDialog_ModificaPersonale
+     * @param nomeUtente 
      */
-    public JDialog_ModificaPersonale(java.awt.Frame parent, boolean modal) {
+    public JDialog_ModificaPersonale(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
+        this.nomeUtente=nomeUtente;
+		this.db=new DB(nomeUtente);
         initComponents();
     }
 
@@ -28,12 +41,12 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel_Prezzo_POP = new javax.swing.JLabel();
+        jLabel_Paga_POP = new javax.swing.JLabel();
         jLabel_Nome_POP = new javax.swing.JLabel();
-        jLabel_Prezzo_POP1 = new javax.swing.JLabel();
+        jLabel_Mansione_POP1 = new javax.swing.JLabel();
         jPanel_Right_NuovoUtente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel_NuovoUtente_POP = new javax.swing.JLabel();
+        jLabel_ModificaPers_POP = new javax.swing.JLabel();
         jButton_ModificaPers_POP = new javax.swing.JButton();
         jComboBox_Personale_POP = new javax.swing.JComboBox<>();
         jTextField_NuovaPagaOraria_POP = new javax.swing.JTextField();
@@ -46,20 +59,20 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Prezzo_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Prezzo_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP.setText("Nuova Paga Oraria");
-        jPanel2.add(jLabel_Prezzo_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, 30));
+        jLabel_Paga_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Paga_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Paga_POP.setText("Nuova Paga Oraria");
+        jPanel2.add(jLabel_Paga_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, 30));
 
         jLabel_Nome_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP.setForeground(new java.awt.Color(51, 51, 51));
         jLabel_Nome_POP.setText("Dipendente");
         jPanel2.add(jLabel_Nome_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 30));
 
-        jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Prezzo_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP1.setText("Mansione");
-        jPanel2.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 50));
+        jLabel_Mansione_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Mansione_POP1.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Mansione_POP1.setText("Mansione");
+        jPanel2.add(jLabel_Mansione_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
@@ -69,10 +82,10 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
         jPanel_Right_NuovoUtente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, -1, -1));
 
-        jLabel_NuovoUtente_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel_NuovoUtente_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_NuovoUtente_POP.setText("Modifica Personale");
-        jPanel_Right_NuovoUtente.add(jLabel_NuovoUtente_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
+        jLabel_ModificaPers_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_ModificaPers_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_ModificaPers_POP.setText("Modifica Personale");
+        jPanel_Right_NuovoUtente.add(jLabel_ModificaPers_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
 
         jButton_ModificaPers_POP.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ModificaPers_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -89,7 +102,7 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         jComboBox_Personale_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_Personale_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_Personale_POP.setMaximumRowCount(200);
-        jComboBox_Personale_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Personale_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_Personale_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_Personale_POPActionPerformed(evt);
@@ -109,7 +122,19 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
 
         pack();
         setLocationRelativeTo(null);
+        try {
+			populatejComboBox(jComboBox_Personale_POP, Return_avalaible_data.extractNames(db.SelectPersonale()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }// </editor-fold>//GEN-END:initComponents
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
 
     private void jButton_ModificaPers_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ModificaPers_POPActionPerformed
         // TODO add your handling code here:
@@ -120,7 +145,31 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_Personale_POPActionPerformed
 
-    /**
+    public javax.swing.JComboBox<String> getjComboBox_Personale_POP() {
+		return jComboBox_Personale_POP;
+	}
+
+	public void setjComboBox_Personale_POP(javax.swing.JComboBox<String> jComboBox_Personale_POP) {
+		this.jComboBox_Personale_POP = jComboBox_Personale_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_Mansione_POP() {
+		return jTextField_Mansione_POP;
+	}
+
+	public void setjTextField_Mansione_POP(javax.swing.JTextField jTextField_Mansione_POP) {
+		this.jTextField_Mansione_POP = jTextField_Mansione_POP;
+	}
+
+	public javax.swing.JTextField getjTextField_NuovaPagaOraria_POP() {
+		return jTextField_NuovaPagaOraria_POP;
+	}
+
+	public void setjTextField_NuovaPagaOraria_POP(javax.swing.JTextField jTextField_NuovaPagaOraria_POP) {
+		this.jTextField_NuovaPagaOraria_POP = jTextField_NuovaPagaOraria_POP;
+	}
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -150,7 +199,7 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialog_ModificaPersonale dialog = new JDialog_ModificaPersonale(new javax.swing.JFrame(), true);
+                JDialog_ModificaPersonale dialog = new JDialog_ModificaPersonale(new javax.swing.JFrame(), true, nomeUtente);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -167,9 +216,9 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBox_Personale_POP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Nome_POP;
-    private javax.swing.JLabel jLabel_NuovoUtente_POP;
-    private javax.swing.JLabel jLabel_Prezzo_POP;
-    private javax.swing.JLabel jLabel_Prezzo_POP1;
+    private javax.swing.JLabel jLabel_ModificaPers_POP;
+    private javax.swing.JLabel jLabel_Paga_POP;
+    private javax.swing.JLabel jLabel_Mansione_POP1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Right_NuovoUtente;
     private javax.swing.JTextField jTextField_Mansione_POP;

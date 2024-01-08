@@ -139,8 +139,12 @@ public class Controller_Cantiere implements ActionListener {
 
 	// FUNZIONE PER SALVARE NEL DB I DATI RELATIVI ALLE ATTIVITà SVOLTE NEL CANTIERE
 	// ---- DA FARE----
-	private void addProdottoToCantiere(String NomeCantiere, String Categoria_Personale, String prodotto_desc,
-			float quantita_Nore) {
+	private void addProdottoToCantiere(String NomeCantiere, String Categoria, String Prodotto,
+			float Quantita) {
+		
+	}
+	private void addPersonaleToCantiere(String NomeCantiere, String Personale, String Desc,
+			float Nore) {
 		
 	}
 

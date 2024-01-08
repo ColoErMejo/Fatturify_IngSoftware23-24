@@ -11,7 +11,7 @@ public class Dipendente {
     private String mansione;     
     private double pagaOraria;     
 
-    public Dipendente(String nome, String cognome, String mansione, double pagaOraria) {
+    public Dipendente(String nome, String cognome, String mansione, float pagaOraria) {
         
     	this.idDipendente =GenerateID(nome, cognome);
         this.nome = nome;
@@ -73,7 +73,7 @@ public class Dipendente {
         return pagaOraria;
     }
 
-    public void setPaga(double pagaOraria) {
+    public void setPaga(float pagaOraria) {
         this.pagaOraria = pagaOraria;
     }
 

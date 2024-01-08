@@ -130,6 +130,22 @@ public class jFrame_Personale extends javax.swing.JFrame {
 		}
         
     }// </editor-fold>//GEN-END:initComponents
+    public void RestartTabPers() {
+        DefaultTableModel model = (DefaultTableModel) jTable_Pers_Left.getModel();
+        model.setRowCount(0);
+        System.out.println("Tabella Personale azzerata con successo");
+    }
+    
+    public void aggiornaTabPers() {
+		RestartTabPers();
+		try {
+			Return_avalaible_data.populateTable(jTable_Pers_Left, db.SelectPersonale());
+			System.out.println("Tabella Personale aggiornata con successo");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     
 
        public javax.swing.JButton getjButton_AddPersonale() {
