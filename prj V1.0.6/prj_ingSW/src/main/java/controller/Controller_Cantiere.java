@@ -85,8 +85,7 @@ public class Controller_Cantiere implements ActionListener {
 		if (checkInserimento(QuantitaSelezionata)) {
 			if (textIsFloat(QuantitaSelezionata)) {
 				float QuantitaSelezionataFloat = textTurnIntoFloat(QuantitaSelezionata);
-				addProdottoToCantiere(jframe_cantiere.getNomeCantiere(), CategoriaSelezionata, ProdottoSelezionato,
-						QuantitaSelezionataFloat);
+				addProdottoToAttivitaCantiere(jframe_cantiere.getNomeCantiere(), CategoriaSelezionata, QuantitaSelezionataFloat);
 				System.out.println(jframe_cantiere.getNomeCantiere() + " - " + CategoriaSelezionata + " - "
 						+ ProdottoSelezionato + " - " + QuantitaSelezionataFloat + " - ");
 			}
@@ -94,10 +93,10 @@ public class Controller_Cantiere implements ActionListener {
 		if (checkInserimento(NoreSelezionate)) {
 			if (textIsFloat(NoreSelezionate)) {
 				float NoreSelezionateFloat = textTurnIntoFloat(NoreSelezionate);
-				addProdottoToCantiere(jframe_cantiere.getNomeCantiere(), PersonaleSelezionato, Descrizione,
-						NoreSelezionateFloat);
+				addPersonaleToAttivitaCantiere(jframe_cantiere.getNomeCantiere(), PersonaleSelezionato, NoreSelezionateFloat,
+						Descrizione);
 				System.out.println(jframe_cantiere.getNomeCantiere() + " - " + PersonaleSelezionato + " - "
-						+ Descrizione + " - " + NoreSelezionateFloat + " - ");
+						+ NoreSelezionateFloat + " - " + Descrizione + " - ");
 			}
 		}
 		
@@ -138,16 +137,21 @@ public class Controller_Cantiere implements ActionListener {
 	}
 
 	// FUNZIONE PER SALVARE NEL DB I DATI RELATIVI ALLE ATTIVITà SVOLTE NEL CANTIERE
-	// ---- DA FARE----
-	private void addProdottoToCantiere(String NomeCantiere, String Categoria, String Prodotto,
-			float Quantita) {
+	// ---- DA RIVEDERE----
+	private void addProdottoToAttivitaCantiere(String NomeCantiere ,String Prodotto, float Quantita) throws SQLException {
+		int idAttivita = db.getIdAttivitaFromNomeCantiere(NomeCantiere);
+		float costoTotale = Quantita*(db.getProductPriceByName(Prodotto));
+		db.insertAttCantProd(idAttivita, Prodotto, Quantita, costoTotale );
 		
 	}
-	private void addPersonaleToCantiere(String NomeCantiere, String Personale, String Desc,
-			float Nore) {
+	private void addPersonaleToAttivitaCantiere(String NomeCantiere, String Personale, float Nore, String Desc) {
+		int idAttivita = db.getIdAttivitaFromNomeCantiere(NomeCantiere);
+		db.insertAttCantPers(idAttivita, Personale, Nore, Desc);
 		
 	}
 
+	
+	
 	// DOPO AVER SCELTO CATEGORIA SETTA VISIBILE IL COMBOBOX DEI PRODOTTI
 	private void jComboBox_Categoria_CantActionPerformed() {
 		String CategoriaSelezionata = jframe_cantiere.getjComboBox_Categoria_Cant().getSelectedItem().toString();
@@ -220,11 +224,6 @@ public class Controller_Cantiere implements ActionListener {
 		}
 	}
 
-	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
-	private void addCategoria(String nomeCategoria) {
-		db.insertNuovaCategoria(nomeCategoria);
-	}
-
 	// AGGIUNGI NUOVO PRODOTTO AD UNA CATEGORIA PIù CONTROLLI DOVUTI PER INPUT
 	// UTENTE
 	private void openDialogForNuovoProdotto() {
@@ -261,6 +260,11 @@ public class Controller_Cantiere implements ActionListener {
 				}
 			}
 		}
+	}
+	
+	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
+	private void addCategoria(String nomeCategoria) {
+		db.insertNuovaCategoria(nomeCategoria);
 	}
 
 	//// SALVARE IN DB NUOVO PRODOTTO(CHIAMATA DA openDialogForNuovoProdotto()) ----

@@ -29,12 +29,12 @@ public class JDialog_NuovoCantiere extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel_NomeCat_POP = new javax.swing.JLabel();
+        jLabel_NomeCant_POP = new javax.swing.JLabel();
         jPanel_Right_NuovoUtente = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel_NuovaCat_POP = new javax.swing.JLabel();
+        jLabel_NuovoCant_POP = new javax.swing.JLabel();
         jTextField_NomeCat_POP = new javax.swing.JTextField();
-        jButton_AggiungiCat_POP = new javax.swing.JButton();
+        jButton_Salva_POP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -43,10 +43,10 @@ public class JDialog_NuovoCantiere extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_NomeCat_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_NomeCat_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_NomeCat_POP.setText("Nome Cantiere");
-        jPanel2.add(jLabel_NomeCat_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 30));
+        jLabel_NomeCant_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_NomeCant_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_NomeCant_POP.setText("Nome Cantiere");
+        jPanel2.add(jLabel_NomeCant_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
@@ -56,25 +56,25 @@ public class JDialog_NuovoCantiere extends javax.swing.JDialog {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
         jPanel_Right_NuovoUtente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, -1, -1));
 
-        jLabel_NuovaCat_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel_NuovaCat_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_NuovaCat_POP.setText("Nuovo Cantiere");
-        jPanel_Right_NuovoUtente.add(jLabel_NuovaCat_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
+        jLabel_NuovoCant_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_NuovoCant_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_NuovoCant_POP.setText("Nuovo Cantiere");
+        jPanel_Right_NuovoUtente.add(jLabel_NuovoCant_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
 
         jTextField_NomeCat_POP.setBackground(new java.awt.Color(255, 255, 255));
         jTextField_NomeCat_POP.setForeground(new java.awt.Color(51, 51, 51));
         jPanel_Right_NuovoUtente.add(jTextField_NomeCat_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 190, -1));
 
-        jButton_AggiungiCat_POP.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_AggiungiCat_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton_AggiungiCat_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_AggiungiCat_POP.setText("Salva");
-        jButton_AggiungiCat_POP.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Salva_POP.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Salva_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_Salva_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_Salva_POP.setText("Salva");
+        jButton_Salva_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_AggiungiCat_POPActionPerformed(evt);
             }
         });
-        jPanel_Right_NuovoUtente.add(jButton_AggiungiCat_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, -1));
+        jPanel_Right_NuovoUtente.add(jButton_Salva_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, -1));
 
         getContentPane().add(jPanel_Right_NuovoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 270, 300));
 
@@ -97,10 +97,10 @@ public class JDialog_NuovoCantiere extends javax.swing.JDialog {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton_AggiungiCat_POP;
+    private javax.swing.JButton jButton_Salva_POP;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_NomeCat_POP;
-    private javax.swing.JLabel jLabel_NuovaCat_POP;
+    private javax.swing.JLabel jLabel_NomeCant_POP;
+    private javax.swing.JLabel jLabel_NuovoCant_POP;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Right_NuovoUtente;
     private javax.swing.JTextField jTextField_NomeCat_POP;

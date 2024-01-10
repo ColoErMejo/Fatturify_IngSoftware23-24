@@ -54,17 +54,60 @@ public class DB {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL);
 			if (conn != null) {
-				Statement stmt = conn.createStatement();
-				String sql = "INSERT INTO CANTIERE VALUES (" + " \"" + NomeCantiere + "\"" + ")";
-				stmt.executeUpdate(sql);
-				stmt.close();
+				
+				String sql = "INSERT INTO CANTIERE (NOMECANTIERE) VALUES (?)";
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, NomeCantiere);
+			    pstmt.executeUpdate();
+			    
+				pstmt.close();
 				conn.close();
-				System.out.println("cantiere inserito con successo");
+				System.out.println("Cantiere " + NomeCantiere + "inserito con successo");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public void insertAttCantProd(int idAttivita, String nomeProdotto, float quantita, float costoTotale) {
+	    String sql = "INSERT INTO ATTIVITACANTPROD (ID_ATTIVITA, Nome_Prodotto, Quantita, Costo_Totale) VALUES (?, ?, ?, ?)";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        pstmt.setString(2, nomeProdotto);
+	        pstmt.setFloat(3, quantita);
+	        pstmt.setFloat(4, costoTotale);
+
+	        pstmt.executeUpdate();
+	        System.out.println("Prodotto aggiunto alle attività del cantiere con successo!");
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public void insertAttCantPers(int idAttivita, String nomeDipendente, float nOre, String descrizione) {
+	    String sql = "INSERT INTO ATTIVITACANTPERSONALE (ID_ATTIVITA, Nome_Dipendente, Nore, Descrizione) VALUES (?, ?, ?, ?)";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        pstmt.setString(2, nomeDipendente);
+	        pstmt.setFloat(3, nOre);
+	        pstmt.setString(4, descrizione);
+
+	        pstmt.executeUpdate();
+	        System.out.println("Dipendente aggiunto alle attività del cantiere con successo!");
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+
 
 	public void insertNuovaCategoria(String NomeCategoria) {
 		try {
@@ -293,6 +336,74 @@ public class DB {
 	        return price;
 	        }
 	
+	public Object[][] getProductsForIdAttivita(int idAttivita) {
+	    ArrayList<Object[]> productList = new ArrayList<>();
+
+	    String sql = "SELECT Nome_Prodotto, Quantita, Costo_Totale " +
+	                 "FROM ATTIVITACANTPROD " +
+	                 "WHERE ID_ATTIVITA = ?";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            String nomeProdotto = rs.getString("Nome_Prodotto");
+	            int quantita = rs.getInt("Quantita");
+	            float prezzoTotale = rs.getFloat("Costo_Totale");
+
+	            Object[] productData = {nomeProdotto, quantita, prezzoTotale};
+	            productList.add(productData);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+
+	    // Converte l'ArrayList in un array bidimensionale di Object
+	    Object[][] productArray = new Object[productList.size()][3];
+	    productList.toArray(productArray);
+	    return productArray;
+	}
+	
+	
+	public Object[][] getPersonalForIdAttivita(int idAttivita) {
+	    ArrayList<Object[]> personalList = new ArrayList<>();
+
+	    String sql = "SELECT Nome_Dipendente, Nore, Descrizione " +
+	                 "FROM ATTIVITACANTPERS " +
+	                 "WHERE ID_ATTIVITA = ?";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        while (rs.next()) {
+	            String nomeDipendente = rs.getString("Nome_Dipendente");
+	            float numeroOre = rs.getFloat("Nore");
+	            String descrizione = rs.getString("Descrizione");
+
+	            Object[] personalData = {nomeDipendente, numeroOre, descrizione};
+	            personalList.add(personalData);
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    // Converte l'ArrayList in un array bidimensionale di Object
+	    Object[][] personalArray = new Object[personalList.size()][3];
+	    personalList.toArray(personalArray);
+	    return personalArray;
+	}
+
+
+	
 	public Object[][] contaProdottiPerCategoria() {
 	    try {
 	        Connection conn = DriverManager.getConnection(DB_URL);
@@ -344,6 +455,28 @@ public class DB {
 	}
 
 
+
+	public int getIdAttivitaFromNomeCantiere(String nomeCantiere) {
+	    int idAttivita = -1; // Valore di default nel caso in cui non venga trovato l'ID
+
+	    String sql = "SELECT ID_ATTIVITA FROM CANTIERE WHERE NOMECANTIERE = ? LIMIT 1";
+	    
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setString(1, nomeCantiere);
+	        ResultSet rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            idAttivita = rs.getInt("ID_ATTIVITA");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return idAttivita;
+	}
 
 
 

@@ -71,13 +71,13 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
                 }
             }
         });
-        jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
+        /*jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 
             	
             	
             }
-        });
+        });*/
     }
 
     
@@ -267,9 +267,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
         
-        //populateTable(jTable_Top_Cant, data, Column_top);
-        //populateTable(jTable_Bot_Cant, data, Column_bot);
-        
+        startAttCantTables();  
         comboBoxvisible(jComboBox_Categoria_Cant);
         comboBoxvisible(jComboBox_Pers_Cant);
         
@@ -285,7 +283,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
+              
         
     }
     	
@@ -308,8 +306,8 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
      */
    
     
-    //public final static String[] Column_top = {"Nome Prodotto", "Quantità", "Costo totale"};
-    //public final static String[] Column_bot = {"Dipendente", "Ore", "Descrizione"};
+    public final static String[] Column_top = {"Nome Prodotto", "Quantità", "Costo totale"};
+    public final static String[] Column_bot = {"Dipendente", "Ore", "Descrizione"};
 
     /*public void populateTable(JTable table,Object[][] data, String[] Column)
     {
@@ -321,8 +319,36 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         };
         table.setModel(tblmodel);
     }*/
-    
-    public void restartTabProd() {
+    public void startAttCantTables() {
+    	restartTabProd();
+    	restartTabPers();
+    	DefaultTableModel modelTop = (DefaultTableModel) jTable_Top_Cant.getModel();
+    	DefaultTableModel modelBot = (DefaultTableModel) jTable_Bot_Cant.getModel();
+    	int idAttivita = db.getIdAttivitaFromNomeCantiere(nomeCantiere);
+    	setTableProdotto(modelTop, idAttivita);
+    	setTablePersonale(modelBot, idAttivita);
+    	System.out.println("Inizializzazione Completata");
+    }
+    private void setTableProdotto(DefaultTableModel model, int idAttivita) {
+    	populateTable(model, db.getProductsForIdAttivita(idAttivita));
+		
+	}
+
+
+	private void setTablePersonale(DefaultTableModel model, int idAttivita) {
+		populateTable(model, db.getPersonalForIdAttivita(idAttivita));
+		
+	}
+	
+	public static void populateTable(DefaultTableModel model, Object[][] prodotti) {
+        // Popola la tabella con i nuovi dati
+        for (Object[] riga : prodotti) {
+            model.addRow(riga);
+        }
+    }
+
+
+	public void restartTabProd() {
         DefaultTableModel model = (DefaultTableModel) jTable_Top_Cant.getModel();
         model.setRowCount(0);
     }

@@ -33,6 +33,8 @@ public class DB_NewDBUtente {
 			createTablePersonale();
 			createTableFatture();
 			createTableCategoria();
+			createTableAttivitaCantProd();
+			createTableAttivitaCantPers();
 		}
 	}
 
@@ -59,11 +61,59 @@ public class DB_NewDBUtente {
 			Connection conn = DriverManager.getConnection(DB_URL);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE CANTIERE ( NOMECANTIERE		TEXT PRIMARY KEY)";
+				String sql = "CREATE TABLE CANTIERE (" +
+						"NOMECANTIERE TEXT, " +
+						"ID_ATTIVITA INT AUTO_INCREMENT, " +
+		                "PRIMARY KEY (NOMECANTIERE, ID_ATTIVITA)" +
+		             ")";
+
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
 				System.out.println("Tabella cantiere creata");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void createTableAttivitaCantProd() {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "CREATE TABLE ATTIVITACANTPROD (" +
+		                "ID_ATTIVITA INT PRIMARY KEY," +
+		                "Nome_Prodotto TEXT," +
+		                "Quantita INT," +
+		                "Costo_Totale FLOAT," +
+		                "FOREIGN KEY (Nome_Prodotto) REFERENCES PRODOTTO(NOME_PRODOTTO)" +
+		                ")";
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+				System.out.println("Tabella Attivita' Prodotto creata");
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void createTableAttivitaCantPers() {
+		try {
+			Connection conn = DriverManager.getConnection(DB_URL);
+			if (conn != null) {
+				Statement stmt = conn.createStatement();
+				String sql = "CREATE TABLE ATTIVITACANTPERS (" +
+		                "ID_ATTIVITA INT PRIMARY KEY," +
+		                "Nome_Dipendente TEXT," +
+		                "Nore INT," +
+		                "Descrizione TEXT," +
+		                "FOREIGN KEY (Nome_Dipendente) REFERENCES PERSONALE(NOME)" +
+		                ")";
+				stmt.executeUpdate(sql);
+				stmt.close();
+				conn.close();
+				System.out.println("Tabella Attivita' Personale creata");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
