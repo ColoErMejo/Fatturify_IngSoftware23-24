@@ -272,7 +272,7 @@ public class DB {
 	       ResultSet rs = null;
 	        try {
 	        	Connection conn = DriverManager.getConnection(DB_URL);
-		        String query = "SELECT PREZZO_UNITARIO FROM PRODOTTO WHERE NOME_PRODOTTO = ? ";
+		        String query = "SELECT PREZZO FROM PRODOTTO WHERE NOME_PRODOTTO = ? ";
 		        PreparedStatement pstmt = conn.prepareStatement(query);
 	            pstmt.setString(1, productName);
 
@@ -281,7 +281,7 @@ public class DB {
 
 	            // Se il prodotto è trovato, ottieni il prezzo
 	            if (rs.next()) {
-	                price = rs.getFloat("PREZZO_UNITARIO");
+	                price = rs.getFloat("PREZZO");
 	            }
 	            rs.close();
 		        pstmt.close();
@@ -292,39 +292,6 @@ public class DB {
 	        	} 
 	        return price;
 	        }
-
-	
-
-	
-	/*public Object[][] contaProdottiPerCategoria() {
-	    try {
-	        Connection conn = DriverManager.getConnection(DB_URL);
-	        Statement stmt = conn.createStatement();
-
-	        String query = "SELECT CATEGORIA, COUNT(*) AS NUMEROPRODOTTI FROM PRODOTTO GROUP BY CATEGORIA";
-	        ResultSet rs = stmt.executeQuery(query);
-
-	        List<Object[]> resultList = new ArrayList<>();
-
-	        while (rs.next()) {
-	            String Categoria = rs.getString("CATEGORIA");
-	            int NumeroProdotti = rs.getInt("NUMEROPRODOTTI");
-	            Object[] categoriaENumero = {Categoria, NumeroProdotti};
-	            resultList.add(categoriaENumero);
-	        }
-
-	        rs.close();
-	        stmt.close();
-	        conn.close();
-
-	        return resultList.toArray(new Object[0][0]);
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        // Gestione delle eccezioni
-	    }
-
-	    return new Object[0][0]; // Se qualcosa va storto, restituisce un array vuoto
-	}*/
 	
 	public Object[][] contaProdottiPerCategoria() {
 	    try {
@@ -693,6 +660,48 @@ public class DB {
 			System.out.println("Dipendente " + nome + " " + cognome + " Aggiornato");
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void deleteDipendente(String nomeDipendente, String cognomeDipendente) {
+    	Connection conn = null;
+    	PreparedStatement pstmt = null;
+
+        try {
+            // Connessione al database
+            Connection conn1 = DriverManager.getConnection(DB_URL);
+            
+            // Query per cancellare la categoria col nome specificato
+            String query = "DELETE FROM PERSONALE WHERE NOME= ? AND COGNOME = ?";
+            
+            // Creazione del prepared statement
+            pstmt = conn1.prepareStatement(query);
+            pstmt.setString(1, nomeDipendente);
+            pstmt.setString(2, cognomeDipendente);
+            
+            // Esecuzione della query per cancellare il dipendente
+            int rowsAffected = pstmt.executeUpdate();
+            
+            // Verifica se la categoria è stata cancellata correttamente
+            if (rowsAffected > 0) {
+                System.out.println("Dipendente " + nomeDipendente + " " + cognomeDipendente + " cancellato con successo.");
+            } else {
+                System.out.println("Nessun Dipendente con il seguente nome: " + nomeDipendente + " " + cognomeDipendente );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Chiusura delle risorse
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     

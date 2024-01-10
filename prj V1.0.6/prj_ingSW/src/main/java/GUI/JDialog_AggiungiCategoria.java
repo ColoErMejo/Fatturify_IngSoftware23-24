@@ -4,11 +4,15 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_AggiungiCategoria extends javax.swing.JDialog {
+	public boolean flag=false;
 
     /**
      * Creates new form JDialog_AggiungiCategoria
@@ -16,6 +20,12 @@ public class JDialog_AggiungiCategoria extends javax.swing.JDialog {
     public JDialog_AggiungiCategoria(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        jButton_AggiungiCat_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	flag=true;
+            }
+        });
     }
 
     /**

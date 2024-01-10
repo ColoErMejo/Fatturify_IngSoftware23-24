@@ -61,13 +61,7 @@ public class Controller_Inventario implements ActionListener{
 		else if (e.getSource() == jFrame_inventario.getjButtonAddCategoria())
 			jButtonAddCategoriaActionPerformed();
 	}
-
-	private void jButtonAddCategoriaActionPerformed() {
-		openDialogForNuovaCategoria();
 		
-
-	}
-
 	private void jButton_Home_InventActionPerformed() {
 		jFrame_principale jframe_principale = new jFrame_principale();
 		Controller_Principale controller_principale = new Controller_Principale(jframe_principale, NomeUtente);
@@ -85,6 +79,24 @@ public class Controller_Inventario implements ActionListener{
 		jFrame_inventario.setVisible(false);
 		System.out.println("open jframe_principale");
 	}
+	
+	private void jButtonAddCategoriaActionPerformed() {
+		JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jFrame_inventario, true);
+		Jdialog_aggiungicategoria.setVisible(true);
+
+		String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
+		if(Jdialog_aggiungicategoria.flag==true) {
+		if (NomeCategoria.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
+		} else {
+			addCategoria(NomeCategoria);
+			if(jFrame_inventario!=null) {
+				jFrame_inventario.aggiornaTabCat();
+				jFrame_inventario.aggiornaTabProd();
+			}
+		}
+		}
+	}
 
 	private void jButton_ChangeCat1ActionPerformed() {
 		JDialog_ModificaCategoria Jdialog_modificacategoria = new JDialog_ModificaCategoria(jFrame_inventario, true, NomeUtente);
@@ -93,7 +105,7 @@ public class Controller_Inventario implements ActionListener{
 		String VecchiaCategoria = Jdialog_modificacategoria.getjComboBox_Categoria_POP().getSelectedItem().toString();
 		String NuovaCategoria = Jdialog_modificacategoria.getjTextField_NomeCategoria_POP().getText();
 		boolean CheckBox = Jdialog_modificacategoria.getjCheckBox1_Elimina().isSelected();
-		
+		if(Jdialog_modificacategoria.flag==true) {
 		boolean ERROR = false;
 		if (VecchiaCategoria.isEmpty()) {
 			JOptionPane.showMessageDialog(Jdialog_modificacategoria, "Selezionare una categoria");
@@ -119,6 +131,7 @@ public class Controller_Inventario implements ActionListener{
 				}
 			}
 		}
+		}
 	
 
 	private void jButton_EliminaCatActionPerformed() {
@@ -126,6 +139,7 @@ public class Controller_Inventario implements ActionListener{
 		Jdialog_eliminacategoria.setVisible(true);
 		
 		String Categoria = Jdialog_eliminacategoria.getjComboBox_Categoria_POP().getSelectedItem().toString();
+		if(Jdialog_eliminacategoria.flag==true) {
 		boolean ERROR = false;
 		if (Categoria.isEmpty()) {
 			JOptionPane.showMessageDialog(Jdialog_eliminacategoria, "Selezionare una categoria");
@@ -145,46 +159,8 @@ public class Controller_Inventario implements ActionListener{
 				e.printStackTrace();
 				}
 			}
-
-	}
-
-	private void jButton_ChangeProdActionPerformed() {
-		JDialog_ModificaProdotto Jdialog_modificaprodotto = new JDialog_ModificaProdotto(jFrame_inventario, true, NomeUtente);
-		Jdialog_modificaprodotto.setVisible(true);
-		
-		String NuovoNomeProdotto = Jdialog_modificaprodotto.getjTextField_NuovoNome_POP().getText().trim();
-		String PrezzoUnitario = Jdialog_modificaprodotto.getjTextField_NuovoPrezzo_POP().getText().trim();
-		String Categoria = Jdialog_modificaprodotto.getjComboBox_Categoria_POP().getSelectedItem().toString();
-		String VecchioNomeProdotto = Jdialog_modificaprodotto.getjComboBox_Prodotto_POP().getSelectedItem().toString();
-		
-		boolean ERROR = false;
-		if (NuovoNomeProdotto.isEmpty()) {
-			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
-			ERROR = true;
-		} else if (PrezzoUnitario.isEmpty()) {
-			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
-			ERROR = true;
 		}
-		if (!ERROR) {
-			boolean errorFloat = true;
-			try {
-				float PrezzoUnitarioFloat = Float.parseFloat(PrezzoUnitario);
-				System.out.println(NuovoNomeProdotto + PrezzoUnitarioFloat + Categoria);
-				errorFloat = false;
-				modificaProdotto(VecchioNomeProdotto, NuovoNomeProdotto, PrezzoUnitarioFloat, Categoria);
-				if(jFrame_inventario!=null) {
-					jFrame_inventario.aggiornaTabProd();
-				}
-			} catch (ArithmeticException e) {
-				e.printStackTrace();
-			} finally {
-				if (errorFloat) {
-					JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "il costo deve essere un numero");
-				}
-			}
-		}
-		
-		
+
 	}
 
 	private void jButton_AddProdActionPerformed() {
@@ -195,7 +171,7 @@ public class Controller_Inventario implements ActionListener{
 		String NomeProdotto = Jdialog_aggiungiprodotto.getjTextField_Nome_POP().getText().trim();
 		String PrezzoUnitario = Jdialog_aggiungiprodotto.getjTextFieldPrezzo_POP().getText().trim();
 		String Categoria = Jdialog_aggiungiprodotto.getjComboBox_Categoria_POP().getSelectedItem().toString();
-
+		if(Jdialog_aggiungiprodotto.flag==true) {
 		boolean ERROR = false;
 		if (NomeProdotto.isEmpty()) {
 			JOptionPane.showMessageDialog(Jdialog_aggiungiprodotto, "i campi non possono essere vuoti");
@@ -226,16 +202,59 @@ public class Controller_Inventario implements ActionListener{
 				}
 			}
 		}
+		}
 
 	}
 
+	
+	private void jButton_ChangeProdActionPerformed() {
+		JDialog_ModificaProdotto Jdialog_modificaprodotto = new JDialog_ModificaProdotto(jFrame_inventario, true, NomeUtente);
+		Jdialog_modificaprodotto.setVisible(true);
+		
+		String NuovoNomeProdotto = Jdialog_modificaprodotto.getjTextField_NuovoNome_POP().getText().trim();
+		String PrezzoUnitario = Jdialog_modificaprodotto.getjTextField_NuovoPrezzo_POP().getText().trim();
+		String Categoria = Jdialog_modificaprodotto.getjComboBox_Categoria_POP().getSelectedItem().toString();
+		String VecchioNomeProdotto = Jdialog_modificaprodotto.getjComboBox_Prodotto_POP().getSelectedItem().toString();
+		if(Jdialog_modificaprodotto.flag==true) {
+		boolean ERROR = false;
+		if (NuovoNomeProdotto.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		} else if (PrezzoUnitario.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "i campi non possono essere vuoti");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			boolean errorFloat = true;
+			try {
+				float PrezzoUnitarioFloat = Float.parseFloat(PrezzoUnitario);
+				System.out.println(NuovoNomeProdotto + PrezzoUnitarioFloat + Categoria);
+				errorFloat = false;
+				modificaProdotto(VecchioNomeProdotto, NuovoNomeProdotto, PrezzoUnitarioFloat, Categoria);
+				if(jFrame_inventario!=null) {
+					jFrame_inventario.aggiornaTabProd();
+				}
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
+			} finally {
+				if (errorFloat) {
+					JOptionPane.showMessageDialog(Jdialog_modificaprodotto, "il costo deve essere un numero");
+				}
+			}
+		}
+		}
+		
+		
+	}
+
+	
 	private void jButton_EliminaProdActionPerformed() {
 		JDialog_EliminaProdotto Jdialog_eliminaprodotto = new JDialog_EliminaProdotto(jFrame_inventario, true, NomeUtente);
 		Jdialog_eliminaprodotto.setVisible(true);
 	
 		String NomeProdotto = (String) Jdialog_eliminaprodotto.getjComboBox_Prodotto_POP().getSelectedItem();
 		
-		
+		if(Jdialog_eliminaprodotto.flag==true) {
 		boolean ERROR = false;
 		if (NomeProdotto.isEmpty()) {
 			JOptionPane.showMessageDialog(Jdialog_eliminaprodotto, "i campi non possono essere vuoti");
@@ -252,6 +271,7 @@ public class Controller_Inventario implements ActionListener{
 			} catch (ArithmeticException e) {
 				e.printStackTrace();
 			}
+		}
 		}
 		
 

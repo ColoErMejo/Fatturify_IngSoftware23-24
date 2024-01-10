@@ -23,6 +23,7 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
 	private static String nomeUtente;
 	private DB db;
     private Return_Avalaible_Data Avalaible_Data;
+    public boolean flag=false;
 	/**
      * Creates new form JDialog_EliminaProdotto
      */
@@ -54,6 +55,11 @@ public class JDialog_EliminaProdotto extends javax.swing.JDialog {
                 for (String prodotto : prodottiCategoria) {
                     jComboBox_Prodotto_POP.addItem(prodotto);
                 }
+            }
+        });
+        jButton_Elimina_Prod_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	flag=true;
             }
         });
     }

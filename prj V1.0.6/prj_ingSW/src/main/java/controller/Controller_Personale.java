@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 
 //import GUI.JDialog_AggiungiCategoria;
 import GUI.JDialog_AggiungiPersonale;
+import GUI.JDialog_EliminaCategoria;
+import GUI.JDialog_EliminaPersonale;
 import GUI.JDialog_ModificaPersonale;
 import GUI.JDialog_ModificaProdotto;
 import GUI.jFrame_Cantiere;
@@ -69,8 +71,28 @@ public class Controller_Personale implements ActionListener {
 	}
 	
 	private void jButton_AddPersonaleActionPerformed() {
-		// AGGIUNGERE FUNZIONE PER SALVARE PERSONALE IN DB
-		openDialogForNuovoDipendente();
+		JDialog_AggiungiPersonale Jdialog_aggiungidipendente = new JDialog_AggiungiPersonale(jframe_personale, true);
+		Jdialog_aggiungidipendente.setVisible(true);
+		String[] parti = Jdialog_aggiungidipendente.getjTextField_Nome_POP().getText().split(" ");
+		String Mansione = Jdialog_aggiungidipendente.getjTextField_Mansione_POP().getText();
+		float PagaOraria = Float.parseFloat(Jdialog_aggiungidipendente.getjTextField_Paga_POP().getText());
+		if (parti.length >= 2) {
+            NomeDipendente = parti[0];
+            CognomeDipendente = parti[1]; // Considera lo spazio tra nome e cognome
+        } else {
+            JOptionPane.showMessageDialog(null, "Inserisci sia il nome che il cognome separati da uno spazio.");
+        }
+		
+		 if(Jdialog_aggiungidipendente.flag==true) {
+			 if (NomeDipendente.isEmpty()|| CognomeDipendente.isEmpty()|| Mansione.isEmpty() || PagaOraria==0 ) {
+					JOptionPane.showMessageDialog(Jdialog_aggiungidipendente, "i campi non possono essere vuoti");
+				} else {
+					addDipendente(NomeDipendente, CognomeDipendente, Mansione, PagaOraria);
+					if(jframe_personale!=null) {
+						jframe_personale.aggiornaTabPers();
+					}
+				}
+		 }
 	}
 
 	private void jButton_ModificaPersonaleActionPerformed() {
@@ -92,7 +114,7 @@ public class Controller_Personale implements ActionListener {
         }
 		
         System.out.println("split corretto: " + nome + cognome);
-		
+        if(Jdialog_modificapersonale.flag==true) {
 		boolean ERROR = false;
 		if (NomeDipendente.isEmpty()) {
 			JOptionPane.showMessageDialog(Jdialog_modificapersonale, "i campi non possono essere vuoti");
@@ -119,36 +141,50 @@ public class Controller_Personale implements ActionListener {
 				}
 			}
 		}
+        }
 		
 		
 	}
 
 	private void jButton_EliminaPersonaleActionPerformed() {
 		// AGGIUNGERE FUNZIONE PER ELIMINARE PERSONALE IN DB
-	}
-	
-	// AGGIUNGE NUOVO DIPENDENTE
-	private void openDialogForNuovoDipendente() {
-				JDialog_AggiungiPersonale Jdialog_aggiungidipendente = new JDialog_AggiungiPersonale(jframe_personale, true);
-				Jdialog_aggiungidipendente.setVisible(true);
-				String[] parti = Jdialog_aggiungidipendente.getjTextField_Nome_POP().getText().split(" ");
-				String Mansione = Jdialog_aggiungidipendente.getjTextField_Mansione_POP().getText();
-				float PagaOraria = Float.parseFloat(Jdialog_aggiungidipendente.getjTextField_Paga_POP().getText());
-				if (parti.length >= 2) {
-		            NomeDipendente = parti[0];
-		            CognomeDipendente = parti[1]; // Considera lo spazio tra nome e cognome
-		        } else {
-		            JOptionPane.showMessageDialog(null, "Inserisci sia il nome che il cognome separati da uno spazio.");
-		        }
-				if (NomeDipendente.isEmpty()|| CognomeDipendente.isEmpty()|| Mansione.isEmpty() || PagaOraria==0 ) {
-					JOptionPane.showMessageDialog(Jdialog_aggiungidipendente, "i campi non possono essere vuoti");
-				} else {
-					addDipendente(NomeDipendente, CognomeDipendente, Mansione, PagaOraria);
-					if(jframe_personale!=null) {
-						jframe_personale.aggiornaTabPers();
-					}
+		JDialog_EliminaPersonale Jdialog_eliminapersonale = new JDialog_EliminaPersonale(jframe_personale, true, nomeUtente);
+		Jdialog_eliminapersonale.setVisible(true);
+		
+		String Personale = Jdialog_eliminapersonale.getjComboBox_EliminaPersonale_POP().getSelectedItem().toString();
+		String[] parti = Personale.split(" ");
+		String nome = null;
+		String cognome = null;
+
+        if (parti.length == 2) {
+            nome = parti[0]; // Prima parte come nome
+            cognome = parti[1]; // Seconda parte come cognome
+        }
+		
+        System.out.println("split corretto: " + nome + cognome);
+		if(Jdialog_eliminapersonale.flag==true) {
+		boolean ERROR = false;
+		if (nome.isEmpty() || cognome.isEmpty()) {
+			JOptionPane.showMessageDialog(Jdialog_eliminapersonale, "Selezionare un Dipendente");
+			ERROR = true;
+		}
+		if (!ERROR) {
+			try {
+				System.out.println(Personale);
+				//JOptionPane.showMessageDialog(Jdialog_eliminapersonale, "Eliminando questa categoria, verranno rimossi anche tutti i prodotti ad essa associati");
+				eliminaDipendente(nome, cognome);
+				if(jframe_personale!=null) {
+					jframe_personale.aggiornaTabPers();
+				}
+				
+			} catch (ArithmeticException e) {
+				e.printStackTrace();
 				}
 			}
+		}
+
+	}
+	
 
 	private void addDipendente(String nomeDipendente2, String cognomeDipendente2, String mansione2, float paga2) {
 		Dipendente dip=new Dipendente(NomeDipendente, CognomeDipendente, mansione2, paga2);
@@ -175,6 +211,11 @@ public class Controller_Personale implements ActionListener {
 	    } else {
 	        System.out.println("Il Dipendente " + dip + " non esiste nel database.");
 	    }
+	}
+	
+	private void eliminaDipendente(String nome, String cognome) {
+		db.deleteDipendente(nome, cognome);
+		
 	}
 			
 }

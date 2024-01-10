@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
@@ -19,6 +21,7 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
 	private static  String nomeUtente;
 	private Return_Avalaible_Data Return_avalaible_data = new Return_Avalaible_Data();
 	private DB db;
+	public boolean flag=false;
 
     /**
      * Creates new form JDialog_ModificaPersonale
@@ -29,6 +32,12 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
         this.nomeUtente=nomeUtente;
 		this.db=new DB(nomeUtente);
         initComponents();
+        
+        jButton_ModificaPers_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	flag=true;
+            }
+        });
     }
 
     /**
@@ -168,6 +177,7 @@ public class JDialog_ModificaPersonale extends javax.swing.JDialog {
 	public void setjTextField_NuovaPagaOraria_POP(javax.swing.JTextField jTextField_NuovaPagaOraria_POP) {
 		this.jTextField_NuovaPagaOraria_POP = jTextField_NuovaPagaOraria_POP;
 	}
+	
 
 	/**
      * @param args the command line arguments

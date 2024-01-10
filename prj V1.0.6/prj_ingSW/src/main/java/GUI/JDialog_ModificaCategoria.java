@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 import javax.swing.JComboBox;
@@ -19,6 +21,7 @@ public class JDialog_ModificaCategoria extends javax.swing.JDialog {
 	private static String nomeUtente;
 	private DB db;
 	private Return_Avalaible_Data Avalaible_Data;
+	public boolean flag=false;
 
     /**
      * Creates new form NewJDialog
@@ -29,6 +32,12 @@ public class JDialog_ModificaCategoria extends javax.swing.JDialog {
         this.db= new DB(nomeUtente);
         this.Avalaible_Data= new Return_Avalaible_Data();
         initComponents();
+        
+        jButton_ModificaCat_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	flag=true;
+            }
+        });
     }
 
     /**

@@ -4,18 +4,41 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JComboBox;
+
+import controller.Return_Avalaible_Data;
+import database.DB;
+
 /**
  *
  * @author Merlo
  */
 public class JDialog_EliminaPersonale extends javax.swing.JDialog {
+	private static  String nomeUtente;
+	private Return_Avalaible_Data Return_avalaible_data = new Return_Avalaible_Data();
+	private DB db;
+	public boolean flag=false;
+	
 
     /**
      * Creates new form JDialog_EliminaPersonale
      */
-    public JDialog_EliminaPersonale(java.awt.Frame parent, boolean modal) {
+    public JDialog_EliminaPersonale(java.awt.Frame parent, boolean modal, String nomeUtente) {
         super(parent, modal);
+        this.nomeUtente=nomeUtente;
+		this.db=new DB(nomeUtente);
+		this.Return_avalaible_data= new Return_Avalaible_Data();
         initComponents();
+        
+        jButton_EliminaPers_POP.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	flag=true;
+            }
+        });
     }
 
     /**
@@ -29,9 +52,9 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel_Nome_POP = new javax.swing.JLabel();
-        jPanel_Right_NuovoUtente = new javax.swing.JPanel();
+        jPanel_Right_Elimina = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel_NuovoUtente_POP = new javax.swing.JLabel();
+        jLabel_EliminaPers_POP = new javax.swing.JLabel();
         jButton_EliminaPers_POP = new javax.swing.JButton();
         jComboBox_EliminaPersonale_POP = new javax.swing.JComboBox<>();
 
@@ -49,16 +72,16 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
-        jPanel_Right_NuovoUtente.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel_Right_NuovoUtente.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel_Right_Elimina.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel_Right_Elimina.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
-        jPanel_Right_NuovoUtente.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, -1, -1));
+        jPanel_Right_Elimina.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 50, -1, -1));
 
-        jLabel_NuovoUtente_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel_NuovoUtente_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_NuovoUtente_POP.setText("Elimina Personale");
-        jPanel_Right_NuovoUtente.add(jLabel_NuovoUtente_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
+        jLabel_EliminaPers_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_EliminaPers_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_EliminaPers_POP.setText("Elimina Personale");
+        jPanel_Right_Elimina.add(jLabel_EliminaPers_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 200, 30));
 
         jButton_EliminaPers_POP.setBackground(new java.awt.Color(255, 255, 255));
         jButton_EliminaPers_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -69,25 +92,40 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
                 jButton_EliminaPers_POPActionPerformed(evt);
             }
         });
-        jPanel_Right_NuovoUtente.add(jButton_EliminaPers_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, -1));
+        jPanel_Right_Elimina.add(jButton_EliminaPers_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 100, -1));
 
         jComboBox_EliminaPersonale_POP.setBackground(new java.awt.Color(255, 255, 255));
         jComboBox_EliminaPersonale_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jComboBox_EliminaPersonale_POP.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox_EliminaPersonale_POP.setMaximumRowCount(200);
-        jComboBox_EliminaPersonale_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_EliminaPersonale_POP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] {}));
         jComboBox_EliminaPersonale_POP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_EliminaPersonale_POPActionPerformed(evt);
             }
         });
-        jPanel_Right_NuovoUtente.add(jComboBox_EliminaPersonale_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 190, -1));
+        jPanel_Right_Elimina.add(jComboBox_EliminaPersonale_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 190, -1));
 
-        getContentPane().add(jPanel_Right_NuovoUtente, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 270, 300));
+        getContentPane().add(jPanel_Right_Elimina, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 270, 300));
 
         pack();
         setLocationRelativeTo(null);
+        
+        try {
+			populatejComboBox(jComboBox_EliminaPersonale_POP, Return_avalaible_data.extractNames(db.SelectPersonale()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void populatejComboBox(JComboBox<String> comboBox,String[] items)
+    {
+    	for (String item : items) {
+            comboBox.addItem(item);
+        }
+    }
+    
 
     private void jButton_EliminaPers_POPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EliminaPers_POPActionPerformed
         // TODO add your handling code here:
@@ -98,7 +136,16 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_EliminaPersonale_POPActionPerformed
 
-    /**
+    public javax.swing.JComboBox<String> getjComboBox_EliminaPersonale_POP() {
+		return jComboBox_EliminaPersonale_POP;
+	}
+
+	public void setjComboBox_EliminaPersonale_POP(javax.swing.JComboBox<String> jComboBox_EliminaPersonale_POP) {
+		this.jComboBox_EliminaPersonale_POP = jComboBox_EliminaPersonale_POP;
+	}
+
+
+	/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -128,7 +175,7 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JDialog_EliminaPersonale dialog = new JDialog_EliminaPersonale(new javax.swing.JFrame(), true);
+                JDialog_EliminaPersonale dialog = new JDialog_EliminaPersonale(new javax.swing.JFrame(), true, nomeUtente);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -145,8 +192,8 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBox_EliminaPersonale_POP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Nome_POP;
-    private javax.swing.JLabel jLabel_NuovoUtente_POP;
+    private javax.swing.JLabel jLabel_EliminaPers_POP;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel_Right_NuovoUtente;
+    private javax.swing.JPanel jPanel_Right_Elimina;
     // End of variables declaration//GEN-END:variables
 }
