@@ -69,14 +69,14 @@ public class DB {
 		}
 	}
 	
-	public void insertAttCantProd(int idAttivita, String nomeProdotto, float quantita, float costoTotale) {
-	    String sql = "INSERT INTO ATTIVITACANTPROD (ID_ATTIVITA, Nome_Prodotto, Quantita, Costo_Totale) VALUES (?, ?, ?, ?)";
+	public void insertAttCantProd(int idAttivita, String Codice_Prodotto, float quantita, float costoTotale) {
+	    String sql = "INSERT INTO ATTIVITACANTPROD (ID_ATTIVITA, ID_Prodotto, Quantita, Costo_Totale) VALUES (?, ?, ?, ?)";
 
 	    try (Connection conn = DriverManager.getConnection(DB_URL);
 	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 	        pstmt.setInt(1, idAttivita);
-	        pstmt.setString(2, nomeProdotto);
+	        pstmt.setString(2, Codice_Prodotto);
 	        pstmt.setFloat(3, quantita);
 	        pstmt.setFloat(4, costoTotale);
 
@@ -88,14 +88,56 @@ public class DB {
 	    }
 	}
 	
-	public void insertAttCantPers(int idAttivita, String nomeDipendente, float nOre, String descrizione) {
-	    String sql = "INSERT INTO ATTIVITACANTPERSONALE (ID_ATTIVITA, Nome_Dipendente, Nore, Descrizione) VALUES (?, ?, ?, ?)";
+	public void updateQuantitaProdotto(int idAttivita, String idProdotto, float nuovaQuantita) {
+	    String sql = "UPDATE ATTIVITACANTPROD SET Quantita = ? WHERE ID_ATTIVITA = ? AND ID_Prodotto = ?";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setFloat(1, nuovaQuantita);
+	        pstmt.setInt(2, idAttivita);
+	        pstmt.setString(3, idProdotto);
+
+	        pstmt.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	public boolean isProdottoInAttivita(int idAttivita, String idProdotto) {
+	    String sql = "SELECT COUNT(*) AS count FROM ATTIVITACANTPROD WHERE ID_ATTIVITA = ? AND ID_Prodotto = ?";
 
 	    try (Connection conn = DriverManager.getConnection(DB_URL);
 	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 	        pstmt.setInt(1, idAttivita);
-	        pstmt.setString(2, nomeDipendente);
+	        pstmt.setString(2, idProdotto);
+
+	        try (ResultSet resultSet = pstmt.executeQuery()) {
+	            if (resultSet.next()) {
+	                int count = resultSet.getInt("count");
+	                return count > 0; // Se count è maggiore di 0, il prodotto è presente
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false; // In caso di errore o nessun risultato
+	}
+
+
+	
+	public void insertAttCantPers(int idAttivita, String ID_Personale, float nOre, String descrizione) {
+	    String sql = "INSERT INTO ATTIVITACANTPERS (ID_ATTIVITA, ID_Dipendente, Nore, Descrizione) VALUES (?, ?, ?, ?)";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        pstmt.setString(2, ID_Personale);
 	        pstmt.setFloat(3, nOre);
 	        pstmt.setString(4, descrizione);
 
@@ -106,6 +148,49 @@ public class DB {
 	        e.printStackTrace();
 	    }
 	}
+	
+	public void updateOreDescPersonale(int idAttivita, String idPersonale, float nOre, String descrizione) {
+	    String sql = "UPDATE ATTIVITACANTPERS SET Nore = ?, Descrizione = ? WHERE ID_ATTIVITA = ? AND ID_Dipendente = ?";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setFloat(1, nOre);
+	        pstmt.setString(2, descrizione);
+	        pstmt.setInt(3, idAttivita);
+	        pstmt.setString(4, idPersonale);
+
+	        pstmt.executeUpdate();
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+
+	
+	public boolean isPersonaleInAttivita(int idAttivita, String idDipendente) {
+	    String sql = "SELECT COUNT(*) AS count FROM ATTIVITACANTPERS WHERE ID_ATTIVITA = ? AND ID_Dipendente = ?";
+
+	    try (Connection conn = DriverManager.getConnection(DB_URL);
+	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+	        pstmt.setInt(1, idAttivita);
+	        pstmt.setString(2, idDipendente);
+
+	        try (ResultSet resultSet = pstmt.executeQuery()) {
+	            if (resultSet.next()) {
+	                int count = resultSet.getInt("count");
+	                return count > 0; // Se count è maggiore di 0, il dipendente è presente
+	            }
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+
+	    return false; // In caso di errore o nessun risultato
+	}
+
 
 
 
@@ -339,20 +424,34 @@ public class DB {
 	public Object[][] getProductsForIdAttivita(int idAttivita) {
 	    ArrayList<Object[]> productList = new ArrayList<>();
 
-	    String sql = "SELECT Nome_Prodotto, Quantita, Costo_Totale " +
-	                 "FROM ATTIVITACANTPROD " +
-	                 "WHERE ID_ATTIVITA = ?";
+	    String sqlSelect = "SELECT ID_Prodotto, Quantita, Costo_Totale " +
+	                       "FROM ATTIVITACANTPROD " +
+	                       "WHERE ID_ATTIVITA = ?";
+
+	    String sqlProductName = "SELECT NOME_PRODOTTO " +
+	                            "FROM PRODOTTO " +
+	                            "WHERE Codice_Prodotto = ?";
 
 	    try (Connection conn = DriverManager.getConnection(DB_URL);
-	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	         PreparedStatement pstmtSelect = conn.prepareStatement(sqlSelect);
+	         PreparedStatement pstmtProductName = conn.prepareStatement(sqlProductName)) {
 
-	        pstmt.setInt(1, idAttivita);
-	        ResultSet rs = pstmt.executeQuery();
+	        pstmtSelect.setInt(1, idAttivita);
+	        ResultSet rs = pstmtSelect.executeQuery();
 
 	        while (rs.next()) {
-	            String nomeProdotto = rs.getString("Nome_Prodotto");
+	            String IDProdotto = rs.getString("ID_Prodotto");
 	            int quantita = rs.getInt("Quantita");
 	            float prezzoTotale = rs.getFloat("Costo_Totale");
+
+	            // Eseguire la query per ottenere il nome del prodotto
+	            pstmtProductName.setString(1, IDProdotto);
+	            ResultSet rsProductName = pstmtProductName.executeQuery();
+
+	            String nomeProdotto = "";
+	            if (rsProductName.next()) {
+	                nomeProdotto = rsProductName.getString("NOME_PRODOTTO");
+	            }
 
 	            Object[] productData = {nomeProdotto, quantita, prezzoTotale};
 	            productList.add(productData);
@@ -361,7 +460,6 @@ public class DB {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-	    
 
 	    // Converte l'ArrayList in un array bidimensionale di Object
 	    Object[][] productArray = new Object[productList.size()][3];
@@ -373,22 +471,36 @@ public class DB {
 	public Object[][] getPersonalForIdAttivita(int idAttivita) {
 	    ArrayList<Object[]> personalList = new ArrayList<>();
 
-	    String sql = "SELECT Nome_Dipendente, Nore, Descrizione " +
-	                 "FROM ATTIVITACANTPERS " +
-	                 "WHERE ID_ATTIVITA = ?";
+	    String sqlSelect = "SELECT ID_Dipendente, Nore, Descrizione " +
+	                       "FROM ATTIVITACANTPERS " +
+	                       "WHERE ID_ATTIVITA = ?";
+
+	    String sqlPersonalName = "SELECT NOME || ' ' || COGNOME AS NomeCompleto " +
+	                             "FROM PERSONALE " +
+	                             "WHERE ID_PERSONALE = ?";
 
 	    try (Connection conn = DriverManager.getConnection(DB_URL);
-	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	         PreparedStatement pstmtSelect = conn.prepareStatement(sqlSelect);
+	         PreparedStatement pstmtPersonalName = conn.prepareStatement(sqlPersonalName)) {
 
-	        pstmt.setInt(1, idAttivita);
-	        ResultSet rs = pstmt.executeQuery();
+	        pstmtSelect.setInt(1, idAttivita);
+	        ResultSet rs = pstmtSelect.executeQuery();
 
 	        while (rs.next()) {
-	            String nomeDipendente = rs.getString("Nome_Dipendente");
+	            String ID_Dipendente = rs.getString("ID_Dipendente");
 	            float numeroOre = rs.getFloat("Nore");
 	            String descrizione = rs.getString("Descrizione");
 
-	            Object[] personalData = {nomeDipendente, numeroOre, descrizione};
+	            // Eseguire la query per ottenere il nome completo del dipendente
+	            pstmtPersonalName.setString(1, ID_Dipendente);
+	            ResultSet rsPersonalName = pstmtPersonalName.executeQuery();
+
+	            String nomeCompleto = "";
+	            if (rsPersonalName.next()) {
+	                nomeCompleto = rsPersonalName.getString("NomeCompleto");
+	            }
+
+	            Object[] personalData = {nomeCompleto, numeroOre, descrizione};
 	            personalList.add(personalData);
 	        }
 
@@ -401,7 +513,6 @@ public class DB {
 	    personalList.toArray(personalArray);
 	    return personalArray;
 	}
-
 
 	
 	public Object[][] contaProdottiPerCategoria() {
@@ -853,6 +964,52 @@ public class DB {
 			System.out.println(e.getMessage());
 		}
 	}
+
+    public String getCodiceProdottoByNome(String nomeProdotto) {
+        String codiceProdotto = null;
+
+        try (Connection connection = DriverManager.getConnection(DB_URL)) {
+            String query = "SELECT CODICE_PRODOTTO FROM PRODOTTO WHERE NOME_PRODOTTO = ?";
+            
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, nomeProdotto);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        codiceProdotto = resultSet.getString("CODICE_PRODOTTO");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return codiceProdotto;
+    }
+
+    public String getIDPersonaleByNomeCognome(String nome, String cognome) {
+        String idPersonale = null;
+
+        try (Connection connection = DriverManager.getConnection(DB_URL)) {
+            String query = "SELECT ID_PERSONALE FROM PERSONALE WHERE NOME = ? AND COGNOME = ?";
+            
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setString(1, nome);
+                preparedStatement.setString(2, cognome);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        idPersonale = resultSet.getString("ID_PERSONALE");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return idPersonale;
+    }
+
     
     /*public void insertIntoNewCantiere(String NomeCantiere, String Categoria, String Prodotto, float Quantita) {
     	try {

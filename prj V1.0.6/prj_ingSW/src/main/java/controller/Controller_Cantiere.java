@@ -85,7 +85,7 @@ public class Controller_Cantiere implements ActionListener {
 		if (checkInserimento(QuantitaSelezionata)) {
 			if (textIsFloat(QuantitaSelezionata)) {
 				float QuantitaSelezionataFloat = textTurnIntoFloat(QuantitaSelezionata);
-				addProdottoToAttivitaCantiere(jframe_cantiere.getNomeCantiere(), CategoriaSelezionata, QuantitaSelezionataFloat);
+				addProdottoToAttivitaCantiere(jframe_cantiere.getNomeCantiere(), ProdottoSelezionato, QuantitaSelezionataFloat);
 				System.out.println(jframe_cantiere.getNomeCantiere() + " - " + CategoriaSelezionata + " - "
 						+ ProdottoSelezionato + " - " + QuantitaSelezionataFloat + " - ");
 			}
@@ -141,12 +141,33 @@ public class Controller_Cantiere implements ActionListener {
 	private void addProdottoToAttivitaCantiere(String NomeCantiere ,String Prodotto, float Quantita) throws SQLException {
 		int idAttivita = db.getIdAttivitaFromNomeCantiere(NomeCantiere);
 		float costoTotale = Quantita*(db.getProductPriceByName(Prodotto));
-		db.insertAttCantProd(idAttivita, Prodotto, Quantita, costoTotale );
+		String codice = db.getCodiceProdottoByNome(Prodotto);
+		if((db.isProdottoInAttivita(idAttivita, codice)==false)){
+		db.insertAttCantProd(idAttivita, codice, Quantita, costoTotale );
+		}
+		else{
+			db.updateQuantitaProdotto(idAttivita, codice, Quantita);
+		};
 		
 	}
 	private void addPersonaleToAttivitaCantiere(String NomeCantiere, String Personale, float Nore, String Desc) {
 		int idAttivita = db.getIdAttivitaFromNomeCantiere(NomeCantiere);
-		db.insertAttCantPers(idAttivita, Personale, Nore, Desc);
+		String[] parti = Personale.split(" ");
+		String nome = null;
+		String cognome = null;
+
+        if (parti.length == 2) {
+            nome = parti[0]; // Prima parte come nome
+            cognome = parti[1]; // Seconda parte come cognome
+        }
+		String codice = db.getIDPersonaleByNomeCognome(nome, cognome);
+		if((db.isPersonaleInAttivita(idAttivita, codice)==false)){
+			db.insertAttCantPers(idAttivita, codice, Nore, Desc);
+			}
+			else{
+				db.updateOreDescPersonale(idAttivita, codice, Nore, Desc);
+			};
+		
 		
 	}
 

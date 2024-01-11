@@ -63,8 +63,7 @@ public class DB_NewDBUtente {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE CANTIERE (" +
 						"NOMECANTIERE TEXT, " +
-						"ID_ATTIVITA INT AUTO_INCREMENT, " +
-		                "PRIMARY KEY (NOMECANTIERE, ID_ATTIVITA)" +
+						"ID_ATTIVITA INTEGER PRIMARY KEY AUTOINCREMENT " +
 		             ")";
 
 				stmt.executeUpdate(sql);
@@ -83,12 +82,15 @@ public class DB_NewDBUtente {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE ATTIVITACANTPROD (" +
-		                "ID_ATTIVITA INT PRIMARY KEY," +
-		                "Nome_Prodotto TEXT," +
-		                "Quantita INT," +
+		                "ID_ATTIVITA INT," +
+		                "ID_Prodotto TEXT," +
+		                "Quantita FLOAT," +
 		                "Costo_Totale FLOAT," +
-		                "FOREIGN KEY (Nome_Prodotto) REFERENCES PRODOTTO(NOME_PRODOTTO)" +
+		                "PRIMARY KEY (ID_ATTIVITA, ID_Prodotto)," +
+		                "FOREIGN KEY (ID_ATTIVITA) REFERENCES CANTIERE(ID_ATTIVITA)," +
+		                "FOREIGN KEY (ID_Prodotto) REFERENCES PRODOTTO(CODICE_PRODOTTO)" +
 		                ")";
+
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
@@ -104,12 +106,15 @@ public class DB_NewDBUtente {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE ATTIVITACANTPERS (" +
-		                "ID_ATTIVITA INT PRIMARY KEY," +
-		                "Nome_Dipendente TEXT," +
+		                "ID_ATTIVITA INT," +
+		                "ID_Dipendente TEXT," +
 		                "Nore INT," +
 		                "Descrizione TEXT," +
-		                "FOREIGN KEY (Nome_Dipendente) REFERENCES PERSONALE(NOME)" +
+		                "PRIMARY KEY (ID_ATTIVITA, ID_Dipendente)," +
+		                "FOREIGN KEY (ID_ATTIVITA) REFERENCES CANTIERE(ID_ATTIVITA)," +
+		                "FOREIGN KEY (ID_Dipendente) REFERENCES PERSONALE(ID_PERSONALE)" +
 		                ")";
+
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
@@ -125,8 +130,10 @@ public class DB_NewDBUtente {
 			Connection conn = DriverManager.getConnection(DB_URL);
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
-				String sql = "CREATE TABLE PRODOTTO (" + "CODICE_PRODOTTO  TEXT PRIMARY KEY," + "NOME_PRODOTTO    TEXT,"
-						 + "PREZZO           DECIMAL(10, 2)," + "CATEGORIA      TEXT)";
+				String sql = "CREATE TABLE PRODOTTO (" + "CODICE_PRODOTTO  TEXT PRIMARY KEY," + 
+							 "NOME_PRODOTTO    TEXT," +
+							 "PREZZO           DECIMAL(10, 2)," +
+							 "CATEGORIA      TEXT)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();

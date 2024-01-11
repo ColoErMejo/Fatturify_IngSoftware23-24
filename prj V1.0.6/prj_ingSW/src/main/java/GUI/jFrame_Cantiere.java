@@ -71,13 +71,11 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
                 }
             }
         });
-        /*jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
+        jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
-            	
-            	
+            	startAttCantTables();  	
             }
-        });*/
+        });
     }
 
     
