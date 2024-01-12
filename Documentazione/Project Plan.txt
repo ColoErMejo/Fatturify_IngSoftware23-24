@@ -14,7 +14,7 @@ Modello di processo
 Caratteristiche Principali: Lo sviluppo incrementale prevede la suddivisione del progetto in parti più piccole, chiamate incrementi, ciascuno dei quali implementa e rilascia una porzione specifica delle funzionalità richieste. Ogni incremento aggiunge nuove funzionalità o migliora quelle esistenti. Questo modello consente di rilasciare parti del software più rapidamente, consentendo un feedback tempestivo dagli utenti e facilitando adattamenti in corso d'opera. 
 
 Organizzazione del progetto
-  Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in modo da tracciare una linea generale sul da farsi. 
+  Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in modo da tracciare una linea generale sui task da eseguire. 
  La documentazione riguarda sia la fase iniziale, centrale e finale del progetto. Per la fase di sviluppo abbiamo usato i vari diagrammi messi a disposizione da UML,per poi partire con l’implementazione dell’idea.
  In particolare, il team si incontra costantemente per verificare il lavoro svolto dall'ultimo meet e pianificare i passaggi successivi.
 
@@ -23,14 +23,15 @@ Alla fine di ogni sprint bisogna creare un report in cui specificare gli obietti
 
 Attività di gestione
 Abbiamo usato il paradigma Capo squadra programmatore in cui:
-programmatore:Gabriele Merli
+Programmatore: Gabriele Merli
 Assistente campo: Lorenzo Colombo
 Design: Poggiu Carlo Alberto    
 
 
 Rischi:
- Nel nostro caso il principale rischio è la gestione grafica e del codice per lo sviluppo dell’idea.
+Nel nostro caso il principale rischio è la gestione grafica e del codice per lo sviluppo dell’idea.
 Il tutto però viene risolto con l’ausilio di strumenti aggiuntivi e con l’unione delle competenze maturate durante l’anno accademico.
+Un altro rischio per la gestione errata riguarda il database e la struttura di quest'ultimo che deve rispettare determinati vincoli e regole da non dimenticare durante l'implementazione.
 
 Personale:
 Utilizzando una modalità di sviluppo SWAT che ci permette di coordinare il lavoro in modo intelligente e graduale.
@@ -42,7 +43,7 @@ Diagramma delle classi (per la fase di progettazione)
 Diagramma di stato 
 Diagramma di attività 
 Diagramma di componenti 
-Per la fase di implementazione e di test utilizziamo Java e junit
+Per la fase di implementazione e di test utilizziamo Java e jUnit
 
 Garanzie di qualità
 Per mantenere l'integrità del nostro codice, adottiamo strumenti collaborativi come GitHub e applichiamo le competenze tecniche acquisite durante l'anno accademico per assicurare la conformità del software. 
@@ -53,7 +54,7 @@ Could have: Mezzi utilizzati per i lavori, certificato lavoratori
 Pacchetti di lavoro
 I ruoli sono divisi equamente sulla base della complessità del progetto
 Gabriele Merli: Si occuperà della programmazione delle parti fondamentali dell'idea
-Lorenzo Colombo: Si occuperà anche lui della programmazione del software curando anche i diagrammi UML per permettere una visione a 360° del progetto
+Lorenzo Colombo: Si occuperà anche lui della programmazione del software, correzioni grafiche e gestione del database, curando anche i diagrammi UML per permettere una visione a 360° del progetto
 Carlo Alberto Poggiu: Si occuperà anche lui della progrtammazione e delineamento del database con mansione principale puntata sul design del software.
 
 Risorse
@@ -61,6 +62,7 @@ Le tecnologie utilizzate sono:
 Java con le relative librerie aggiuntive 
 GitHub per il lavoro condiviso
 Canva UI/UX design
+DB Browser (SQLite)
 
 Cambiamenti
 I cambiamenti verranno gestiti tramite gli incontri settimanali fissati per discutere il progetto per poi in caso positivo apportare le modifiche su GitHub 
