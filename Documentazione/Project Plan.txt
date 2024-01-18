@@ -25,7 +25,7 @@ Attività di gestione
 Abbiamo usato il paradigma Capo squadra programmatore in cui:
 Programmatore: Gabriele Merli
 Assistente campo: Lorenzo Colombo
-Design: Poggiu Carlo Alberto    
+Design e Documentazione: Poggiu Carlo Alberto    
 
 
 Rischi:
@@ -47,15 +47,15 @@ Per la fase di implementazione e di test utilizziamo Java e jUnit
 
 Garanzie di qualità
 Per mantenere l'integrità del nostro codice, adottiamo strumenti collaborativi come GitHub e applichiamo le competenze tecniche acquisite durante l'anno accademico per assicurare la conformità del software. 
-Must have:interfaccia grafica
-Should have: Elenco fatture, possibilità di esportare i file in excel
+Must have: Interfaccia grafica e funzioni gestionali
+Should have: Elenco fatture, possibilità di esportare i file in excel/txt
 Could have: Mezzi utilizzati per i lavori, certificato lavoratori
   
 Pacchetti di lavoro
 I ruoli sono divisi equamente sulla base della complessità del progetto
 Gabriele Merli: Si occuperà della programmazione delle parti fondamentali dell'idea
 Lorenzo Colombo: Si occuperà anche lui della programmazione del software, correzioni grafiche e gestione del database, curando anche i diagrammi UML per permettere una visione a 360° del progetto
-Carlo Alberto Poggiu: Si occuperà anche lui della progrtammazione e delineamento del database con mansione principale puntata sul design del software.
+Carlo Alberto Poggiu: Si occuperà anche lui della progrtammazione e delineamento del database con mansione principale puntata sulla produzione della documentazione.
 
 Risorse
 Le tecnologie utilizzate sono: 
