@@ -319,23 +319,6 @@ public class Controller_Inventario implements ActionListener{
 		db.deleteProdotto(NomeProdotto);
 	}
 	
-	// AGGIUNGE NUOVA CATEGORIA
-		private void openDialogForNuovaCategoria() {
-				JDialog_AggiungiCategoria Jdialog_aggiungicategoria = new JDialog_AggiungiCategoria(jFrame_inventario, true);
-				Jdialog_aggiungicategoria.setVisible(true);
-
-				String NomeCategoria = Jdialog_aggiungicategoria.getjTextField_NomeCat_POP().getText().trim();
-				if (NomeCategoria.isEmpty()) {
-					JOptionPane.showMessageDialog(Jdialog_aggiungicategoria, "i campi non possono essere vuoti");
-				} else {
-					addCategoria(NomeCategoria);
-					if(jFrame_inventario!=null) {
-						jFrame_inventario.aggiornaTabCat();
-						jFrame_inventario.aggiornaTabProd();
-					}
-				}
-			}
-
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
 	private void addCategoria(String nomeCategoria) {
 			db.insertNuovaCategoria(nomeCategoria);

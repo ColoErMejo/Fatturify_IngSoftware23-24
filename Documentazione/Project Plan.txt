@@ -39,7 +39,7 @@ Utilizzando una modalità di sviluppo SWAT che ci permette di coordinare il lavo
 Metodi e tecniche:
 Le tecniche che usiamo per la rappresentazione logica del progetto sono date dai seguenti diagrammi UML: 
 Diagramma casi di uso (per l'ingegneria dei requisiti) 
-Diagramma delle classi (per la fase di progettazione)  
+Diagramma delle classi (per la fase di progettazione, a scopo indicativo, impossibile rappresentarlo con 100% di accuratezza rispetto al codice)  
 Diagramma di stato 
 Diagramma di attività 
 Diagramma di componenti 
