@@ -70,9 +70,7 @@ DB Browser (SQLite)
 
 Cambiamenti
 I cambiamenti verranno gestiti tramite gli incontri settimanali fissati per discutere il progetto per poi in caso positivo apportare le modifiche su GitHub 
-Durante l'implementazione del progetto ci siamo preffissati.
-
-Son stati apportati dei cambiamenti al programma andando a inserire la possibilità di scaricare le fatture su desktop come opzionale.
+E' stato deciso di lasciare a successive implementazioni la possibilità di scaricare le fatture su desktop come opzionale.
 
 Consegna
 Si prevede di consegnare il progetto per fine Gennaio con la possibilità di apportare delle lievi modifiche fino al 15 di Febbraio
