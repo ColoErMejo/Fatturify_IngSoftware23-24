@@ -1,22 +1,22 @@
 Project plan:
 
 Introduzione:
-  Il presente piano di progetto delinea il quadro strategico e operativo per lo sviluppo di un software di gestione economica aziendale, concepito e realizzato da un team di tre studenti di ingegneria informatica: 
+Il presente piano di progetto delinea il quadro strategico e operativo per lo sviluppo di un software di gestione economica aziendale, concepito e realizzato da un team di tre studenti di ingegneria informatica: 
 Lorenzo Colombo (1081134) 
-Carlo Alberto Poggiu (matricola) 
+Carlo Alberto Poggiu (1079843) 
 Gabriele Merli (matricola)  
 
 Il progetto è stato concepito in risposta alla crescente necessità delle aziende di ottimizzare le loro operazioni finanziarie e organizzative attraverso l'implementazione di una soluzione software sofisticata ed efficiente.
 
 
 Modello di processo
-  Modello Incrementale:
+Modello Incrementale:
 Caratteristiche Principali: Lo sviluppo incrementale prevede la suddivisione del progetto in parti più piccole, chiamate incrementi, ciascuno dei quali implementa e rilascia una porzione specifica delle funzionalità richieste. Ogni incremento aggiunge nuove funzionalità o migliora quelle esistenti. Questo modello consente di rilasciare parti del software più rapidamente, consentendo un feedback tempestivo dagli utenti e facilitando adattamenti in corso d'opera. 
 
 Organizzazione del progetto
-  Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in modo da tracciare una linea generale sui task da eseguire. 
- La documentazione riguarda sia la fase iniziale, centrale e finale del progetto. Per la fase di sviluppo abbiamo usato i vari diagrammi messi a disposizione da UML,per poi partire con l’implementazione dell’idea.
- In particolare, il team si incontra costantemente per verificare il lavoro svolto dall'ultimo meet e pianificare i passaggi successivi.
+Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in modo da tracciare una linea generale sui task da eseguire. 
+La documentazione riguarda sia la fase iniziale, centrale e finale del progetto. Per la fase di sviluppo abbiamo usato i vari diagrammi messi a disposizione da UML,per poi partire con l’implementazione dell’idea.
+In particolare, il team si incontra costantemente per verificare il lavoro svolto dall'ultimo meet e pianificare i passaggi successivi.
 
 Standard,linee guida e procedure
 Alla fine di ogni sprint bisogna creare un report in cui specificare gli obiettivi portati a termine, decisi all'interno dello sprint backlog.
@@ -55,7 +55,7 @@ Pacchetti di lavoro
 I ruoli sono divisi equamente sulla base della complessità del progetto
 Gabriele Merli: Si occuperà della programmazione delle parti fondamentali dell'idea
 Lorenzo Colombo: Si occuperà anche lui della programmazione del software, correzioni grafiche e gestione del database, curando anche i diagrammi UML per permettere una visione a 360° del progetto
-Carlo Alberto Poggiu: Si occuperà anche lui della progrtammazione e delineamento del database con mansione principale puntata sulla produzione della documentazione.
+Carlo Alberto Poggiu: Si occuperà anche lui della programmazione e delineamento del database con mansione principale puntata sulla produzione della documentazione.
 
 Risorse
 Le tecnologie utilizzate sono: 
