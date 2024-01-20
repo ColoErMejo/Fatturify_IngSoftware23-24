@@ -4,9 +4,9 @@ Introduzione:
 Il presente piano di progetto delinea il quadro strategico e operativo per lo sviluppo di un software di gestione economica aziendale, concepito e realizzato da un team di tre studenti di ingegneria informatica: 
 Lorenzo Colombo (1081134) 
 Carlo Alberto Poggiu (1079843) 
-Gabriele Merli (matricola)  
+Gabriele Merli (1081373)  
 
-Il progetto è stato concepito in risposta alla crescente necessità delle aziende di ottimizzare le loro operazioni finanziarie e organizzative attraverso l'implementazione di una soluzione software sofisticata ed efficiente.
+Il progetto è un sistema gestionale avanzato progettato per ottimizzare l'organizzazione e la gestione dei cantieri. Questo strumento versatile consente una gestione efficiente del personale, del materiale e delle attrezzature, garantendo il massimo controllo e la massima efficienza in ogni fase del progetto.
 
 
 Modello di processo
@@ -18,6 +18,11 @@ Abbiamo strutturando il nostro lavoro attraverso dei meeting online/presenza in 
 La documentazione riguarda sia la fase iniziale, centrale e finale del progetto. Per la fase di sviluppo abbiamo usato i vari diagrammi messi a disposizione da UML,per poi partire con l’implementazione dell’idea.
 In particolare, il team si incontra costantemente per verificare il lavoro svolto dall'ultimo meet e pianificare i passaggi successivi.
 
+Standard e Linee Guida
+Il progetto è stato sviluppato utilizzando Java su Eclipse. Abbiamo seguito le convenzioni standard di codifica Java, che includono l'uso di una nomenclatura appropriata per classi, metodi e variabili. Per la gestione delle dipendenze del progetto, è stato adottato Maven.
+
+Per la realizzazione dell'interfaccia grafica utente (GUI), è stato utilizzato NetBeans. Infine, la creazione e la manutenzione del database e delle sue tabelle sono state realizzate utilizzando  DB Browser (SQLite).
+
 Standard,linee guida e procedure
 Alla fine di ogni sprint bisogna creare un report in cui specificare gli obiettivi portati a termine, decisi all'interno dello sprint backlog.
 
@@ -26,7 +31,6 @@ Abbiamo usato il paradigma Capo squadra programmatore in cui:
 Programmatore: Gabriele Merli
 Assistente campo: Lorenzo Colombo
 Design e Documentazione: Poggiu Carlo Alberto    
-
 
 Rischi:
 Nel nostro caso il principale rischio è la gestione grafica e del codice per lo sviluppo dell’idea.
@@ -66,8 +70,9 @@ DB Browser (SQLite)
 
 Cambiamenti
 I cambiamenti verranno gestiti tramite gli incontri settimanali fissati per discutere il progetto per poi in caso positivo apportare le modifiche su GitHub 
-(Qui aggiungiamo note riguardo i cambiamenti durante il progetto)
+Durante l'implementazione del progetto ci siamo preffissati.
 
+Son stati apportati dei cambiamenti al programma andando a inserire la possibilità di scaricare le fatture su desktop come opzionale.
 
 Consegna
-Per la consegna abbiamo determinato una scadenza in base alla consegna richiesta in modo tale da apportare ulteriori modifiche/migliorie in previsione della presentazione tramite github
+Si prevede di consegnare il progetto per fine Gennaio con la possibilità di apportare delle lievi modifiche fino al 15 di Febbraio
