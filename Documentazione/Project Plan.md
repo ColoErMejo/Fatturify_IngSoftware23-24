@@ -1,4 +1,4 @@
-Project plan:
+# Project plan:
 
 Introduzione:
 Il presente piano di progetto delinea il quadro strategico e operativo per lo sviluppo di un software di gestione economica aziendale, concepito e realizzato da un team di tre studenti di ingegneria informatica: 
@@ -9,7 +9,8 @@ Gabriele Merli (1081373)
 Il progetto è un sistema gestionale avanzato progettato per ottimizzare l'organizzazione e la gestione dei cantieri. Questo strumento versatile consente una gestione efficiente del personale, del materiale e delle attrezzature, garantendo il massimo controllo e la massima efficienza in ogni fase del progetto.
 
 
-Modello di processo
+## Modello di processo
+
 Modello Incrementale:
 Caratteristiche Principali: Lo sviluppo incrementale prevede la suddivisione del progetto in parti più piccole, chiamate incrementi, ciascuno dei quali implementa e rilascia una porzione specifica delle funzionalità richieste. Ogni incremento aggiunge nuove funzionalità o migliora quelle esistenti. Questo modello consente di rilasciare parti del software più rapidamente, consentendo un feedback tempestivo dagli utenti e facilitando adattamenti in corso d'opera. 
 
@@ -37,7 +38,7 @@ Nel nostro caso il principale rischio è la gestione grafica e del codice per lo
 Il tutto però viene risolto con l’ausilio di strumenti aggiuntivi e con l’unione delle competenze maturate durante l’anno accademico.
 Un altro rischio per la gestione errata riguarda il database e la struttura di quest'ultimo che deve rispettare determinati vincoli e regole da non dimenticare durante l'implementazione.
 
-Personale:
+## Personale:
 Utilizzando una modalità di sviluppo SWAT che ci permette di coordinare il lavoro in modo intelligente e graduale.
 
 Metodi e tecniche:
