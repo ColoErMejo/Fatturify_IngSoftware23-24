@@ -99,6 +99,9 @@ public class Controller_Inventario implements ActionListener{
 	}
 
 	private void jButton_ChangeCat1ActionPerformed() {
+		if(db.isTableEmpty("CATEGORIA")) {
+			JOptionPane.showMessageDialog(jFrame_inventario, "Nessuna Categoria inserita nel DB");
+		} else {
 		JDialog_ModificaCategoria Jdialog_modificacategoria = new JDialog_ModificaCategoria(jFrame_inventario, true, NomeUtente);
 		Jdialog_modificacategoria.setVisible(true);
 		
@@ -119,6 +122,7 @@ public class Controller_Inventario implements ActionListener{
 				System.out.println(NuovaCategoria);
 				if(CheckBox == true) {
 					db.deleteProdottoByCategoria(VecchiaCategoria);
+					db.updateColonnaPopolata(NomeUtente, "PRODOTTO");
 				}
 				modificaCategoria(VecchiaCategoria, NuovaCategoria);
 				if(jFrame_inventario!=null) {
@@ -131,10 +135,14 @@ public class Controller_Inventario implements ActionListener{
 				}
 			}
 		}
-		}
+	}
+}
 	
 
 	private void jButton_EliminaCatActionPerformed() {
+		if(db.isTableEmpty("CATEGORIA")) {
+			JOptionPane.showMessageDialog(jFrame_inventario, "Nessuna Categoria inserita nel DB");
+		} else {
 		JDialog_EliminaCategoria Jdialog_eliminacategoria = new JDialog_EliminaCategoria(jFrame_inventario, true, NomeUtente);
 		Jdialog_eliminacategoria.setVisible(true);
 		
@@ -160,8 +168,8 @@ public class Controller_Inventario implements ActionListener{
 				}
 			}
 		}
-
 	}
+}
 
 	private void jButton_AddProdActionPerformed() {
 		JDialog_AggiungiProdotto Jdialog_aggiungiprodotto = new JDialog_AggiungiProdotto(jFrame_inventario, true, NomeUtente);
@@ -208,6 +216,9 @@ public class Controller_Inventario implements ActionListener{
 
 	
 	private void jButton_ChangeProdActionPerformed() {
+		if(db.isTableEmpty("PRODOTTO")) {
+			JOptionPane.showMessageDialog(jFrame_inventario, "Nessuna Categoria inserita nel DB");
+		} else {
 		JDialog_ModificaProdotto Jdialog_modificaprodotto = new JDialog_ModificaProdotto(jFrame_inventario, true, NomeUtente);
 		Jdialog_modificaprodotto.setVisible(true);
 		
@@ -243,12 +254,14 @@ public class Controller_Inventario implements ActionListener{
 			}
 		}
 		}
-		
-		
-	}
+	}		
+}
 
 	
 	private void jButton_EliminaProdActionPerformed() {
+		if(db.isTableEmpty("PRODOTTO")) {
+			JOptionPane.showMessageDialog(jFrame_inventario, "Nessuna Categoria inserita nel DB");
+		} else {
 		JDialog_EliminaProdotto Jdialog_eliminaprodotto = new JDialog_EliminaProdotto(jFrame_inventario, true, NomeUtente);
 		Jdialog_eliminaprodotto.setVisible(true);
 	
@@ -273,9 +286,8 @@ public class Controller_Inventario implements ActionListener{
 			}
 		}
 		}
-		
-
 	}
+}
 
 	private void addProdotto(String nomeProdotto, float prezzoUnitario, String categoria) {
 	    // Recuperare la categoria esistente dal database
@@ -290,6 +302,7 @@ public class Controller_Inventario implements ActionListener{
 	        
 	        // Esegui l'inserimento del nuovo prodotto nel database
 	        db.insertNuovoProdotto(prod);
+	        db.updateColonnaPopolata(NomeUtente, "PRODOTTO");
 	        
 	        System.out.println("Prodotto " + prod.toString() + " inserito correttamente nella categoria " + cat.toString());
 	    } /*else {
@@ -317,11 +330,13 @@ public class Controller_Inventario implements ActionListener{
 	private void rimuoviProdotto(String NomeProdotto) {
 		//cancellare dal DB
 		db.deleteProdotto(NomeProdotto);
+		db.updateColonnaPopolata(NomeUtente, "PRODOTTO");
 	}
 	
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
 	private void addCategoria(String nomeCategoria) {
 			db.insertNuovaCategoria(nomeCategoria);
+			db.updateColonnaPopolata(NomeUtente, "CATEGORIA");
 		}
 	private void modificaCategoria(String vecchioNomecategoria, String nuovoNomecategoria) {
 		Categoria cat = db.recuperaCategoriaPerNome(vecchioNomecategoria);
@@ -339,8 +354,10 @@ public class Controller_Inventario implements ActionListener{
 	private void eliminaCategoria(String nomeCategoria) {
 		//eliminando una categoria devo rimuovere anche tutti i prodotti associati ad essa
 		db.deleteProdottoByCategoria(nomeCategoria);
+		db.updateColonnaPopolata(NomeUtente, "PRODOTTO");
 		//procedo ad eliminare la categoria dal db
 		db.deleteCategoria(nomeCategoria);
+		db.updateColonnaPopolata(NomeUtente, "CATEGORIA");
 	}
 
 	

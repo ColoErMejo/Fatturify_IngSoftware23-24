@@ -243,6 +243,7 @@ public class Controller_Cantiere implements ActionListener {
 		} else {
 			addCategoria(NomeCategoria);
 		}
+	
 	}
 
 	// AGGIUNGI NUOVO PRODOTTO AD UNA CATEGORIA PIù CONTROLLI DOVUTI PER INPUT
@@ -286,6 +287,7 @@ public class Controller_Cantiere implements ActionListener {
 	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
 	private void addCategoria(String nomeCategoria) {
 		db.insertNuovaCategoria(nomeCategoria);
+		
 	}
 
 	//// SALVARE IN DB NUOVO PRODOTTO(CHIAMATA DA openDialogForNuovoProdotto()) ----

@@ -39,11 +39,12 @@ public class DB {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "INSERT INTO UTENTE VALUES (" + " \"" + NomeAzienda + "\"," + " \"" + NomeUtente + "\", "
-						+ " \"" + Password + "\"  )";
+						+ " \"" + Password + "\", "
+						+ "FALSE, FALSE, FALSE, FALSE)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
-				System.out.println("Utente inserito con successo");
+				System.out.println("Classe DB: Utente inserito con successo");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -1009,6 +1010,109 @@ public class DB {
 
         return idPersonale;
     }
+    
+    public boolean isColonnaPopolata(String NomeUtente, String colonna) {
+        boolean columnValue = false;
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            if (conn != null) {
+                String sql = "SELECT " + colonna + " FROM UTENTE WHERE NOMEUTENTE = ?";
+                try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                    pstmt.setString(1, NomeUtente);
+
+                    try (ResultSet rs = pstmt.executeQuery()) {
+                        if (rs.next()) {
+                            // Leggi il valore booleano dalla colonna specificata
+                            columnValue = rs.getBoolean(colonna);
+                        } else {
+                            System.out.println("Nessun risultato trovato per NomeUtente: " + NomeUtente);
+                        }
+                    }
+                }
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return columnValue;
+    }
+    
+    public void updateColonnaPopolata(String NomeUtente, String columnName) {
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            if (conn != null) {
+                // Controlla se la tabella specificata è vuota
+                boolean isTableEmpty = isTableEmpty(columnName);
+                
+                if (isTableEmpty) {
+                    System.out.println("La tabella " + columnName + " è vuota. Aggiornamento a FALSE per NomeUtente: " + NomeUtente + " colonna: " + columnName);
+                    
+                    String sqlUpdateFalse = "UPDATE UTENTE SET " + columnName + " = FALSE WHERE NOMEUTENTE = ?";
+                    try (PreparedStatement pstmtUpdateFalse = conn.prepareStatement(sqlUpdateFalse)) {
+                        pstmtUpdateFalse.setString(1, NomeUtente);
+                        int rowsAffectedFalse = pstmtUpdateFalse.executeUpdate();
+
+                        if (rowsAffectedFalse > 0) {
+                            System.out.println("Valore di " + columnName + " aggiornato a FALSE per NomeUtente: " + NomeUtente);
+                        } else {
+                            System.out.println("Nessun utente trovato con NomeUtente: " + NomeUtente);
+                        }
+                    }
+                    
+                } else {
+                    // Verifica se il valore è già true
+                    if (isColonnaPopolata(NomeUtente, columnName)) {
+                        System.out.println("Il valore di " + columnName + " è già TRUE per NomeUtente: " + NomeUtente);
+                    } else {
+                        String sqlUpdateTrue = "UPDATE UTENTE SET " + columnName + " = TRUE WHERE NOMEUTENTE = ?";
+                        try (PreparedStatement pstmtUpdateTrue = conn.prepareStatement(sqlUpdateTrue)) {
+                            pstmtUpdateTrue.setString(1, NomeUtente);
+                            int rowsAffectedTrue = pstmtUpdateTrue.executeUpdate();
+
+                            if (rowsAffectedTrue > 0) {
+                                System.out.println("Valore di " + columnName + " aggiornato a TRUE per NomeUtente: " + NomeUtente);
+                            } else {
+                                System.out.println("Nessun utente trovato con NomeUtente: " + NomeUtente);
+                            }
+                        }
+                    }
+                }
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    
+ // Metodo ausiliario per verificare se la tabella è vuota
+    public boolean isTableEmpty(String tableName) {
+        boolean isEmpty = false;
+
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL);
+            if (conn != null) {
+                String sql = "SELECT COUNT(*) FROM " + tableName;
+                try (PreparedStatement pstmt = conn.prepareStatement(sql);
+                     ResultSet rs = pstmt.executeQuery()) {
+                    if (rs.next()) {
+                        int rowCount = rs.getInt(1);
+                        isEmpty = (rowCount == 0);
+                    }
+                }
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return isEmpty;
+    }
+
+
+
 
     
     /*public void insertIntoNewCantiere(String NomeCantiere, String Categoria, String Prodotto, float Quantita) {

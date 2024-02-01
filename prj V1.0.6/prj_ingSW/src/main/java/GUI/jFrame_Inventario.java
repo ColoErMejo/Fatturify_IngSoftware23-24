@@ -175,15 +175,18 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-        
+        if(!db.isTableEmpty("CATEGORIA")) {
         Return_avalaible_data.populateTable(jTable_InvCat, db.contaProdottiPerCategoria());
 		System.out.println("Tabella categorie popolata con successo");
+        }
+        if(!db.isTableEmpty("PRODOTTO")) {
 		try {
 			Return_avalaible_data.populateTable(jTable_InvProd, db.SelectProdotto());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        }
 	
     }
 	
@@ -198,19 +201,23 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 	
 	public void aggiornaTabCat() {
 		RestartTabCat();
+		if(db.isColonnaPopolata(nomeUtente, "CATEGORIA")) {
 		Return_avalaible_data.populateTable(jTable_InvCat, db.contaProdottiPerCategoria());
 		System.out.println("Tabella categorie aggiornata con successo");
+		}
 	}
 	
 	public void aggiornaTabProd() {
 		RestartTabProd();
+		 if(db.isColonnaPopolata(nomeUtente, "PRODOTTO")) {
 		try {
 			Return_avalaible_data.populateTable(jTable_InvProd, db.SelectProdotto());
 			System.out.println("Tabella prodotti aggiornata con successo");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+			}
+		 }
 	}
 	
 	

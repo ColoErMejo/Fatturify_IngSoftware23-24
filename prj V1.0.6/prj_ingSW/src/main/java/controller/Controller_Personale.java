@@ -96,7 +96,9 @@ public class Controller_Personale implements ActionListener {
 	}
 
 	private void jButton_ModificaPersonaleActionPerformed() {
-		// AGGIUNGERE FUNZIONE PER MODIFICARE PERSONALE IN DB
+		if(db.isTableEmpty("PERSONALE")) {
+			JOptionPane.showMessageDialog(jframe_personale, "Nessun Dipendente inserito nel DB");
+		} else {
 		JDialog_ModificaPersonale Jdialog_modificapersonale = new JDialog_ModificaPersonale(jframe_personale, true, nomeUtente);
 		Jdialog_modificapersonale.setVisible(true);
 		
@@ -141,13 +143,15 @@ public class Controller_Personale implements ActionListener {
 				}
 			}
 		}
-        }
-		
-		
+        }		
 	}
+}
 
 	private void jButton_EliminaPersonaleActionPerformed() {
 		// AGGIUNGERE FUNZIONE PER ELIMINARE PERSONALE IN DB
+		if(db.isTableEmpty("PERSONALE")) {
+			JOptionPane.showMessageDialog(jframe_personale, "Nessun Dipendente inserito nel DB");
+		} else {
 		JDialog_EliminaPersonale Jdialog_eliminapersonale = new JDialog_EliminaPersonale(jframe_personale, true, nomeUtente);
 		Jdialog_eliminapersonale.setVisible(true);
 		
@@ -183,6 +187,7 @@ public class Controller_Personale implements ActionListener {
 			}
 		}
 
+		}
 	}
 	
 
@@ -190,6 +195,7 @@ public class Controller_Personale implements ActionListener {
 		Dipendente dip=new Dipendente(NomeDipendente, CognomeDipendente, mansione2, paga2);
 		System.out.println(dip.toString());
 		db.insertNuovoDipendente(dip);
+		db.updateColonnaPopolata(nomeUtente, "PERSONALE");
 		
 	}
 	
@@ -215,6 +221,7 @@ public class Controller_Personale implements ActionListener {
 	
 	private void eliminaDipendente(String nome, String cognome) {
 		db.deleteDipendente(nome, cognome);
+		db.updateColonnaPopolata(nomeUtente, "PERSONALE");
 		
 	}
 			

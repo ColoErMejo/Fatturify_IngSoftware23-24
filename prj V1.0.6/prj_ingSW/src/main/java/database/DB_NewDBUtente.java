@@ -45,11 +45,15 @@ public class DB_NewDBUtente {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE UTENTE (" + "NOMEAZIENDA		TEXT PRIMARY KEY," + " NOMEUTENTE		TEXT,"
-						+ " PASSWORD		 TEXT )";
+						+ " PASSWORD		 TEXT, "
+						+ "CANTIERE        BOOLEAN DEFAULT FALSE,"
+	                    + "PERSONALE       BOOLEAN DEFAULT FALSE,"
+	                    + "CATEGORIA       BOOLEAN DEFAULT FALSE,"
+	                    + "PRODOTTO        BOOLEAN DEFAULT FALSE)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
-				System.out.println("Tabella utente creata");
+				System.out.println("Classe NewDB: Tabella utente creata");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

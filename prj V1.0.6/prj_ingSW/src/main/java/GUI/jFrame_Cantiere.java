@@ -73,7 +73,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         });
         jButton_Aggiungi_Cant.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	startAttCantTables();  	
+            	startAttCantTables(); 	
             }
         });
     }
@@ -265,22 +265,29 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         jComboBox_Prodotto_Cant.setVisible(false);        
         jLabel_NomeCanti.setText(nomeCantiere);
         
+        if((!db.isTableEmpty("PERSONALE"))||(!db.isTableEmpty("CATEGORIA"))) {
         startAttCantTables();  
         comboBoxvisible(jComboBox_Categoria_Cant);
         comboBoxvisible(jComboBox_Pers_Cant);
+        }
         
+        if(!db.isTableEmpty("CATEGORIA")) {
         try {
 			populatejComboBox(jComboBox_Categoria_Cant, Avalaible_Data.ReadDataByListOfArrayToComboBoxCat(db.SelectCategoria()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+			}
+        }
+        
+        if(!db.isTableEmpty("PERSONALE")) {
         try {
 			populatejComboBox(jComboBox_Pers_Cant, Avalaible_Data.extractNames(db.SelectPersonale()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+			}
+        }
               
         
     }
@@ -328,13 +335,17 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
     	System.out.println("Inizializzazione Completata");
     }
     private void setTableProdotto(DefaultTableModel model, int idAttivita) {
+    	if(db.isColonnaPopolata(nomeUtente, "PRODOTTO")) {
     	populateTable(model, db.getProductsForIdAttivita(idAttivita));
+    	}
 		
 	}
 
 
 	private void setTablePersonale(DefaultTableModel model, int idAttivita) {
+		if(db.isColonnaPopolata(nomeUtente, "PERSONALE")) {
 		populateTable(model, db.getPersonalForIdAttivita(idAttivita));
+		}
 		
 	}
 	
@@ -357,19 +368,23 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 	
 	public void aggiornaTabPers(String nomeDipendente, String nOre, String Descrizione) {
 		//restartTabPers();
+		if(db.isColonnaPopolata(nomeUtente, "PERSONALE")) {
 		Object[] rowPers = {nomeDipendente, nOre, Descrizione};
 		DefaultTableModel model = (DefaultTableModel) jTable_Bot_Cant.getModel();
 		model.addRow(rowPers);
 		System.out.println("Tabella Personale aggiornata con successo");
+		}
 	}
 	
 	public void aggiornaTabProd(String nomeProdotto, int numero) throws SQLException {
 		//restartTabProd();
+		if(db.isColonnaPopolata(nomeUtente, "PRODOTTO")) {
 		float costoTotale = numero*(db.getProductPriceByName(nomeProdotto));
 		Object[] rowProd = {nomeProdotto, numero, costoTotale };
 		DefaultTableModel model = (DefaultTableModel) jTable_Top_Cant.getModel();
 		model.addRow(rowProd);
 		System.out.println("Tabella Prodotti aggiornata con successo");
+		}
 	}
     
     //FUNZIONE PER IMPORTARE DA DB NOMI ARRAY DI NOMI

@@ -38,7 +38,11 @@ public class DB_Login {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "CREATE TABLE UTENTE (" + "NOMEAZIENDA		TEXT," + " NOMEUTENTE		TEXT,"
-						+ " PASSWORD		 TEXT )";
+						+ " PASSWORD		 TEXT, "
+						+ "CANTIERE        BOOLEAN DEFAULT FALSE,"
+	                    + "PERSONALE       BOOLEAN DEFAULT FALSE,"
+	                    + "CATEGORIA       BOOLEAN DEFAULT FALSE,"
+	                    + "PRODOTTO        BOOLEAN DEFAULT FALSE)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
@@ -56,11 +60,12 @@ public class DB_Login {
 			if (conn != null) {
 				Statement stmt = conn.createStatement();
 				String sql = "INSERT INTO UTENTE VALUES (" + " \"" + NomeAzienda + "\"," + " \"" + NomeUtente + "\", "
-						+ " \"" + Password + "\"  )";
+						+ " \"" + Password + "\", "
+						+ "FALSE, FALSE, FALSE, FALSE)";
 				stmt.executeUpdate(sql);
 				stmt.close();
 				conn.close();
-				System.out.println("Utente inserito con successo");
+				System.out.println("Classe DB_Login: Utente inserito con successo");
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

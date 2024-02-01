@@ -52,6 +52,7 @@ public class Controller_Login implements ActionListener {
 	}
 
 	// bottone per login
+	@SuppressWarnings("deprecation")
 	private void jButton_LoginActionPerformed() throws HeadlessException, SQLException {
 		if (checkUtente(jframe_login.getjTextField_Nome_Utente().getText(),
 				jframe_login.getjPasswordField().getText())) {
@@ -99,11 +100,12 @@ public class Controller_Login implements ActionListener {
 		if (!ERROR) {
 			System.out.println(NomeAzienda + NomeUtente + Password);
 
-			addUtente(NomeAzienda, NomeUtente, Password);
+			
 			DB_NewDBUtente DB_NewdbUtente = new DB_NewDBUtente(NomeUtente);
 			DB_NewdbUtente.createDB();
 			DB db = new DB(NomeUtente);
 			db.insertNuovoUtente(NomeAzienda, NomeUtente, Password);
+			addUtente(NomeAzienda, NomeUtente, Password);
 		}
 	}
 

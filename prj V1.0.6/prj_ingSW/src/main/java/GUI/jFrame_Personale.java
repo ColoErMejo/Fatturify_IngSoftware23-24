@@ -122,12 +122,15 @@ public class jFrame_Personale extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
         
+        if(!db.isTableEmpty("PERSONALE"))
+        {
         try {
 			Return_avalaible_data.populateTable(jTable_Pers_Left, db.SelectPersonale());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+        }
         
     }// </editor-fold>//GEN-END:initComponents
     public void RestartTabPers() {
@@ -138,13 +141,15 @@ public class jFrame_Personale extends javax.swing.JFrame {
     
     public void aggiornaTabPers() {
 		RestartTabPers();
-		try {
-			Return_avalaible_data.populateTable(jTable_Pers_Left, db.SelectPersonale());
-			System.out.println("Tabella Personale aggiornata con successo");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 if(db.isColonnaPopolata(nomeUtente, "PERSONALE")) {
+			 try {
+					Return_avalaible_data.populateTable(jTable_Pers_Left, db.SelectPersonale());
+					System.out.println("Tabella Personale aggiornata con successo");
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 }
 	}
     
 
