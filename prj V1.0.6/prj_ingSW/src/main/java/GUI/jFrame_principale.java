@@ -41,7 +41,7 @@ public class jFrame_principale extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton_IMieiCantieri = new javax.swing.JButton();
-        jButton_Bilancio = new javax.swing.JButton();
+        jButton_Cliccami = new javax.swing.JButton();
         jButton_IlMioPersonale = new javax.swing.JButton();
         jButton_Inventario = new javax.swing.JButton();
         jComboBox_IMieiCantieri = new javax.swing.JComboBox<>();
@@ -69,12 +69,12 @@ public class jFrame_principale extends javax.swing.JFrame {
        
         jPanel1.add(jButton_IMieiCantieri, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 50));
 
-        jButton_Bilancio.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_Bilancio.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jButton_Bilancio.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_Bilancio.setText("Bilancio");
+        jButton_Cliccami.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_Cliccami.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jButton_Cliccami.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_Cliccami.setText("Cliccami");
        
-        jPanel1.add(jButton_Bilancio, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 230, 50));
+        jPanel1.add(jButton_Cliccami, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 460, 230, 50));
 
         jButton_IlMioPersonale.setBackground(new java.awt.Color(255, 255, 255));
         jButton_IlMioPersonale.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -144,12 +144,8 @@ public class jFrame_principale extends javax.swing.JFrame {
         jComboBox_IMieiCantieri.setVisible(false);
         setLocationRelativeTo(null);
         
-        //jButton_Bilancio.setVisible(false);
-        jButton_Bilancio.setText("cliccami<3");
     }
-    
-    //DA AGGIUNGERE AD initComponents()
-    //jComboBox_IMieiCantieri.setVisible(false);
+ 
     
 
     //POPOLARE COMBOBOX CON ARRAY COME PARAMETRO, SECONDO PARAMETRO SOSTITUIBILE CON readDataArray()
@@ -176,12 +172,12 @@ public class jFrame_principale extends javax.swing.JFrame {
 		this.jButton_AggiungiCantiere = jButton_AggiungiCantiere;
 	}
 
-	public javax.swing.JButton getjButton_Bilancio() {
-		return jButton_Bilancio;
+	public javax.swing.JButton getjButton_Cliccami() {
+		return jButton_Cliccami;
 	}
 
 	public void setjButton_Bilancio(javax.swing.JButton jButton_Bilancio) {
-		this.jButton_Bilancio = jButton_Bilancio;
+		this.jButton_Cliccami = jButton_Bilancio;
 	}
 
 	public javax.swing.JButton getjButton_Fatture() {
@@ -242,7 +238,7 @@ public class jFrame_principale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AggiungiCantiere;
-    private javax.swing.JButton jButton_Bilancio;
+    private javax.swing.JButton jButton_Cliccami;
     private javax.swing.JButton jButton_Fatture;
     private javax.swing.JButton jButton_IMieiCantieri;
     private javax.swing.JButton jButton_IlMioPersonale;

@@ -136,12 +136,19 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         
         jPanel_Inventario_Right.add(jButton_AddProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 160, -1));
 
-        jButton_EliminaCat.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_EliminaCat.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton_EliminaCat.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_EliminaCat.setText("Elimina Categoria");
+        jButton_ChangeProd.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_ChangeProd.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_ChangeProd.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_ChangeProd.setText("Modifica Prodotto");
+       
+        jPanel_Inventario_Right.add(jButton_ChangeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, -1));
         
-        jPanel_Inventario_Right.add(jButton_EliminaCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
+        jButton_EliminaProd.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_EliminaProd.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_EliminaProd.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_EliminaProd.setText("Elimina Prodotto");
+        
+        jPanel_Inventario_Right.add(jButton_EliminaProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 160, -1));
 
         jButtonAddCategoria.setBackground(new java.awt.Color(255, 255, 255));
         jButtonAddCategoria.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -150,27 +157,20 @@ public class jFrame_Inventario extends javax.swing.JFrame {
         
         jPanel_Inventario_Right.add(jButtonAddCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
 
-        jButton_ChangeProd.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_ChangeProd.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton_ChangeProd.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_ChangeProd.setText("Modifica Prodotto");
-       
-        jPanel_Inventario_Right.add(jButton_ChangeProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, -1));
-
         jButton_ChangeCat1.setBackground(new java.awt.Color(255, 255, 255));
         jButton_ChangeCat1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton_ChangeCat1.setForeground(new java.awt.Color(51, 51, 51));
         jButton_ChangeCat1.setText("Modifica Categoria");
        
         jPanel_Inventario_Right.add(jButton_ChangeCat1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 160, -1));
-
-        jButton_EliminaProd.setBackground(new java.awt.Color(255, 255, 255));
-        jButton_EliminaProd.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton_EliminaProd.setForeground(new java.awt.Color(51, 51, 51));
-        jButton_EliminaProd.setText("Elimina Prodotto");
+ 
+        jButton_EliminaCat.setBackground(new java.awt.Color(255, 255, 255));
+        jButton_EliminaCat.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jButton_EliminaCat.setForeground(new java.awt.Color(51, 51, 51));
+        jButton_EliminaCat.setText("Elimina Categoria");
         
-        jPanel_Inventario_Right.add(jButton_EliminaProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 160, -1));
-
+        jPanel_Inventario_Right.add(jButton_EliminaCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 160, -1));
+        
         getContentPane().add(jPanel_Inventario_Right, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 500, 600));
 
         pack();
@@ -262,7 +262,7 @@ public class jFrame_Inventario extends javax.swing.JFrame {
 		this.jButton_Back_Invent = jButton_Back_Invent;
 	}
 
-	public javax.swing.JButton getjButton_ChangeCat1() {
+	public javax.swing.JButton getjButton_ChangeCat() {
 		return jButton_ChangeCat1;
 	}
 

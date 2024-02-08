@@ -28,12 +28,12 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 	private DB db;
 	private Return_Avalaible_Data Avalaible_Data;
 
-	// da togliere, serviva a me per fare i test
-	private  Object[][] data = {
+	// utilizzato per fare i test
+	/*private  Object[][] data = {
             {"John", "Doe", 25},
             {"Jane", "Smith", 30},
             {"Bob", "Johnson", 28}
-    };
+    };*/
 	
 	
 
@@ -155,7 +155,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 
         jLabel_NomeCanti.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         jLabel_NomeCanti.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_NomeCanti.setText("jLabel3");
+        jLabel_NomeCanti.setText(" ");
         jPanel_Cantiere_Left.add(jLabel_NomeCanti, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, -1, -1));
 
         getContentPane().add(jPanel_Cantiere_Left, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 600));
@@ -292,38 +292,11 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
         
     }
     	
-  
-    /*
-    	jLabel_Descrizione_Cant.setVisible(false);
-        jTextField_Descrizione_Cant.setVisible(false);
-        jLabel_Quantita_Cant.setVisible(false);
-        jLabel_Nore_Cant.setVisible(false);
-        jTextField_Quantita_Cant.setVisible(false);
-        jTextField_Nore_Cant.setVisible(false);
-        jComboBox_Prodotto_Cant.setVisible(false);        
-        jLabel_NomeCanti.setText(nomeCantiere);
-        
-        populateTable(jTable_Top_Cant, data);
-        populateTable(jTable_Bot_Cant, data);
-        
-        comboBoxvisible(jComboBox_Categoria_Cant);
-        comboBoxvisible(jComboBox_Pers_Cant);
-     */
    
     
     public final static String[] Column_top = {"Nome Prodotto", "Quantità", "Costo totale"};
     public final static String[] Column_bot = {"Dipendente", "Ore", "Descrizione"};
 
-    /*public void populateTable(JTable table,Object[][] data, String[] Column)
-    {
-    	DefaultTableModel tblmodel = new DefaultTableModel(data, Column) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-        };
-        table.setModel(tblmodel);
-    }*/
     public void startAttCantTables() {
     	restartTabProd();
     	restartTabPers();
@@ -393,20 +366,6 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 		return items;
 	}
     
-    //SETTA COMBOBOX VISIBILE E LA POPOLA CON PRODOTTI, PRENDE PARAMETRO CATEGORIA
-    /*public void comboBoxvisible(JComboBox<String> jComboBox, String categoria)
-    {
-    	jComboBox.setVisible(true);
-    	String[] items = readCategorieOrProdotti(categoria);
-    	populatejComboBox(jComboBox, items);
-    }*/
-    
-    
-    //RITORNA ARRAY DI STRINGHE PER POPOLARE COMBOBOX PRODOTTI, PARAMETRO CATEGORIA
-    /*private String[] readCategorieOrProdotti(String Categoria) {
-    	String categoria[] = {"1","2","3"}; //SOLO PER TESTARE, DA TOGLIERE
-		return categoria;
-	}*/
     
     //SETTA COMBOBOX VISIBILE E LA POPOLA CON CATEGORIE O PERSONALE
     public void comboBoxvisible(JComboBox<String> jComboBox)
@@ -517,7 +476,7 @@ public class jFrame_Cantiere extends javax.swing.JFrame {
 		this.jButton_NuovoProd_Cant = jButton_NuovoProd_Cant;
 	}
 
-	public javax.swing.JButton getjButton_ToFAttura_Cant() {
+	public javax.swing.JButton getjButton_ToFattura_Cant() {
 		return jButton_ToFAttura_Cant;
 	}
 

@@ -51,7 +51,7 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel_Nome_POP = new javax.swing.JLabel();
+        jLabel_Dipendente_POP = new javax.swing.JLabel();
         jPanel_Right_Elimina = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel_EliminaPers_POP = new javax.swing.JLabel();
@@ -65,10 +65,10 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Nome_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Nome_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP.setText("Dipendente");
-        jPanel2.add(jLabel_Nome_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 30));
+        jLabel_Dipendente_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Dipendente_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Dipendente_POP.setText("Dipendente");
+        jPanel2.add(jLabel_Dipendente_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, 30));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
@@ -191,7 +191,7 @@ public class JDialog_EliminaPersonale extends javax.swing.JDialog {
     private javax.swing.JButton jButton_EliminaPers_POP;
     private javax.swing.JComboBox<String> jComboBox_EliminaPersonale_POP;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_Nome_POP;
+    private javax.swing.JLabel jLabel_Dipendente_POP;
     private javax.swing.JLabel jLabel_EliminaPers_POP;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Right_Elimina;

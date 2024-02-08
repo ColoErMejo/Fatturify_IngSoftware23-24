@@ -38,7 +38,7 @@ public class Controller_Principale implements ActionListener {
 		this.db = new DB(NomeUtente);
 
 		jFrame.getjButton_AggiungiCantiere().addActionListener(this);
-		jFrame.getjButton_Bilancio().addActionListener(this);
+		jFrame.getjButton_Cliccami().addActionListener(this);
 		jFrame.getjButton_Fatture().addActionListener(this);
 		jFrame.getjButton_IlMioPersonale().addActionListener(this);
 		jFrame.getjButton_IMieiCantieri().addActionListener(this);
@@ -65,8 +65,8 @@ public class Controller_Principale implements ActionListener {
 			jButton_InventarioActionPerformed();
 		else if (e.getSource() == jframe_principale.getjButton_Fatture())
 			jButton_FattureActionPerformed();
-		else if (e.getSource() == jframe_principale.getjButton_Bilancio())
-			jButton_BilancioActionPerformed();
+		else if (e.getSource() == jframe_principale.getjButton_Cliccami())
+			jButton_CliccamiActionPerformed();
 		else if (e.getSource() == jframe_principale.getjButton_Impostazioni())
 			jButton_ImpostazioniActionPerformed();
 		else if (e.getSource() == jframe_principale.getjButton_VediUser())
@@ -104,7 +104,7 @@ public class Controller_Principale implements ActionListener {
 		System.out.println("open jframe_inventario");
 	}
 
-	// APRE FRAME FATTURE (PRESA DA BOZZA GUI PROGETTO MA SECONDO ME DA TOGLIERE)
+	// APRE FRAME FATTURE 
 	private void jButton_FattureActionPerformed() {
 		jFrame_fattura jframe_fattura = new jFrame_fattura();
 		jframe_fattura.setVisible(true);
@@ -112,8 +112,8 @@ public class Controller_Principale implements ActionListener {
 		System.out.println("open jframe_fattura");
 	}
 
-	// FRAME BILANCIO NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.  "../database/DB.db3";
-	private void jButton_BilancioActionPerformed() {
+	//Cliccami button, esercizio di stile
+	private void jButton_CliccamiActionPerformed() {
 		  try {
 			  String percorsoFilePython = "../easter egg/heart2.py";
 	            String percorsoPythonExe = "../easter egg/python/python.exe";  // Sostituisci con il tuo percorso reale
@@ -174,14 +174,14 @@ public class Controller_Principale implements ActionListener {
 		}
 	}
 
-	// IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
+	// IMPOSTAZIONI NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO. SHOULD HAVE.
 	private void jButton_ImpostazioniActionPerformed() {
 		JDialog_Import JDialog_import = new JDialog_Import(jframe_principale, true);
 		JDialog_import.setVisible(true);
 		
 	}
 
-	// IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO.
+	// IMPOSTAZIONI USER NON ANCORA DISCUSSE, PRESE DA BOZZA PROGETTO. SHOULD HAVE.
 	private void jButton_VediUserActionPerformed() {
 
 	}

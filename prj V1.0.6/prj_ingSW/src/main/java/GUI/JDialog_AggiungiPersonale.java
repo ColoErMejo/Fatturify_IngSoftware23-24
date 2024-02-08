@@ -38,18 +38,14 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel_Categoria_POP = new javax.swing.JLabel();
-        jLabel_Prezzo_POP = new javax.swing.JLabel();
+        jLabel_PagaOraria_POP = new javax.swing.JLabel();
+        jLabel_Mansione_POP = new javax.swing.JLabel();
         jLabel_Nome_POP = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTextField_PagaOraria_POP = new javax.swing.JTextField();
         jTextField_Nome_POP = new javax.swing.JTextField();
         jButton_Aggiungi_Pers_POP = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel_Categoria_POP1 = new javax.swing.JLabel();
-        jLabel_Prezzo_POP1 = new javax.swing.JLabel();
-        jLabel_Nome_POP1 = new javax.swing.JLabel();
-        jLabel_Aggiungi_Prodotto_POP = new javax.swing.JLabel();
+        jLabel_Aggiungi_Personale_POP = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField_Mansione_POP = new javax.swing.JTextField();
 
@@ -60,19 +56,19 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(0, 153, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel_Categoria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Categoria_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP.setText("Paga Oraria");
-        jPanel2.add(jLabel_Categoria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
+        jLabel_PagaOraria_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_PagaOraria_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_PagaOraria_POP.setText("Paga Oraria");
+        jPanel2.add(jLabel_PagaOraria_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 40));
 
-        jLabel_Prezzo_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Prezzo_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP.setText("Mansione");
-        jPanel2.add(jLabel_Prezzo_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 40));
+        jLabel_Mansione_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        jLabel_Mansione_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Mansione_POP.setText("Mansione");
+        jPanel2.add(jLabel_Mansione_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 40));
 
         jLabel_Nome_POP.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jLabel_Nome_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP.setText("Nome e Cognome");
+        jLabel_Nome_POP.setText("Nome-Cognome");
         jPanel2.add(jLabel_Nome_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
@@ -97,32 +93,13 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
                 jButton_Aggiungi_Pers_POPActionPerformed(evt);
             }
         });
+        
         jPanel1.add(jButton_Aggiungi_Pers_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 250, 100, -1));
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel_Categoria_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Categoria_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP1.setText("categoria");
-        jPanel3.add(jLabel_Categoria_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
-
-        jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Prezzo_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP1.setText("prezzo unitario");
-        jPanel3.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
-
-        jLabel_Nome_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Nome_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP1.setText("nome");
-        jPanel3.add(jLabel_Nome_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
-
-        jLabel_Aggiungi_Prodotto_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
-        jLabel_Aggiungi_Prodotto_POP.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Aggiungi_Prodotto_POP.setText("Aggiungi Personale");
-        jPanel1.add(jLabel_Aggiungi_Prodotto_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
+        jLabel_Aggiungi_Personale_POP.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel_Aggiungi_Personale_POP.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel_Aggiungi_Personale_POP.setText("Aggiungi Personale");
+        jPanel1.add(jLabel_Aggiungi_Personale_POP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 200, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/lineaBlu4.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
@@ -197,16 +174,12 @@ public class JDialog_AggiungiPersonale extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Aggiungi_Pers_POP;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel_Aggiungi_Prodotto_POP;
-    private javax.swing.JLabel jLabel_Categoria_POP;
-    private javax.swing.JLabel jLabel_Categoria_POP1;
+    private javax.swing.JLabel jLabel_Aggiungi_Personale_POP;
+    private javax.swing.JLabel jLabel_PagaOraria_POP;
     private javax.swing.JLabel jLabel_Nome_POP;
-    private javax.swing.JLabel jLabel_Nome_POP1;
-    private javax.swing.JLabel jLabel_Prezzo_POP;
-    private javax.swing.JLabel jLabel_Prezzo_POP1;
+    private javax.swing.JLabel jLabel_Mansione_POP;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField_Mansione_POP;
     private javax.swing.JTextField jTextField_Nome_POP;
     private javax.swing.JTextField jTextField_PagaOraria_POP;

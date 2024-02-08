@@ -109,10 +109,6 @@ public class Return_Avalaible_Data {
 
 	    return names;
 	}
-
-
-
-	
 	
 	
 	public void populateTable(JTable table,Object[][] data)

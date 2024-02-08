@@ -146,9 +146,8 @@ public class Controller_Personale implements ActionListener {
         }		
 	}
 }
-
+	// FUNZIONE PER ELIMINARE PERSONALE DAL DB
 	private void jButton_EliminaPersonaleActionPerformed() {
-		// AGGIUNGERE FUNZIONE PER ELIMINARE PERSONALE IN DB
 		if(db.isTableEmpty("PERSONALE")) {
 			JOptionPane.showMessageDialog(jframe_personale, "Nessun Dipendente inserito nel DB");
 		} else {
@@ -175,7 +174,6 @@ public class Controller_Personale implements ActionListener {
 		if (!ERROR) {
 			try {
 				System.out.println(Personale);
-				//JOptionPane.showMessageDialog(Jdialog_eliminapersonale, "Eliminando questa categoria, verranno rimossi anche tutti i prodotti ad essa associati");
 				eliminaDipendente(nome, cognome);
 				if(jframe_personale!=null) {
 					jframe_personale.aggiornaTabPers();

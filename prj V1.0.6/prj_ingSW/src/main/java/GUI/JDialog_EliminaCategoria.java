@@ -54,9 +54,6 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jButton_EliminaCat_POP = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel_Categoria_POP1 = new javax.swing.JLabel();
-        jLabel_Prezzo_POP1 = new javax.swing.JLabel();
-        jLabel_Nome_POP1 = new javax.swing.JLabel();
         jLabel_Elimina_Categoria_POP = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox_Categoria_POP = new javax.swing.JComboBox<>();
@@ -91,21 +88,6 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        /*jLabel_Categoria_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Categoria_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Categoria_POP1.setText("categoria");
-        jPanel3.add(jLabel_Categoria_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));*/
-
-        /*jLabel_Prezzo_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Prezzo_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Prezzo_POP1.setText("prezzo unitario");
-        jPanel3.add(jLabel_Prezzo_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));*/
-
-        /*jLabel_Nome_POP1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel_Nome_POP1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel_Nome_POP1.setText("nome");
-        jPanel3.add(jLabel_Nome_POP1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, -1));*/
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 300));
 
@@ -211,10 +193,7 @@ public class JDialog_EliminaCategoria extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBox_Categoria_POP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Categoria_POP;
-    private javax.swing.JLabel jLabel_Categoria_POP1;
     private javax.swing.JLabel jLabel_Elimina_Categoria_POP;
-    private javax.swing.JLabel jLabel_Nome_POP1;
-    private javax.swing.JLabel jLabel_Prezzo_POP1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

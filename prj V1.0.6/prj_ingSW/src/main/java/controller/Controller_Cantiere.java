@@ -31,7 +31,7 @@ public class Controller_Cantiere implements ActionListener {
 
 		jFrame.getjButton_Aggiungi_Cant().addActionListener(this);
 		jFrame.getjButton_NuovoProd_Cant().addActionListener(this);
-		jFrame.getjButton_ToFAttura_Cant().addActionListener(this);
+		jFrame.getjButton_ToFattura_Cant().addActionListener(this);
 		jFrame.getjButton_Back_Cant().addActionListener(this);
 		jFrame.getjButton_Home_Cant().addActionListener(this);
 		jFrame.getjComboBox_Categoria_Cant().addActionListener(this);
@@ -64,7 +64,7 @@ public class Controller_Cantiere implements ActionListener {
 			jComboBox_Pers_CantActionPerformed();
 		else if (e.getSource() == jframe_cantiere.getjButton_Home_Cant())
 			jButton_Home_CantActionPerformed();
-		else if (e.getSource() == jframe_cantiere.getjButton_ToFAttura_Cant())
+		else if (e.getSource() == jframe_cantiere.getjButton_ToFattura_Cant())
 			jButton_ToFAttura_CantActionPerformed();
 		else if (e.getSource() == jframe_cantiere.getjButton_NuovaCat_Cant())
 			jButton_NuovaCat_CantActionPerformed();
@@ -137,7 +137,6 @@ public class Controller_Cantiere implements ActionListener {
 	}
 
 	// FUNZIONE PER SALVARE NEL DB I DATI RELATIVI ALLE ATTIVITà SVOLTE NEL CANTIERE
-	// ---- DA RIVEDERE----
 	private void addProdottoToAttivitaCantiere(String NomeCantiere ,String Prodotto, float Quantita) throws SQLException {
 		int idAttivita = db.getIdAttivitaFromNomeCantiere(NomeCantiere);
 		float costoTotale = Quantita*(db.getProductPriceByName(Prodotto));
@@ -194,7 +193,7 @@ public class Controller_Cantiere implements ActionListener {
 				jframe_cantiere.getjTextField_Descrizione_Cant());
 	}
 
-	// APRE DIALOG E CREA UNA NUOCA CATEGORIA
+	// APRE DIALOG E CREA UNA NUOVA CATEGORIA
 	private void jButton_NuovaCat_CantActionPerformed() {
 		openDialogForNuovaCategoria();
 	}
@@ -284,13 +283,13 @@ public class Controller_Cantiere implements ActionListener {
 		}
 	}
 	
-	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
+	// SALVARE IN DB NUOVA CATEGORIA 
 	private void addCategoria(String nomeCategoria) {
 		db.insertNuovaCategoria(nomeCategoria);
 		
 	}
 
-	//// SALVARE IN DB NUOVO PRODOTTO(CHIAMATA DA openDialogForNuovoProdotto()) ----
+	// SALVARE IN DB NUOVO PRODOTTO
 	private void addProdotto(String NomeProdotto, float PrezzoUnitario, String Categoria) {
 		// SALVARE IN DB
 		Prodotto prod=new Prodotto(NomeProdotto, PrezzoUnitario, Categoria);

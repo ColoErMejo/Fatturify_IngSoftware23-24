@@ -8,11 +8,12 @@ import database.DB;
 public class Categoria {
 
 	public String NomeCategoria;
-	private List<Prodotto> ListaProdotti = new ArrayList<>();
+	private List<Prodotto> ListaProdotti;
 	
 
 	public Categoria(String NomeCategoria) {
 		this.NomeCategoria = NomeCategoria;
+		this.ListaProdotti= new ArrayList<>();
 		
 	}
 
@@ -59,7 +60,7 @@ public class Categoria {
 	}
 
 	public void setListaProdotti(List<Prodotto> listaProdotti) {
-		ListaProdotti = listaProdotti;
+		this.ListaProdotti = listaProdotti;
 	}
 	
 	

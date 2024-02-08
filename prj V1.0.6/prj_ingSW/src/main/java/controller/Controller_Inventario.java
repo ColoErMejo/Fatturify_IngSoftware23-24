@@ -33,7 +33,7 @@ public class Controller_Inventario implements ActionListener{
 
 		jFrame.getjButton_AddProd().addActionListener(this);
 		jFrame.getjButton_Back_Invent().addActionListener(this);
-		jFrame.getjButton_ChangeCat1().addActionListener(this);
+		jFrame.getjButton_ChangeCat().addActionListener(this);
 		jFrame.getjButton_ChangeProd().addActionListener(this);
 		jFrame.getjButton_EliminaCat().addActionListener(this);
 		jFrame.getjButton_EliminaProd().addActionListener(this);
@@ -48,8 +48,8 @@ public class Controller_Inventario implements ActionListener{
 			jButton_AddProdActionPerformed();
 		else if (e.getSource() == jFrame_inventario.getjButton_Back_Invent())
 			jButton_Back_InventActionPerformed();
-		else if (e.getSource() == jFrame_inventario.getjButton_ChangeCat1())
-			jButton_ChangeCat1ActionPerformed();
+		else if (e.getSource() == jFrame_inventario.getjButton_ChangeCat())
+			jButton_ChangeCatActionPerformed();
 		else if (e.getSource() == jFrame_inventario.getjButton_ChangeProd())
 			jButton_ChangeProdActionPerformed();
 		else if (e.getSource() == jFrame_inventario.getjButton_EliminaCat())
@@ -98,7 +98,7 @@ public class Controller_Inventario implements ActionListener{
 		}
 	}
 
-	private void jButton_ChangeCat1ActionPerformed() {
+	private void jButton_ChangeCatActionPerformed() {
 		if(db.isTableEmpty("CATEGORIA")) {
 			JOptionPane.showMessageDialog(jFrame_inventario, "Nessuna Categoria inserita nel DB");
 		} else {
@@ -333,7 +333,7 @@ public class Controller_Inventario implements ActionListener{
 		db.updateColonnaPopolata(NomeUtente, "PRODOTTO");
 	}
 	
-	// SALVARE IN DB NUOVA CATEGORIA (CHIAMATA DA openDialogForNuovaCategoria())
+	// SALVARE IN DB NUOVA CATEGORIA
 	private void addCategoria(String nomeCategoria) {
 			db.insertNuovaCategoria(nomeCategoria);
 			db.updateColonnaPopolata(NomeUtente, "CATEGORIA");
