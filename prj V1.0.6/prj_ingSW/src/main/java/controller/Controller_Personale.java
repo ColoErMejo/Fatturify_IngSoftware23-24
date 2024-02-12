@@ -212,8 +212,6 @@ public class Controller_Personale implements ActionListener {
 	        db.changeDipendente(Nome, Cognome, nuovaMansione, nuovaPagaOraria);
 	        
 	        System.out.println("Modifica completata: " + dip.toString());
-	    } else {
-	        System.out.println("Il Dipendente " + dip + " non esiste nel database.");
 	    }
 	}
 	
