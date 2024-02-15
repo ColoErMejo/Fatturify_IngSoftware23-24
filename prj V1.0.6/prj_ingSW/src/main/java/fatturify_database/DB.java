@@ -1,4 +1,4 @@
-package database;
+package fatturify_database;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +13,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Return_Avalaible_Data;
-import model.Categoria;
-import model.Dipendente;
-import model.Prodotto;
+import fatturify_controller.Return_Avalaible_Data;
+import fatturify_model.Categoria;
+import fatturify_model.Dipendente;
+import fatturify_model.Prodotto;
 
 public class DB {
 

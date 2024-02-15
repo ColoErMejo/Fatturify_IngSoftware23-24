@@ -11,8 +11,8 @@ import java.util.List;
 
 import javax.swing.JComboBox;
 
-import controller.Return_Avalaible_Data;
-import database.DB;
+import fatturify_controller.Return_Avalaible_Data;
+import fatturify_database.DB;
 
 /**
  *

@@ -1,4 +1,4 @@
-package controller;
+package fatturify_controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
-import database.DB;
+import fatturify_database.DB;
 
 public class Controller_Fattura implements ActionListener {
 

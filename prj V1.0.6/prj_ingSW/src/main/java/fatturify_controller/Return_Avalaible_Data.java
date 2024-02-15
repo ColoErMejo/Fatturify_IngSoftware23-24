@@ -1,4 +1,4 @@
-package controller;
+package fatturify_controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,9 +11,9 @@ import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import database.DB;
-import model.Categoria;
-import model.Prodotto;
+import fatturify_database.DB;
+import fatturify_model.Categoria;
+import fatturify_model.Prodotto;
 
 public class Return_Avalaible_Data {
 

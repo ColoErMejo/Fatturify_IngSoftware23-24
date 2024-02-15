@@ -1,9 +1,9 @@
-package model;
+package fatturify_model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DB;
+import fatturify_database.DB;
 
 public class Categoria {
 

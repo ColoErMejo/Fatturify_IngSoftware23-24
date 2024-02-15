@@ -12,7 +12,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
 
-import database.DB_Login;
+import fatturify_database.DB_Login;
 
 /**
  *

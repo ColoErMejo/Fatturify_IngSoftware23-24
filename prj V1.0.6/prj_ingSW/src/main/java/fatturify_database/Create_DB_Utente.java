@@ -1,4 +1,4 @@
-package database;
+package fatturify_database;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import model.Prodotto;
+import fatturify_model.Prodotto;
 
 public class ProdottoTest {
 

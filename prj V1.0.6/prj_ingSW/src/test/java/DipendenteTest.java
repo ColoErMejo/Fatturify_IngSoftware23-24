@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import model.Dipendente;
+import fatturify_model.Dipendente;
 
 public class DipendenteTest {
 

@@ -1,4 +1,4 @@
-package controller;
+package fatturify_controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +15,9 @@ import GUI.JDialog_ModificaProdotto;
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Personale;
 import GUI.jFrame_principale;
-import database.DB;
-import model.Categoria;
-import model.Dipendente;
-import model.Dipendente;
+import fatturify_database.DB;
+import fatturify_model.Categoria;
+import fatturify_model.Dipendente;
 
 public class Controller_Personale implements ActionListener {
 

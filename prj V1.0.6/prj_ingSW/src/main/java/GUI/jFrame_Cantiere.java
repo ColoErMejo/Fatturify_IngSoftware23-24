@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.crypto.Data;
 
-import controller.Return_Avalaible_Data;
-import database.DB;
+import fatturify_controller.Return_Avalaible_Data;
+import fatturify_database.DB;
 
 /**
  *

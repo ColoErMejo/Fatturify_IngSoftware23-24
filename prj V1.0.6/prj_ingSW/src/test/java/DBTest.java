@@ -3,8 +3,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import database.DB;
-import model.Prodotto;
+import fatturify_database.DB;
+import fatturify_model.Prodotto;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

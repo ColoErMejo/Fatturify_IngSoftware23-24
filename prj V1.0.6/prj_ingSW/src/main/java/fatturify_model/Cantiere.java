@@ -1,4 +1,4 @@
-package model;
+package fatturify_model;
 import java.util.ArrayList;
 import java.util.List;
 

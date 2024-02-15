@@ -1,4 +1,4 @@
-package controller;
+package fatturify_controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,8 +20,8 @@ import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
 import GUI.jFrame_fattura;
 import GUI.jFrame_principale;
-import database.DB;
-import database.DB_Login;
+import fatturify_database.DB;
+import fatturify_database.DB_Login;
 
 public class Controller_Principale implements ActionListener {
 

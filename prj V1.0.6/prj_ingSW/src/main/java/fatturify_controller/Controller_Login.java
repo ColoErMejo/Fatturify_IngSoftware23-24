@@ -1,4 +1,4 @@
-package controller;
+package fatturify_controller;
 
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
@@ -15,9 +15,9 @@ import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import GUI.jFrame_Personale;
 import GUI.jFrame_principale;
-import database.DB;
-import database.DB_Login;
-import database.DB_NewDBUtente;
+import fatturify_database.DB;
+import fatturify_database.DB_Login;
+import fatturify_database.DB_NewDBUtente;
 
 public class Controller_Login implements ActionListener {
 

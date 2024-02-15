@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
-import controller.Controller_Login;
-import database.DB_Login;
+import fatturify_controller.Controller_Login;
+import fatturify_database.DB_Login;
 
 public class Main {
 

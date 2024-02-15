@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.Return_Avalaible_Data;
-import database.DB;
+import fatturify_controller.Return_Avalaible_Data;
+import fatturify_database.DB;
 
 /**
  *

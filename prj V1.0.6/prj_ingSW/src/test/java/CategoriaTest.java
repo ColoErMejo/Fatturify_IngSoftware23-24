@@ -1,8 +1,8 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import model.Categoria;
-import model.Prodotto;
+import fatturify_model.Categoria;
+import fatturify_model.Prodotto;
 
 import java.util.ArrayList;
 import java.util.List;

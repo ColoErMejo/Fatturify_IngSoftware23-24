@@ -1,4 +1,4 @@
-package model;
+package fatturify_model;
 
 public class Utente {
 
