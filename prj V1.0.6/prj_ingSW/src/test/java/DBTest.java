@@ -13,6 +13,115 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBTest {
+    private Connection connection;
+    private DB db;
+    private static final String DB_REL_FILE = "../database/prova4.db3";
+    private static final String DB_URL = "jdbc:sqlite:" + DB_REL_FILE;
+
+    @Before
+    public void setUp() throws SQLException {
+        // Inizializza il database prima di eseguire ogni test
+        db = new DB("prova4");
+
+        // Crea una connessione al database SQLite
+        connection = DriverManager.getConnection(DB_URL);
+
+        // Crea una tabella di prova per il test
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ProdottoTest (id INTEGER PRIMARY KEY AUTOINCREMENT, nome TEXT, categoria TEXT, prezzo REAL)");
+    }
+
+    @After
+    public void tearDown() throws SQLException {
+        // Elimina la tabella di prova dopo ogni test
+        Statement stmt = connection.createStatement();
+        stmt.executeUpdate("DROP TABLE IF EXISTS ProdottoTest");
+        
+        // Chiudi la connessione dopo ogni test
+        connection.close();
+    }
+
+    @Test
+    public void testInserimentoProdotto() throws SQLException {
+        // Dati di esempio per il nuovo prodotto
+        String nome = "Smartphone";
+        String categoria = "Elettronica";
+        float prezzo = 699;
+
+        Prodotto prodotto = new Prodotto(nome, prezzo, categoria);
+        // Inserisci il nuovo prodotto nel database
+        db.insertNuovoProdotto(prodotto);
+        // Verifica che il prodotto sia stato inserito correttamente
+        assertTrue(verificaProdottoPresente(nome, categoria, prezzo));
+    }
+
+    @Test
+    public void testAggiornamentoProdotto() throws SQLException {
+        // Dati di esempio per il prodotto da aggiornare
+        String nome = "Smartphone";
+        String categoria = "Elettronica";
+        float prezzo = 699;
+        Prodotto prodotto = new Prodotto(nome, prezzo, categoria);
+
+        // Inserisci il prodotto nel database
+        db.insertNuovoProdotto(prodotto);
+
+        // Aggiorna il prezzo del prodotto
+        float nuovoPrezzo = 749;
+        prodotto.setPrezzoProdotto(nuovoPrezzo);
+        db.Prodotto(prodotto); 
+        // Verifica che il prezzo del prodotto sia stato aggiornato correttamente
+        assertTrue(verificaPrezzoProdotto(nome, categoria, nuovoPrezzo));
+    }
+
+    @Test
+    public void testEliminazioneProdotto() throws SQLException {
+        // Dati di esempio per il prodotto da eliminare
+        String nome = "Smartphone";
+        String categoria = "Elettronica";
+        float prezzo = 699;
+        Prodotto prodotto = new Prodotto(nome, prezzo, categoria);
+
+        // Inserisci il prodotto nel database
+        db.insertNuovoProdotto(prodotto);
+        
+        // Elimina il prodotto dal database
+        db.deleteProdotto(nome, categoria);
+        
+        // Verifica che il prodotto non sia più presente nel database
+        assertFalse(verificaProdottoPresente(nome, categoria, prezzo));
+    }
+
+    // Metodo di utilità per verificare se un prodotto è presente nel database
+    private boolean verificaProdottoPresente(String nome, String categoria, float prezzo) throws SQLException {
+        Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM ProdottoTest WHERE nome = '" + nome + "' AND categoria = '" + categoria + "' AND prezzo = " + prezzo);
+        return resultSet.next(); // Restituisce true se il prodotto è presente nel ResultSet
+    }
+
+    // Metodo di utilità per verificare il prezzo di un prodotto nel database
+    private boolean verificaPrezzoProdotto(String nome, String categoria, float prezzo) throws SQLException {
+        Statement stmt = connection.createStatement();
+        ResultSet resultSet = stmt.executeQuery("SELECT * FROM ProdottoTest WHERE nome = '" + nome + "' AND categoria = '" + categoria + "' AND prezzo = " + prezzo);
+        return resultSet.next(); // Restituisce true se il prezzo del prodotto corrisponde
+    }
+}
+
+/*import static org.junit.Assert.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import fatturify_database.DB;
+import fatturify_model.Prodotto;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DBTest {
     private static String NomeUtente;
 	private Connection connection;
     private DB db;
@@ -66,4 +175,4 @@ public class DBTest {
         return resultSet.next(); // Restituisce true se il prodotto è presente nel ResultSet
     }
 }
-
+*/
