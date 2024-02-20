@@ -354,6 +354,7 @@ public class DB {
 
 	            dip = new Dipendente(nomeD, cognomeD, mansioneD, pagaD);
 	            System.out.println("Dipendente trovato: " + dip.toString());
+	            
 	        }
 
 	        // Chiusura delle risorse
@@ -363,7 +364,7 @@ public class DB {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-	    return dip;
+		return dip;
 	}
 
 	
