@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import fatturify_database.DB;
+import fatturify_model.Categoria;
 import fatturify_model.Dipendente;
 import fatturify_model.Prodotto;
 
@@ -32,7 +33,11 @@ public class DBTest {
 
     @After
     public void tearDown() throws SQLException {
+    	//elimino dal db i dati d'esempio
+    	db.deleteCategoria("MetalloTest");
     	db.deleteProdotto("Smartphone");
+    	db.deleteProdotto("Tubo");
+    	db.deleteProdotto("Cerniera");
     	db.deleteDipendente("NomeTest", "CognomeTest");
         // Chiudi la connessione dopo ogni test
         connection.close();
@@ -130,6 +135,54 @@ public class DBTest {
         dipendenteRecuperato = db.recuperaDipendentePerNome(nome, cognome);
         assertEquals(nuovaPagaOraria, dipendenteRecuperato.getPaga(), 0.001f);
     }
+
+    @Test
+    public void testEliminazioneDipendente()throws SQLException {
+    	//Dati di esempio
+    	String nome = "NomeTest";
+    	String cognome = "CognomeTest";
+    	String mansione = "MansioneTest";
+    	float paga = 5;
+    	
+    	Dipendente dipendente = new Dipendente(nome, cognome, mansione, paga);
+    	
+    	db.insertNuovoDipendente(dipendente);
+    	
+    	db.deleteDipendente(nome, cognome);
+    	
+    	assertFalse(verificaDipendentePresente(nome, cognome, mansione, paga));
+    	
+    }
+    
+    @Test
+    public void testEliminaCategoriaCascataRimuoviProdotto() throws SQLException{
+    	//Dati di esempio
+    	String nomeCategoria="MetalloTest";
+    	
+    	//prodotti da aggiungere alla categoria
+    	Prodotto prodotto1 = new Prodotto("Tubo", 25, "MetalloTest");
+    	Prodotto prodotto2 = new Prodotto("Cerniera", 18, "MetalloTest");
+    	Categoria categoria = new Categoria(nomeCategoria);
+    	categoria.AddProdotto(prodotto1);
+    	categoria.AddProdotto(prodotto2);
+    	
+    	db.insertNuovaCategoria(nomeCategoria);
+    	db.insertNuovoProdotto(prodotto1);
+    	db.insertNuovoProdotto(prodotto2);
+    	
+    	db.deleteProdottoByCategoria(nomeCategoria);
+    	categoria.RimuoviProdotto(prodotto1);
+    	categoria.RimuoviProdotto(prodotto2);
+    	
+    	assertFalse(verificaProdottoPresente("Tubo", nomeCategoria, 25));
+    	assertFalse(verificaProdottoPresente("Cerniera", nomeCategoria, 18));
+       	assertTrue(categoria.getListaProdotti().isEmpty());
+    	
+    	db.deleteCategoria(nomeCategoria);
+    	
+    	assertFalse(verificaCategoriaPresente(nomeCategoria));
+    
+    }
     
     
 
@@ -159,5 +212,17 @@ public class DBTest {
             }
         }
     }
+    
+    //Metodo di utilità per verificare se una categoria è presente nel database
+    private boolean verificaCategoriaPresente(String nomeCategoria) throws SQLException {
+        String query = "SELECT * FROM CATEGORIA WHERE NOMECATEGORIA = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, nomeCategoria);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                return resultSet.next();
+            }
+        }
+    }
+
 
 }

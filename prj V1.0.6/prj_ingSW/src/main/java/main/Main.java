@@ -1,12 +1,7 @@
 package main;
 
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import GUI.jFrame_Cantiere;
 import GUI.jFrame_Login;
 import fatturify_controller.Controller_Login;
 import fatturify_database.DB_Login;
